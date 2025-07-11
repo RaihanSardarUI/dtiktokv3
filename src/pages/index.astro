@@ -1,0 +1,1164 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AdSlot from '../components/AdSlot.astro';
+import { getDtiktokConfig } from '../utils/config.js';
+
+const dtiktokConfig = getDtiktokConfig();
+---
+
+<Layout title="DTiktok Shortcut" description="DTiktok is a Shortcut for IOS Device, It helps to Download Videos from Famous Social Media Called TikTok. Download DTiktok Shortcuts for iPhone.">
+  
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Background Image - Optimized for LCP -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/DTikTok-BG.webp" 
+        alt="DTikTok Background" 
+        class="w-full h-full object-cover opacity-30" 
+        width="1200" 
+        height="800" 
+        loading="eager" 
+        fetchpriority="high"
+        decoding="sync"
+        style="transform: translateZ(0); will-change: transform;"
+      />
+      <div class="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70"></div>
+    </div>
+    
+    <!-- Animated Background Elements - Deferred -->
+    <div class="absolute inset-0 z-10" style="animation-delay: 0.5s;">
+      <div class="absolute top-20 left-20 w-32 h-32 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
+      <div class="absolute bottom-20 right-20 w-40 h-40 bg-secondary/20 rounded-full blur-xl animate-pulse" style="animation-delay: 1s;"></div>
+      <div class="absolute top-1/2 left-1/4 w-20 h-20 bg-accent/20 rounded-full blur-xl animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
+    
+    <!-- Hero Content -->
+    <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
+      <div class="mb-8">
+        <div class="avatar mb-6">
+          <div class="w-24 h-24 rounded-full ring-4 ring-primary ring-offset-4 ring-offset-base-100 hover:ring-offset-8 transition-all duration-300">
+            <img src="/DTikTok.webp" alt="DTikTok Logo" class="object-cover" width="96" height="96" loading="eager" />
+          </div>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black mb-6 gradient-text">DTikTok</h1>
+        <p class="text-xl md:text-2xl text-white mb-4 font-semibold">
+          No.1 TikTok Video Downloader Shortcut for IOS
+        </p>
+        
+        <!-- Enhanced Version Badge -->
+        <div class="mb-8">
+          <div class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-success/20 via-success/15 to-info/20 border-2 border-success/40 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 backdrop-blur-sm">
+            <div class="flex items-center space-x-2">
+              <div class="w-3 h-3 bg-success rounded-full animate-pulse"></div>
+              <span class="text-success font-bold text-lg">Latest</span>
+              <div class="w-px h-5 bg-success/30 mx-2"></div>
+              <span class="text-white font-black text-xl bg-gradient-to-r from-success to-info bg-clip-text text-transparent">v{dtiktokConfig.version}</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Enhanced CTA Button -->
+        <div class="flex justify-center">
+          <a href="#download" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary via-primary/90 to-secondary rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 hover:from-primary/90 hover:to-secondary/90 border-2 border-primary/30 hover:border-primary/50 overflow-hidden backdrop-blur-sm scroll-to-download" aria-label="Get DTikTok Shortcut">
+            
+            <!-- Animated Background -->
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <!-- Floating Particles -->
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div class="absolute top-2 left-4 w-1 h-1 bg-white/60 rounded-full animate-ping"></div>
+              <div class="absolute bottom-2 right-4 w-1 h-1 bg-white/60 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
+              <div class="absolute top-3 right-8 w-1 h-1 bg-white/40 rounded-full animate-ping" style="animation-delay: 1s;"></div>
+            </div>
+            
+            <!-- Icon with Enhanced Animation -->
+            <div class="relative mr-3 group-hover:rotate-12 transition-transform duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            
+            <!-- Text with Gradient Effect -->
+            <span class="relative bg-gradient-to-r from-white to-white/90 bg-clip-text text-transparent group-hover:from-white group-hover:to-white transition-all duration-300">
+              Get DTikTok Shortcut
+            </span>
+            
+            <!-- Shine Effect -->
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Hero Ad Placement -->
+        <div class="mt-8">
+          <AdSlot id="ad-hero" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Header Ad Placement -->
+  <AdSlot id="ad-header" />
+
+    <!-- Table of Contents -->
+  <section class="py-16 px-6 bg-base-200">
+    <div class="max-w-6xl mx-auto">
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 heading-with-border brush-stroke">Table of Contents</h2>
+        <p class="text-lg text-white/80 font-medium max-w-2xl mx-auto">Navigate through DTikTok's complete guide and discover all features</p>
+      </div>
+
+      <!-- Modern Table of Contents Grid -->
+      <div class="glass rounded-3xl p-8 shadow-2xl border border-white/10">
+        <nav aria-label="Page contents">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Section 1 -->
+                                      <a href="#about" class="group flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 hover:from-primary/20 hover:to-primary/10 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg border border-primary/20 hover:border-primary/40" aria-label="Jump to About DTikTok section">
+               <div class="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                 </svg>
+               </div>
+               <div class="flex-1 min-w-0">
+                 <h3 class="text-white font-semibold group-hover:text-primary transition-colors">About DTikTok</h3>
+                 <p class="text-white/60 text-sm">Learn about our iOS shortcut</p>
+               </div>
+               <div class="flex-shrink-0 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                 </svg>
+               </div>
+             </a>
+
+             <!-- Section 2 -->
+             <a href="#why-best" class="group flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-secondary/10 to-secondary/5 hover:from-secondary/20 hover:to-secondary/10 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg border border-secondary/20 hover:border-secondary/40" aria-label="Jump to Why DTikTok is the Best section">
+               <div class="flex-shrink-0 w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center group-hover:bg-secondary/30 transition-colors">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                 </svg>
+               </div>
+               <div class="flex-1 min-w-0">
+                 <h3 class="text-white font-semibold group-hover:text-secondary transition-colors">Why DTikTok is the Best?</h3>
+                 <p class="text-white/60 text-sm">Discover what makes us special</p>
+               </div>
+               <div class="flex-shrink-0 text-secondary opacity-0 group-hover:opacity-100 transition-opacity">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                 </svg>
+               </div>
+             </a>
+
+             <!-- Section 3 -->
+             <a href="#features" class="group flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-accent/10 to-accent/5 hover:from-accent/20 hover:to-accent/10 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg border border-accent/20 hover:border-accent/40" aria-label="Jump to DTikTok Features section">
+               <div class="flex-shrink-0 w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                 </svg>
+               </div>
+               <div class="flex-1 min-w-0">
+                 <h3 class="text-white font-semibold group-hover:text-accent transition-colors">DTikTok Features</h3>
+                 <p class="text-white/60 text-sm">Explore all powerful features</p>
+               </div>
+               <div class="flex-shrink-0 text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                 </svg>
+               </div>
+             </a>
+
+             <!-- Section 4 -->
+             <a href="#installation" class="group flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 hover:from-primary/20 hover:to-primary/10 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg border border-primary/20 hover:border-primary/40" aria-label="Jump to Installation Guide section">
+               <div class="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                 </svg>
+               </div>
+               <div class="flex-1 min-w-0">
+                 <h3 class="text-white font-semibold group-hover:text-primary transition-colors">Installation Guide</h3>
+                 <p class="text-white/60 text-sm">Step-by-step setup instructions</p>
+               </div>
+               <div class="flex-shrink-0 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                 </svg>
+               </div>
+             </a>
+
+             <!-- Section 5 -->
+             <a href="#download" class="group flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-success/10 to-success/5 hover:from-success/20 hover:to-success/10 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg border border-success/20 hover:border-success/40" aria-label="Jump to Download DTikTok section">
+               <div class="flex-shrink-0 w-12 h-12 bg-success/20 rounded-xl flex items-center justify-center group-hover:bg-success/30 transition-colors">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                 </svg>
+               </div>
+               <div class="flex-1 min-w-0">
+                 <h3 class="text-white font-semibold group-hover:text-success transition-colors">Download DTikTok</h3>
+                 <p class="text-white/60 text-sm">Get the shortcut for free</p>
+               </div>
+               <div class="flex-shrink-0 text-success opacity-0 group-hover:opacity-100 transition-opacity">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                 </svg>
+               </div>
+             </a>
+
+             <!-- Section 6 -->
+             <a href="#screenshots" class="group flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-info/10 to-info/5 hover:from-info/20 hover:to-info/10 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg border border-info/20 hover:border-info/40" aria-label="Jump to Screenshots section">
+               <div class="flex-shrink-0 w-12 h-12 bg-info/20 rounded-xl flex items-center justify-center group-hover:bg-info/30 transition-colors">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-info" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                 </svg>
+               </div>
+               <div class="flex-1 min-w-0">
+                 <h3 class="text-white font-semibold group-hover:text-info transition-colors">Screenshots</h3>
+                 <p class="text-white/60 text-sm">Visual app gallery</p>
+               </div>
+               <div class="flex-shrink-0 text-info opacity-0 group-hover:opacity-100 transition-opacity">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                 </svg>
+               </div>
+             </a>
+
+             <!-- Section 7 -->
+             <a href="#faq" class="group flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-warning/10 to-warning/5 hover:from-warning/20 hover:to-warning/10 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg border border-warning/20 hover:border-warning/40" aria-label="Jump to FAQ section">
+               <div class="flex-shrink-0 w-12 h-12 bg-warning/20 rounded-xl flex items-center justify-center group-hover:bg-warning/30 transition-colors">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                 </svg>
+               </div>
+               <div class="flex-1 min-w-0">
+                 <h3 class="text-white font-semibold group-hover:text-warning transition-colors">FAQ</h3>
+                 <p class="text-white/60 text-sm">Common questions answered</p>
+               </div>
+               <div class="flex-shrink-0 text-warning opacity-0 group-hover:opacity-100 transition-opacity">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                 </svg>
+               </div>
+             </a>
+
+             <!-- Section 8 -->
+             <a href="#conclusion" class="group flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-error/10 to-error/5 hover:from-error/20 hover:to-error/10 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg border border-error/20 hover:border-error/40" aria-label="Jump to Conclusion section">
+               <div class="flex-shrink-0 w-12 h-12 bg-error/20 rounded-xl flex items-center justify-center group-hover:bg-error/30 transition-colors">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                 </svg>
+               </div>
+               <div class="flex-1 min-w-0">
+                 <h3 class="text-white font-semibold group-hover:text-error transition-colors">Conclusion</h3>
+                 <p class="text-white/60 text-sm">Final thoughts and summary</p>
+               </div>
+               <div class="flex-shrink-0 text-error opacity-0 group-hover:opacity-100 transition-opacity">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                 </svg>
+               </div>
+             </a>
+          </div>
+        </nav>
+
+                 <!-- Progress Indicator -->
+         <div class="mt-4 pt-4 border-t border-white/10">
+           <div class="flex items-center justify-between text-sm text-white/60">
+             <span>8 Sections Available</span>
+             <div class="flex items-center space-x-2">
+               <span>Scroll to explore</span>
+               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+               </svg>
+             </div>
+           </div>
+         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduction -->
+  <section class="py-20 px-6 bg-gradient-to-br from-base-100 via-base-200 to-base-100 relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-20 left-20 w-40 h-40 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-20 right-20 w-60 h-60 bg-secondary/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
+    
+    <div class="max-w-5xl mx-auto text-center relative z-10">
+      <!-- Enhanced Glass Container -->
+      <div class="glass rounded-3xl p-8 md:p-12 border-2 border-primary/20 hover:border-primary/40 shadow-2xl hover:shadow-3xl transition-all duration-500 backdrop-blur-xl">
+        <!-- Decorative Icon -->
+        <div class="w-16 h-16 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        </div>
+        
+        <!-- Your Original Text with Beautiful Styling -->
+        <div class="space-y-4">
+          <p class="text-2xl md:text-3xl text-white leading-relaxed font-bold">
+            <span class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">DTiktok</span> is a <span class="text-primary font-black">Shortcut</span> for <span class="text-secondary font-black">IOS Devices</span>, It helps you to Download Any Videos from <span class="text-accent font-bold">Famous Social Media</span> Called <span class="bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent font-black">TikTok</span>. Download <span class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-black">DTiktok Shortcuts</span> for iPhone or iPad for <span class="text-success font-bold animate-pulse">Free</span>.
+          </p>
+        </div>
+        
+        <!-- Bottom Decorative Elements -->
+        <div class="flex justify-center space-x-4 mt-8">
+          <div class="px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
+            <span class="text-primary font-semibold text-sm">iOS Compatible</span>
+          </div>
+          <div class="px-4 py-2 bg-secondary/10 rounded-full border border-secondary/20">
+            <span class="text-secondary font-semibold text-sm">100% Free</span>
+          </div>
+          <div class="px-4 py-2 bg-accent/10 rounded-full border border-accent/20">
+            <span class="text-accent font-semibold text-sm">Easy Setup</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About DTikTok Section -->
+  <section id="about" class="py-20 px-6 bg-base-200">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 heading-with-border brush-stroke">About DTikTok</h2>
+      </div>
+      
+      <div class="space-y-12">
+        <!-- Content Section -->
+        <div class="glass rounded-3xl p-8 border border-primary/20 shadow-xl">
+          <div class="space-y-6">
+            <p class="text-lg text-white leading-relaxed font-medium">
+              <strong>DTiktok</strong> is a Customized <a href="https://g.co/kgs/xHyYsE" class="text-primary hover:text-white transition-colors underline" aria-label="Learn more about iOS Shortcuts">iOS Shortcuts</a> for Apple Devices, It was Developed and Designed by RHN in 2020. This Shortcut Can be Installed and Used on any IOS Device like an iPad or iPhone, Android Devices will be not Supported. With DTiktok You can Download Video Files from the TikTok App. Normal Video, Without Watermark Videos, and Only Audio Files can be Download directly to your iPhone using This Shortcut.
+            </p>
+            
+            <p class="text-lg text-white leading-relaxed font-medium">
+              So if you Want to Download TikTok Videos on your iPhone or iPad then DTikTok is for You. From this website, you can get the Original DTiktok Shortcut for Free.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Wide Image Section -->
+        <div class="w-full">
+          <img src="/DTikTok-Banner.jpg" alt="DTikTok Banner - iOS Shortcut for downloading TikTok videos" class="w-full h-auto rounded-2xl shadow-2xl hover-lift border-2 border-primary/20 hover:border-primary/40 transition-all duration-300" width="1200" height="600" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why DTikTok is the Best -->
+  <section id="why-best" class="py-20 px-6 bg-gradient-to-br from-base-100 via-base-200 to-base-100 relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute top-32 left-32 w-80 h-80 bg-primary/15 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-32 right-32 w-96 h-96 bg-secondary/15 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+      <div class="absolute top-64 right-64 w-64 h-64 bg-accent/15 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 heading-with-border brush-stroke">Why DTikTok is the Best?</h2>
+        <p class="text-lg text-white/80 font-medium max-w-3xl mx-auto">
+          Discover what makes DTikTok the ultimate TikTok downloader for iOS users
+        </p>
+      </div>
+      
+      <!-- Simple and Clean Design -->
+      <div class="glass rounded-3xl p-8 border border-primary/20 shadow-xl">
+        
+        <div class="max-w-5xl mx-auto">
+          <p class="text-lg text-white/90 leading-relaxed text-center">
+            DTikTok stands out as the best TikTok downloader for iPhone and iPad users because of its simplicity, speed, and powerful features. Unlike traditional apps or websites, DTikTok is a secure Shortcut specifically designed for iOS devices. It allows users to download TikTok videos directly to their camera roll without any watermarks, preserving the original quality. Additionally, DTikTok offers the flexibility to save videos, extract only audio files, and access region-locked content easily. Since it is built as an Apple Shortcut, it ensures better compatibility with iOS 17 and later versions, without risking device security. Developed by RHN, a trusted Shortcut creator since 2020, DTikTok has helped thousands of users save their favorite TikTok content effortlessly. Whether you want normal videos, watermark-free downloads, or just the soundtracks from TikTok clips, DTikTok gives you complete control — all for free and without the need for extra apps. That's why DTikTok is the ultimate choice for every iOS user who loves TikTok!
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DTikTok Features -->
+  <section id="features" class="py-20 px-6 bg-base-200">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 heading-with-border brush-stroke">DTikTok Features</h2>
+        <p class="text-lg text-white font-medium">
+          Here's what makes DTikTok a must-have Shortcut for iPhone and iPad users:
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        {dtiktokConfig.features.map((feature, index) => {
+          const colors = ['primary', 'secondary', 'accent', 'success', 'info', 'warning', 'error'];
+          const color = colors[index % colors.length];
+          const icons = [
+            'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
+            'M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4l-2 14h14l-2-14M10 9v6m4-6v6',
+            'M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3',
+            'M13 10V3L4 14h7v7l9-11h-7z',
+            'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+            'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z',
+            'M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12',
+            'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15'
+          ];
+          const icon = icons[index % icons.length];
+          
+          return (
+            <div class={`glass rounded-2xl p-6 border border-${color}/20 hover:border-${color}/40 transition-all duration-300 hover:transform hover:scale-105`}>
+              <div class="flex items-start space-x-4">
+                <div class={`flex-shrink-0 w-12 h-12 bg-${color}/20 rounded-xl flex items-center justify-center`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" class={`h-6 w-6 text-${color}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icon} />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-lg font-bold text-white mb-2">{feature}</h3>
+                  <p class="text-white/80">
+                    {feature === 'Download TikTok Videos Without Watermark' && 'DTikTok lets you save TikTok videos directly to your device without any watermark, keeping the original video clean and professional.'}
+                    {feature === 'High-Quality Downloads' && 'Every video you download using DTikTok stays in its original quality — no compression, no pixelation, and no loss of audio or video clarity.'}
+                    {feature === 'Audio-Only Download Option' && 'If you just love a TikTok sound or song, DTikTok allows you to download only the audio file without needing to save the full video.'}
+                    {feature === 'Fast and Easy to Use' && 'With just a few taps, you can download videos directly inside the TikTok app using the Share menu — no complicated steps required.'}
+                    {feature === '100% Free and Safe' && "DTikTok is completely free to use. It's built as a Shortcut, meaning it runs inside the official Shortcuts app by Apple, ensuring maximum security for your device."}
+                    {feature === 'Compatible with Latest iOS Versions' && `DTikTok works perfectly with ${dtiktokConfig.iosSupport}, so you won't face compatibility issues on modern iPhones or iPads.`}
+                    {feature === 'Lightweight and Quick Setup' && `The Shortcut file is very small (only around ${dtiktokConfig.fileSize}) and installs within seconds without needing any third-party apps.`}
+                    {feature === 'Regular Updates' && 'DTikTok is maintained and updated by its creator (RHN), ensuring better performance, bug fixes, and compatibility improvements over time.'}
+                    {!['Download TikTok Videos Without Watermark', 'High-Quality Downloads', 'Audio-Only Download Option', 'Fast and Easy to Use', '100% Free and Safe', 'Compatible with Latest iOS Versions', 'Lightweight and Quick Setup', 'Regular Updates'].includes(feature) && 'This feature enhances your DTikTok experience with advanced functionality and improved performance.'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Installation Guide -->
+  <section id="installation" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 heading-with-border brush-stroke">How to Download and Install DTikTok on iPhone or iPad?</h2>
+        <p class="text-lg text-white/80 font-medium">Follow these simple steps to get DTikTok running on your device</p>
+      </div>
+      
+      <!-- Introduction -->
+      <div class="glass rounded-3xl p-8 shadow-xl mb-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <p class="text-white font-medium text-lg">
+            If you are going to install iOS Shortcuts for the First time, Then Don't worry. Because the Installing Process Of DTiktok is Very Simple, anyone can install this shortcut into their iPhone just by following the steps given below:
+          </p>
+        </div>
+      </div>
+
+      <!-- Step-by-Step Guide -->
+      <div class="space-y-8">
+        <!-- Step 1 -->
+        <div class="relative">
+          <div class="flex items-start space-x-6">
+            <div class="flex-shrink-0">
+              <div class="w-16 h-16 bg-gradient-to-br from-primary to-primary/60 rounded-full flex items-center justify-center shadow-lg">
+                <span class="text-white font-bold text-xl">1</span>
+              </div>
+            </div>
+            <div class="flex-1">
+              <div class="glass rounded-2xl p-6 border border-primary/20 hover:border-primary/40 transition-all duration-300">
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-bold text-white mb-3">#Step1 Install Shortcuts App</h3>
+                    <p class="text-white/80 font-medium">
+                      Make sure You have already installed the Shortcuts Application On Your Device. If This application is not installed please install this Application Form This Link (<a href="https://apps.apple.com/us/app/shortcuts/id915249334" class="text-primary hover:text-white transition-colors underline" aria-label="Download Shortcuts app from App Store">Download Shortcuts App from App Store</a>). Because Every Shortcut is working with this application. If This application is already installed then skip Step 1.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Connecting Line -->
+          <div class="absolute left-8 top-16 w-0.5 h-8 bg-gradient-to-b from-primary to-secondary"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative">
+          <div class="flex items-start space-x-6">
+            <div class="flex-shrink-0">
+              <div class="w-16 h-16 bg-gradient-to-br from-secondary to-secondary/60 rounded-full flex items-center justify-center shadow-lg">
+                <span class="text-white font-bold text-xl">2</span>
+              </div>
+            </div>
+            <div class="flex-1">
+              <div class="glass rounded-2xl p-6 border border-secondary/20 hover:border-secondary/40 transition-all duration-300">
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-bold text-white mb-3">#Step 2 Find Shortcuts Link</h3>
+                    <p class="text-white/80 font-medium">
+                      Visit the Official website of DTikTok (https://d-tiktok.com/) and Find the Add Shortcut Button, when find the button then click on It For The Next Process.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Connecting Line -->
+          <div class="absolute left-8 top-16 w-0.5 h-8 bg-gradient-to-b from-secondary to-success"></div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative">
+          <div class="flex items-start space-x-6">
+            <div class="flex-shrink-0">
+              <div class="w-16 h-16 bg-gradient-to-br from-success to-success/60 rounded-full flex items-center justify-center shadow-lg">
+                <span class="text-white font-bold text-xl">3</span>
+              </div>
+            </div>
+            <div class="flex-1">
+              <div class="glass rounded-2xl p-6 border border-success/20 hover:border-success/40 transition-all duration-300">
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-success/20 rounded-xl flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-bold text-white mb-3">#Step 3 Setup DTikTok</h3>
+                    <p class="text-white/80 font-medium">
+                      After Clicking on The Add Shortcut Button You will land on the Setup page Of this Shortcut. Then Also, Click On the Add Shortcut Button in this Setup Page. Congratulations you have successfully added this Shortcut to your device.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="text-center mt-8">
+          <div class="glass rounded-2xl p-6 border border-success/20 bg-success/5">
+            <div class="flex items-center justify-center space-x-3">
+              <div class="w-12 h-12 bg-success/20 rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-lg font-bold text-white">🎉 Installation Complete!</h4>
+                <p class="text-white/80">DTikTok is now ready to use on your device</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section id="download" class="py-20 px-6 bg-base-200">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 heading-with-border brush-stroke">Download DTikTok Shortcut for IOS Device</h2>
+        <p class="text-lg text-white/80 font-medium">Get the latest version of DTikTok for free</p>
+      </div>
+      
+      <!-- Modern Download Showcase -->
+      <div class="glass rounded-3xl p-8 shadow-2xl border border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-3xl">
+        
+        <!-- DTikTok Logo with Modern Styling -->
+        <div class="text-center mb-10">
+          <div class="relative inline-block group">
+            <!-- Enhanced Animated Background Rings -->
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/15 rounded-full blur-3xl scale-150 animate-pulse"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-accent/15 to-primary/20 rounded-full blur-2xl scale-125 animate-pulse" style="animation-delay: 0.5s;"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-secondary/10 to-accent/15 rounded-full blur-xl scale-100 animate-pulse" style="animation-delay: 1s;"></div>
+            
+            <!-- Main Logo with Enhanced Styling -->
+            <div class="relative">
+              <div class="absolute inset-0 bg-gradient-to-br from-primary/30 via-secondary/20 to-accent/30 rounded-3xl blur-md scale-105 animate-pulse"></div>
+              <img 
+                src="/DTikTok.webp" 
+                alt="DTikTok App Icon" 
+                class="relative mx-auto w-40 h-40 rounded-3xl shadow-2xl hover-lift border-4 border-gradient-to-br from-primary/60 via-secondary/40 to-accent/60 group-hover:scale-110 transition-all duration-500 bg-gradient-to-br from-base-300/20 to-base-200/20 backdrop-blur-sm" 
+                width="160" 
+                height="160" 
+                loading="lazy" 
+              />
+              
+              <!-- Elegant Glow Effect -->
+              <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+            </div>
+            
+            <!-- Floating Sparkle Elements -->
+            <div class="absolute -top-4 -right-4 w-3 h-3 bg-primary/40 rounded-full animate-ping"></div>
+            <div class="absolute -bottom-4 -left-4 w-2 h-2 bg-secondary/40 rounded-full animate-ping" style="animation-delay: 1s;"></div>
+            <div class="absolute -top-6 left-1/2 w-1 h-1 bg-accent/40 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
+          </div>
+          
+          <!-- App Title with Enhanced Animation -->
+          <div class="mt-8 space-y-3">
+            <h3 class="text-3xl font-bold text-white mb-2 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-pulse">DTikTok iOS Shortcut</h3>
+            
+            
+            <!-- Modern Status Indicators -->
+            <div class="flex items-center justify-center space-x-6 mt-6">
+              <div class="flex items-center space-x-2 bg-success/10 px-4 py-2 rounded-full border border-success/20">
+                <div class="w-2 h-2 bg-success rounded-full animate-pulse"></div>
+                <span class="text-sm text-white/70 font-medium">Free Forever</span>
+              </div>
+              <div class="flex items-center space-x-2 bg-info/10 px-4 py-2 rounded-full border border-info/20">
+                <div class="w-2 h-2 bg-info rounded-full animate-pulse"></div>
+                <span class="text-sm text-white/70 font-medium">100% Safe</span>
+              </div>
+              <div class="flex items-center space-x-2 bg-warning/10 px-4 py-2 rounded-full border border-warning/20">
+                <div class="w-2 h-2 bg-warning rounded-full animate-pulse"></div>
+                <span class="text-sm text-white/70 font-medium">Always Updated</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modern Specifications Grid -->
+        <div class="mb-10">
+          <div class="text-center mb-6">
+            <h4 class="text-xl font-bold text-white flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary mr-2 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              App Specifications
+            </h4>
+            <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mt-2"></div>
+          </div>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Name Card -->
+            <div class="group bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-4 border border-primary/20 hover:border-primary/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm text-white/60 font-medium">Name</p>
+                  <p class="text-white font-bold">DTikTok</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Version Card -->
+            <div class="group bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-2xl p-4 border border-secondary/20 hover:border-secondary/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-secondary/20 rounded-xl flex items-center justify-center group-hover:bg-secondary/30 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm text-white/60 font-medium">Version</p>
+                  <p class="text-white font-bold">4.4.3</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- File Size Card -->
+            <div class="group bg-gradient-to-br from-accent/10 to-accent/5 rounded-2xl p-4 border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-accent/20 rounded-xl flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm text-white/60 font-medium">File Size</p>
+                  <p class="text-white font-bold">1.5MB</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- File Type Card -->
+            <div class="group bg-gradient-to-br from-success/10 to-success/5 rounded-2xl p-4 border border-success/20 hover:border-success/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-success/20 rounded-xl flex items-center justify-center group-hover:bg-success/30 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm text-white/60 font-medium">File Type</p>
+                  <p class="text-white font-bold">Shortcut</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Support Card -->
+            <div class="group bg-gradient-to-br from-info/10 to-info/5 rounded-2xl p-4 border border-info/20 hover:border-info/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg md:col-span-2 lg:col-span-1">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-info/20 rounded-xl flex items-center justify-center group-hover:bg-info/30 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-info" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm text-white/60 font-medium">Support</p>
+                  <p class="text-white font-bold">IOS 17 and latest</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enhanced Download Button -->
+        <div class="text-center">
+          <div class="mb-4">
+            <p class="text-white/80 font-medium">Ready to download TikTok videos without watermarks?</p>
+          </div>
+          
+          <div id="get" class="inline-block">
+            <a href="/add-dtiktok/" class="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-gradient-to-r from-primary via-primary/90 to-secondary rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 hover:from-primary/90 hover:to-secondary/90 border border-primary/30 hover:border-primary/50 overflow-hidden" aria-label="Add DTikTok Shortcut to your device">
+              
+              <!-- Animated Background -->
+              <div class="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 animate-pulse"></div>
+              
+              <!-- Button Content -->
+              <div class="relative flex items-center space-x-3">
+                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <span>Add DTikTok Shortcut</span>
+              </div>
+              
+              <!-- Shimmer Effect -->
+              <div class="absolute inset-0 -top-1 -left-1 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 group-hover:animate-pulse"></div>
+            </a>
+          </div>
+          
+          <!-- Clean Trust Indicators -->
+          <div class="mt-6 flex items-center justify-center space-x-8 text-sm">
+            <div class="flex items-center space-x-2 bg-success/10 px-4 py-2 rounded-full border border-success/20">
+              <div class="w-2 h-2 bg-success rounded-full animate-pulse"></div>
+              <span class="text-white/80 font-medium">No Registration Required</span>
+            </div>
+            <div class="flex items-center space-x-2 bg-info/10 px-4 py-2 rounded-full border border-info/20">
+              <div class="w-2 h-2 bg-info rounded-full animate-pulse"></div>
+              <span class="text-white/80 font-medium">Instant Setup</span>
+            </div>
+            <div class="flex items-center space-x-2 bg-accent/10 px-4 py-2 rounded-full border border-accent/20">
+              <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+              <span class="text-white/80 font-medium">Premium Quality</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Ad Placement -->
+  <AdSlot id="ad-download" />
+
+  <!-- Screenshots Section -->
+  <section id="screenshots" class="py-20 px-6 bg-gradient-to-br from-base-100 via-base-200 to-base-100">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 heading-with-border brush-stroke">Screenshots</h2>
+        <p class="text-lg text-white/80 font-medium">See DTikTok in action with these app screenshots</p>
+      </div>
+      
+      <!-- Enhanced Screenshots Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Screenshot 1 -->
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 via-secondary/10 to-accent/20 p-3 border-2 border-gradient-to-br from-primary/30 via-secondary/20 to-accent/30 hover:border-primary/50 transition-all duration-500 shadow-2xl hover:shadow-3xl">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <img 
+              src="/DTikTok-SS1.webp" 
+              alt="DTikTok Screenshot 1 - App interface" 
+              class="relative w-full h-auto rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-500 border-2 border-white/20 group-hover:border-white/40" 
+              width="300" 
+              height="650" 
+              loading="lazy" 
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </div>
+          <div class="text-center mt-4">
+            <h3 class="text-sm font-semibold text-white/80 group-hover:text-white transition-colors">App Interface</h3>
+          </div>
+        </div>
+
+        <!-- Screenshot 2 -->
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-secondary/20 via-accent/10 to-primary/20 p-3 border-2 border-gradient-to-br from-secondary/30 via-accent/20 to-primary/30 hover:border-secondary/50 transition-all duration-500 shadow-2xl hover:shadow-3xl">
+            <div class="absolute inset-0 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <img 
+              src="/DTikTok-SS2.webp" 
+              alt="DTikTok Screenshot 2 - Download process" 
+              class="relative w-full h-auto rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-500 border-2 border-white/20 group-hover:border-white/40" 
+              width="300" 
+              height="650" 
+              loading="lazy" 
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary/20 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </div>
+          <div class="text-center mt-4">
+            <h3 class="text-sm font-semibold text-white/80 group-hover:text-white transition-colors">Download Process</h3>
+          </div>
+        </div>
+
+        <!-- Screenshot 3 -->
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-accent/20 via-primary/10 to-secondary/20 p-3 border-2 border-gradient-to-br from-accent/30 via-primary/20 to-secondary/30 hover:border-accent/50 transition-all duration-500 shadow-2xl hover:shadow-3xl">
+            <div class="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/10 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <img 
+              src="/DTikTok-SS3.webp" 
+              alt="DTikTok Screenshot 3 - Video quality options" 
+              class="relative w-full h-auto rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-500 border-2 border-white/20 group-hover:border-white/40" 
+              width="300" 
+              height="650" 
+              loading="lazy" 
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-accent/20 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </div>
+          <div class="text-center mt-4">
+            <h3 class="text-sm font-semibold text-white/80 group-hover:text-white transition-colors">Quality Options</h3>
+          </div>
+        </div>
+
+        <!-- Screenshot 4 -->
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-success/20 via-info/10 to-warning/20 p-3 border-2 border-gradient-to-br from-success/30 via-info/20 to-warning/30 hover:border-success/50 transition-all duration-500 shadow-2xl hover:shadow-3xl">
+            <div class="absolute inset-0 bg-gradient-to-br from-success/10 to-info/10 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <img 
+              src="/DTikTok-SS4.webp" 
+              alt="DTikTok Screenshot 4 - Success confirmation" 
+              class="relative w-full h-auto rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-500 border-2 border-white/20 group-hover:border-white/40" 
+              width="300" 
+              height="650" 
+              loading="lazy" 
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-success/20 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </div>
+          <div class="text-center mt-4">
+            <h3 class="text-sm font-semibold text-white/80 group-hover:text-white transition-colors">Success Confirmation</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Info -->
+      <div class="text-center mt-12">
+        <div class="glass rounded-2xl p-6 border border-primary/20 inline-block">
+          <div class="flex items-center justify-center space-x-3 mb-3">
+            <div class="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+            <span class="text-white/80 font-medium">Live App Screenshots</span>
+            <div class="w-3 h-3 bg-secondary rounded-full animate-pulse"></div>
+          </div>
+          <p class="text-sm text-white/70">Screenshots taken from the actual DTikTok shortcut running on iOS devices</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-20 px-6 bg-gradient-to-br from-base-200 via-base-300 to-base-200 relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute top-20 left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-20 right-20 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
+    
+    <div class="max-w-4xl mx-auto relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 heading-with-border brush-stroke">Frequently Asked Questions</h2>
+        <p class="text-lg text-white/80 font-medium">Find answers to common questions about DTikTok</p>
+      </div>
+      
+      <!-- Enhanced FAQ Items -->
+      <div class="space-y-6">
+        <!-- FAQ 1 -->
+        <div class="group">
+          <div class="collapse collapse-plus glass border-2 border-primary/20 hover:border-primary/40 shadow-2xl hover:shadow-3xl transition-all duration-500 rounded-2xl overflow-hidden">
+            <input type="radio" name="faq-accordion" id="faq1" checked="checked" />
+            <label for="faq1" class="collapse-title text-lg font-bold text-white cursor-pointer hover:text-primary transition-colors duration-300 flex items-center">
+              <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mr-4 group-hover:bg-primary/30 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+              </div>
+              Does DTikTok work on Android?
+            </label>
+            <div class="collapse-content bg-primary/5 border-t border-primary/10">
+              <div class="pt-4">
+                <p class="text-white/90 font-medium leading-relaxed">
+                  No, unfortunately DTikTok only works on iOS devices running iOS 12 or later that have the Shortcuts app installed. There is no Android version available.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ 2 -->
+        <div class="group">
+          <div class="collapse collapse-plus glass border-2 border-secondary/20 hover:border-secondary/40 shadow-2xl hover:shadow-3xl transition-all duration-500 rounded-2xl overflow-hidden">
+            <input type="radio" name="faq-accordion" id="faq2" />
+            <label for="faq2" class="collapse-title text-lg font-bold text-white cursor-pointer hover:text-secondary transition-colors duration-300 flex items-center">
+              <div class="w-8 h-8 bg-secondary/20 rounded-full flex items-center justify-center mr-4 group-hover:bg-secondary/30 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              Is DTikTok allowed/approved by TikTok?
+            </label>
+            <div class="collapse-content bg-secondary/5 border-t border-secondary/10">
+              <div class="pt-4">
+                <p class="text-white/90 font-medium leading-relaxed">
+                  No, DTikTok is not officially approved or endorsed by TikTok. It is a third-party shortcut that provides download functionality not innate to the TikTok app. Use at your own discretion.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ 3 -->
+        <div class="group">
+          <div class="collapse collapse-plus glass border-2 border-accent/20 hover:border-accent/40 shadow-2xl hover:shadow-3xl transition-all duration-500 rounded-2xl overflow-hidden">
+            <input type="radio" name="faq-accordion" id="faq3" />
+            <label for="faq3" class="collapse-title text-lg font-bold text-white cursor-pointer hover:text-accent transition-colors duration-300 flex items-center">
+              <div class="w-8 h-8 bg-accent/20 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent/30 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              How do I use DTikTok after installing it?
+            </label>
+            <div class="collapse-content bg-accent/5 border-t border-accent/10">
+              <div class="pt-4">
+                <p class="text-white/90 font-medium leading-relaxed">
+                  Open the Shortcuts app and tap on "DTikTok" to launch it. When prompted, paste the link to the TikTok video you want to download. Tap run, and the TikTok video will begin downloading to your photo library. Also You can use it through the Share Button Of Tiktok Videos.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ 4 -->
+        <div class="group">
+          <div class="collapse collapse-plus glass border-2 border-success/20 hover:border-success/40 shadow-2xl hover:shadow-3xl transition-all duration-500 rounded-2xl overflow-hidden">
+            <input type="radio" name="faq-accordion" id="faq4" />
+            <label for="faq4" class="collapse-title text-lg font-bold text-white cursor-pointer hover:text-success transition-colors duration-300 flex items-center">
+              <div class="w-8 h-8 bg-success/20 rounded-full flex items-center justify-center mr-4 group-hover:bg-success/30 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                </svg>
+              </div>
+              Will the quality be the same when I download videos?
+            </label>
+            <div class="collapse-content bg-success/5 border-t border-success/10">
+              <div class="pt-4">
+                <p class="text-white/90 font-medium leading-relaxed">
+                  Yes, DTikTok downloads the videos in their original quality, the same resolution and file size as viewing them in the TikTok app. No compression or quality loss occurs.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 - Additional -->
+        <div class="group">
+          <div class="collapse collapse-plus glass border-2 border-info/20 hover:border-info/40 shadow-2xl hover:shadow-3xl transition-all duration-500 rounded-2xl overflow-hidden">
+            <input type="radio" name="faq-accordion" id="faq5" />
+            <label for="faq5" class="collapse-title text-lg font-bold text-white cursor-pointer hover:text-info transition-colors duration-300 flex items-center">
+              <div class="w-8 h-8 bg-info/20 rounded-full flex items-center justify-center mr-4 group-hover:bg-info/30 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-info" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              Is DTikTok safe and secure to use?
+            </label>
+            <div class="collapse-content bg-info/5 border-t border-info/10">
+              <div class="pt-4">
+                <p class="text-white/90 font-medium leading-relaxed">
+                  Yes, DTikTok is completely safe to use. It's an open-source shortcut that doesn't collect personal data or require any permissions beyond what's needed for downloading videos. All operations are performed locally on your device.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 - Additional -->
+        <div class="group">
+          <div class="collapse collapse-plus glass border-2 border-warning/20 hover:border-warning/40 shadow-2xl hover:shadow-3xl transition-all duration-500 rounded-2xl overflow-hidden">
+            <input type="radio" name="faq-accordion" id="faq6" />
+            <label for="faq6" class="collapse-title text-lg font-bold text-white cursor-pointer hover:text-warning transition-colors duration-300 flex items-center">
+              <div class="w-8 h-8 bg-warning/20 rounded-full flex items-center justify-center mr-4 group-hover:bg-warning/30 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </div>
+              How often is DTikTok updated?
+            </label>
+            <div class="collapse-content bg-warning/5 border-t border-warning/10">
+              <div class="pt-4">
+                <p class="text-white/90 font-medium leading-relaxed">
+                  DTikTok is regularly updated to ensure compatibility with the latest iOS versions and TikTok changes. Updates are released as needed, typically every few months, and you'll always get the latest version from our official download link.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Bottom Info -->
+      <div class="text-center mt-12">
+        <div class="glass rounded-2xl p-6 border border-primary/20">
+          <div class="flex items-center justify-center space-x-3 mb-3">
+            <div class="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+            <span class="text-white/80 font-medium">Still have questions?</span>
+            <div class="w-3 h-3 bg-secondary rounded-full animate-pulse"></div>
+          </div>
+          <p class="text-sm text-white/70">Feel free to reach out to us through our social media channels for additional support</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conclusion -->
+  <section id="conclusion" class="py-20 px-6 bg-gradient-to-br from-base-100 via-base-200 to-base-300 relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-40 left-40 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-40 right-40 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1.5s;"></div>
+      <div class="absolute top-20 right-20 w-60 h-60 bg-accent/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 0.5s;"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 heading-with-border brush-stroke">Legal & Disclaimers</h2>
+        <p class="text-lg text-white/80 font-medium">Important information and compliance details</p>
+      </div>
+      
+      <!-- Enhanced Disclaimer Cards -->
+      <div class="space-y-8">
+        <!-- DMCA Compliance Card -->
+        <div class="group glass rounded-3xl p-8 border-2 border-primary/20 hover:border-primary/40 shadow-2xl hover:shadow-3xl transition-all duration-500">
+          <div class="flex items-start space-x-6">
+            <div class="flex-shrink-0 w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-bold text-white mb-3 flex items-center">
+                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">DMCA Compliance</span>
+              </h3>
+              <p class="text-white/90 leading-relaxed font-medium">
+                <strong><a href="https://d-tiktok.com/" class="text-primary hover:text-white transition-colors underline" aria-label="Visit D-TikTok.com official website">D-TikTok.com</a></strong> complies with 17 U.S.C. * 512 and the Digital Millennium Copyright Act (DMCA). It is our policy to respond to any infringement notices and take appropriate action. If your copyrighted material has been posted on the site and you want this material removed, Contact us.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Promotional Website Card -->
+        <div class="group glass rounded-3xl p-8 border-2 border-secondary/20 hover:border-secondary/40 shadow-2xl hover:shadow-3xl transition-all duration-500">
+          <div class="flex items-start space-x-6">
+            <div class="flex-shrink-0 w-16 h-16 bg-secondary/20 rounded-2xl flex items-center justify-center group-hover:bg-secondary/30 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-bold text-white mb-3 flex items-center">
+                <span class="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">Promotional Website</span>
+              </h3>
+              <p class="text-white/90 leading-relaxed font-medium">
+                This Is A Promotional Website Only, All Files Placed Here Are For Introducing Purposes Only. All Files Found On This Site Have Been Collected From Various Sources Across The Web And Are Believed To Be In The "Public Domain". If Have Any Other Issues Then Feel Free To Contact Us.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trademark Disclaimer Card -->
+        <div class="group glass rounded-3xl p-8 border-2 border-accent/20 hover:border-accent/40 shadow-2xl hover:shadow-3xl transition-all duration-500">
+          <div class="flex items-start space-x-6">
+            <div class="flex-shrink-0 w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-bold text-white mb-3 flex items-center">
+                <span class="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">Trademark Notice</span>
+              </h3>
+              <p class="text-white/90 leading-relaxed font-medium">
+                We are not associated with TikTok by any means. TikTok is a registered trademark of Bytedance Ltd. & www.bytedance.com
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Domain Migration Card -->
+        <div class="group glass rounded-3xl p-8 border-2 border-success/20 hover:border-success/40 shadow-2xl hover:shadow-3xl transition-all duration-500">
+          <div class="flex items-start space-x-6">
+            <div class="flex-shrink-0 w-16 h-16 bg-success/20 rounded-2xl flex items-center justify-center group-hover:bg-success/30 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-bold text-white mb-3 flex items-center">
+                <span class="bg-gradient-to-r from-success to-info bg-clip-text text-transparent">Domain Update</span>
+              </h3>
+              <p class="text-white/90 leading-relaxed font-medium">
+                Note: Our official domain has changed from <a href="https://dtiktok.net/" class="text-primary hover:text-white transition-colors underline" aria-label="Old DTiktok.Net website">DTiktok.Net</a> to <a href="https://d-tiktok.com/" class="text-primary hover:text-white transition-colors underline" aria-label="New D-TikTok.com website">D-TikTok.com</a>. We have enhanced all content with expert reviews, curated recommendations, safety checks, and original guides to ensure a better and fully compliant user experience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Summary -->
+      <div class="text-center mt-16">
+        <div class="glass rounded-3xl p-8 border-2 border-info/20 hover:border-info/40 shadow-2xl hover:shadow-3xl transition-all duration-500">
+          <div class="flex items-center justify-center space-x-4 mb-4">
+            <div class="w-4 h-4 bg-primary rounded-full animate-pulse"></div>
+            <h3 class="text-xl font-bold text-white">Thank You for Choosing DTikTok</h3>
+            <div class="w-4 h-4 bg-secondary rounded-full animate-pulse"></div>
+          </div>
+          <p class="text-white/80 font-medium leading-relaxed max-w-3xl mx-auto">
+            DTikTok has been serving the iOS community since 2020, providing a reliable and safe way to download TikTok videos. 
+            We remain committed to maintaining the highest standards of quality, security, and user experience.
+          </p>
+          <div class="flex items-center justify-center space-x-6 mt-6">
+            <div class="flex items-center space-x-2 bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
+              <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+              <span class="text-sm text-white/80 font-medium">Since 2020</span>
+            </div>
+            <div class="flex items-center space-x-2 bg-secondary/10 px-4 py-2 rounded-full border border-secondary/20">
+              <div class="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
+              <span class="text-sm text-white/80 font-medium">Trusted by Thousands</span>
+            </div>
+            <div class="flex items-center space-x-2 bg-accent/10 px-4 py-2 rounded-full border border-accent/20">
+              <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+              <span class="text-sm text-white/80 font-medium">Always Free</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

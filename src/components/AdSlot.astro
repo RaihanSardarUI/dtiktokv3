@@ -1,0 +1,36 @@
+---
+import { getDtiktokConfig } from '../utils/config.js';
+
+export interface Props {
+  id: string;
+  fallback?: string;
+}
+
+const { id, fallback = '' } = Astro.props;
+
+// Get the configuration dynamically
+const dtiktokConfig = getDtiktokConfig();
+
+// Get the ad configuration for this ID
+const ad = dtiktokConfig.ads?.[id];
+
+// Determine what to render
+let adContent = fallback;
+if (ad && ad.enabled) {
+  adContent = ad.code;
+}
+---
+
+{adContent && (
+  <div class="ad-slot" data-ad-id={id} set:html={adContent}></div>
+)}
+
+<style>
+  .ad-slot {
+    margin: 1rem 0;
+  }
+  
+  .ad-slot:empty {
+    display: none;
+  }
+</style> 

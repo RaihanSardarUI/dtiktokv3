@@ -1,0 +1,93 @@
+# DTikTok.com - Robots.txt
+# TikTok Video Downloader iOS Shortcut
+
+User-agent: *
+# Allow access to main content
+Allow: /
+Allow: /add-dtiktok/
+Allow: /cookie-policy/
+Allow: /disclaimer/
+Allow: /privacy-policy/
+Allow: /terms-and-conditions/
+
+# Block admin and sensitive areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.vscode/
+Disallow: /dist/
+
+# Block file types that shouldn't be indexed
+Disallow: /*.js$
+Disallow: /*.ts$
+Disallow: /*.json$
+Disallow: /*.log$
+Disallow: /*.lock$
+
+# Allow important assets
+Allow: /favicon/
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.ico$
+Allow: /*.svg$
+Allow: /sitemap.xml
+Allow: /robots.txt
+
+# Block error pages
+Disallow: /404
+
+# Crawl delay (optional - be respectful)
+Crawl-delay: 1
+
+# Block AI bots from training on content
+User-agent: CCBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Bard
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+# Block specific problem bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Allow Google and Bing specifically for better SEO
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://dtiktok.com/sitemap.xml 

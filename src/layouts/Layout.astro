@@ -1,0 +1,563 @@
+---
+import '../styles/global.css';
+import { getDtiktokConfig } from '../utils/config.js';
+
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const dtiktokConfig = getDtiktokConfig();
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dtiktok">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content={description} />
+  <meta name="keywords" content="DTiktok, TikTok downloader, iOS shortcut, iPhone, iPad, video download, watermark free, RHN" />
+  <meta name="author" content="RHN" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  
+  <!-- Microsoft Tiles -->
+  <meta name="msapplication-TileColor" content="#f0565f" />
+  <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
+  
+  <!-- Theme Colors -->
+  <meta name="theme-color" content="#f0565f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+  
+  <!-- Critical resource hints -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  
+  <!-- Preload critical resources with high priority -->
+  <link rel="preload" href="/DTikTok-BG.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="/DTikTok.webp" as="image" type="image/webp" fetchpriority="high">
+  
+  <!-- Styles will be automatically processed by Astro -->
+  
+  <!-- Google Fonts with optimization -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://d-tiktok.com/" />
+  <meta property="og:image" content="https://d-tiktok.com/DTikTok.webp" />
+  <meta property="og:site_name" content="D-TikTok.com" />
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://d-tiktok.com/DTikTok.webp" />
+  
+  <!-- Structured Data for Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "DTikTok",
+    "description": "No.1 TikTok Video Downloader Shortcut for iOS devices",
+    "operatingSystem": "iOS 17+",
+    "applicationCategory": "UtilitiesApplication",
+    "creator": {
+      "@type": "Person",
+      "name": "RHN"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "downloadUrl": "${dtiktokConfig.downloadUrl}",
+    "version": "${dtiktokConfig.version}",
+    "fileSize": "${dtiktokConfig.fileSize}"
+  }
+  </script>
+
+  <!-- Dynamic SEO Configuration -->
+  {dtiktokConfig.seo?.searchConsole && (
+    <meta name="google-site-verification" content={dtiktokConfig.seo.searchConsole} />
+  )}
+  
+  {dtiktokConfig.seo?.otherVerification && (
+    <Fragment set:html={dtiktokConfig.seo.otherVerification} />
+  )}
+  
+  {dtiktokConfig.seo?.customMeta && (
+    <Fragment set:html={dtiktokConfig.seo.customMeta} />
+  )}
+
+  <!-- Google Analytics -->
+  {dtiktokConfig.seo?.analyticsId && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${dtiktokConfig.seo.analyticsId}`}></script>
+      <script is:inline define:vars={{ analyticsId: dtiktokConfig.seo.analyticsId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', analyticsId);
+      </script>
+    </>
+  )}
+
+  <!-- Head Ads Code -->
+  {dtiktokConfig.seo?.headAdsCode && (
+    <Fragment set:html={dtiktokConfig.seo.headAdsCode} />
+  )}
+  
+  <style>
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #202020;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #f0565f;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #e8434c;
+    }
+    
+    /* Main container with max-width and borders */
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      border-left: 2px solid #f0565f;
+      border-right: 2px solid #f0565f;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a1a1a 0%, #202020 50%, #2a2a2a 100%);
+    }
+    
+    /* Gradient backgrounds */
+    .gradient-bg {
+      background: linear-gradient(135deg, #1a1a1a 0%, #202020 50%, #2a2a2a 100%);
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(240, 86, 95, 0.1) 0%, rgba(255, 75, 75, 0.1) 50%, rgba(6, 147, 227, 0.1) 100%);
+    }
+    
+    /* Glass morphism effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Hover effects */
+    .hover-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(240, 86, 95, 0.2);
+    }
+    
+    /* Animated gradient text */
+    .gradient-text {
+      background: linear-gradient(45deg, #f0565f, #ff4b4b, #0693e3);
+      background-size: 300% 300%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient-animation 3s ease infinite;
+    }
+    
+    @keyframes gradient-animation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Scroll offset for smooth navigation */
+    #download, #about, #features, #why-best, #installation, #screenshots, #faq, #conclusion {
+      scroll-margin-top: 100px;
+    }
+  </style>
+</head>
+<body class="bg-base-100 text-base-content min-h-screen gradient-bg">
+  <!-- Main Container with max-width and borders -->
+  <div class="main-container">
+    <!-- Header/Navigation -->
+    <header class="sticky top-0 z-50 glass border-b border-white/10">
+      <nav class="navbar px-4 lg:px-8">
+      <!-- Navbar Start -->
+      <div class="navbar-start">
+        <a href="/" class="flex items-center space-x-3 hover:scale-105 transition-transform duration-300">
+          <div class="avatar">
+            <div class="w-10 h-10 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100">
+              <img src="/DTikTok.webp" alt="DTikTok" class="object-cover" />
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-bold gradient-text">DTikTok</span>
+            <span class="text-xs text-base-content/60">v{dtiktokConfig.version}</span>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Navbar Center (Desktop Navigation) -->
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1 space-x-2">
+          <li>
+            <a href="/" class="btn btn-ghost hover:btn-primary transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="#download" class="btn btn-ghost hover:btn-primary transition-all duration-300 header-get-shortcut">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+              Add Shortcut
+            </a>
+          </li>
+          <li>
+            <a href="/privacy-policy/" class="btn btn-ghost hover:btn-primary transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              Privacy
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Navbar End -->
+      <div class="navbar-end">
+        <!-- Social Links -->
+        <div class="hidden md:flex items-center space-x-2 mr-4">
+          <a href="https://www.tiktok.com/@dtiktokshortcut" target="_blank" 
+             class="btn btn-circle btn-ghost hover:btn-primary transition-all duration-300" 
+             title="Follow on TikTok">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-.88-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+            </svg>
+          </a>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div class="dropdown dropdown-end lg:hidden">
+          <label tabindex="0" class="btn btn-ghost btn-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+            </svg>
+          </label>
+          <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-2xl bg-base-200 rounded-box w-52 glass">
+            <li><a href="/" class="hover:text-primary">🏠 Home</a></li>
+            <li><a href="#download" class="hover:text-primary mobile-get-shortcut">⬇️ Add Shortcut</a></li>
+            <li><a href="/privacy-policy/" class="hover:text-primary">🔒 Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions/" class="hover:text-primary">📄 Terms & Conditions</a></li>
+            <li class="border-t border-white/10 mt-2 pt-2">
+              <a href="https://www.tiktok.com/@dtiktokshortcut" target="_blank" class="hover:text-primary">
+                📱 Follow on TikTok
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Primary CTA Button -->
+        <a href="#download" class="btn btn-primary btn-sm lg:btn-md ml-2 shadow-lg hover:shadow-xl hover-lift header-primary-cta">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <span class="hidden sm:inline">Get DTikTok</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="min-h-screen">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative overflow-hidden">
+    <!-- Background with gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-base-300 via-base-200 to-base-300"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5"></div>
+    
+    <!-- Decorative elements -->
+    <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+    <div class="absolute -top-20 -left-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
+    <div class="absolute -top-20 -right-20 w-40 h-40 bg-secondary/10 rounded-full blur-3xl"></div>
+    
+    <div class="relative z-10 px-4 py-16">
+      <!-- Main Footer Content -->
+      <div class="grid lg:grid-cols-4 gap-12 mb-12">
+        
+        <!-- Brand Section -->
+        <div class="lg:col-span-2 text-center lg:text-left">
+          <div class="flex items-center justify-center lg:justify-start mb-6">
+            <div class="avatar mr-4">
+              <div class="w-16 h-16 rounded-full ring-4 ring-primary/30 ring-offset-4 ring-offset-transparent">
+                <img src="/DTikTok.webp" alt="DTikTok" class="object-cover" />
+              </div>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold gradient-text">DTikTok</h3>
+              <p class="text-primary font-semibold">v{dtiktokConfig.version} Latest</p>
+            </div>
+          </div>
+          
+          <p class="text-base-content/80 leading-relaxed mb-6 max-w-md mx-auto lg:mx-0">
+            The #1 TikTok Video Downloader Shortcut for iOS devices. Download videos without watermarks, extract audio, and enjoy high-quality content. Trusted by thousands since 2020.
+          </p>
+          
+          <!-- Feature badges -->
+          <div class="flex flex-wrap justify-center lg:justify-start gap-2 mb-6">
+            <div class="badge badge-primary badge-lg">
+              <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              iOS 17+
+            </div>
+            <div class="badge badge-success badge-lg">
+              <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              100% Free
+            </div>
+            <div class="badge badge-accent badge-lg">
+              <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              No Watermark
+            </div>
+            <div class="badge badge-secondary badge-lg">
+              <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              Secure
+            </div>
+          </div>
+          
+          <!-- Social Links -->
+          <div class="flex justify-center lg:justify-start space-x-4">
+            <a href="https://www.tiktok.com/@dtiktokshortcut" target="_blank" 
+               class="btn btn-circle btn-primary hover-lift group" 
+               title="Follow @dtiktokshortcut">
+              <svg class="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-.88-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+              </svg>
+            </a>
+            <a href="#download" class="btn btn-circle btn-outline hover-lift group footer-get-shortcut" title="Get DTikTok">
+              <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="text-center lg:text-left">
+          <h4 class="text-lg font-bold text-primary mb-6 flex items-center justify-center lg:justify-start">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+            </svg>
+            Quick Links
+          </h4>
+          <ul class="space-y-3">
+            <li>
+              <a href="/" class="link link-hover hover:text-primary transition-all duration-300 flex items-center justify-center lg:justify-start group">
+                <svg class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#download" class="link link-hover hover:text-primary transition-all duration-300 flex items-center justify-center lg:justify-start group footer-quick-link">
+                <svg class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                Add Shortcut
+              </a>
+            </li>
+            <li>
+              <a href={dtiktokConfig.downloadUrl} target="_blank" class="link link-hover hover:text-primary transition-all duration-300 flex items-center justify-center lg:justify-start group">
+                <svg class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m3-2h3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6a2 2 0 012-2h3"></path>
+                </svg>
+                Direct Download
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Legal & Support -->
+        <div class="text-center lg:text-left">
+          <h4 class="text-lg font-bold text-primary mb-6 flex items-center justify-center lg:justify-start">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Legal & Support
+          </h4>
+          <ul class="space-y-3">
+            <li>
+              <a href="/privacy-policy/" class="link link-hover hover:text-primary transition-all duration-300 flex items-center justify-center lg:justify-start group">
+                <svg class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="/terms-and-conditions/" class="link link-hover hover:text-primary transition-all duration-300 flex items-center justify-center lg:justify-start group">
+                <svg class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Terms & Conditions
+              </a>
+            </li>
+            <li>
+              <a href="https://www.tiktok.com/@dtiktokshortcut" target="_blank" class="link link-hover hover:text-primary transition-all duration-300 flex items-center justify-center lg:justify-start group">
+                <svg class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-.88-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+                </svg>
+                TikTok Support
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Divider with gradient -->
+      <div class="relative mb-8">
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+        </div>
+        <div class="relative flex justify-center">
+          <div class="px-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full">
+            <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Section -->
+      <div class="grid md:grid-cols-2 gap-6 items-center">
+        <!-- Copyright & Legal Info -->
+        <div class="text-center md:text-left space-y-2">
+          <p class="text-sm font-semibold">© 2024 D-TikTok.com - All rights reserved</p>
+          <p class="text-xs text-base-content/60 leading-relaxed">
+            We are not associated with TikTok by any means. TikTok is a registered trademark of Bytedance Ltd. 
+            This is a promotional website only. Use at your own discretion and respect copyright laws.
+          </p>
+        </div>
+        
+        <!-- Developer Info & Migration Notice -->
+        <div class="text-center md:text-right space-y-2">
+          <div class="glass rounded-full px-4 py-2 inline-block">
+                         <p class="text-sm">
+               <span class="text-dtiktok-pink font-semibold">Developed by RHN</span> 
+               <span class="text-base-content/60">since 2020</span>
+             </p>
+           </div>
+           <p class="text-xs">
+             <span class="text-warning font-semibold">Domain Migration:</span> 
+             <span class="line-through text-base-content/40">DTiktok.Net</span> → 
+             <span class="text-dtiktok-pink font-semibold">D-TikTok.com</span>
+           </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </div>
+
+  <!-- Smooth Scrolling JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Function to smooth scroll to element
+      function smoothScrollTo(elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          });
+        }
+      }
+
+      // Handle all header buttons with smart behavior
+      function handleButtonClick(event, fallbackUrl) {
+        event.preventDefault();
+        
+        // Check if we're on the homepage
+        const isHomepage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+        
+        if (isHomepage) {
+          // On homepage: scroll to download section
+          smoothScrollTo('download');
+        } else {
+          // On other pages: navigate to homepage download section
+          window.location.href = '/#download';
+        }
+      }
+
+      // Add event listeners to header and footer buttons
+      const headerButtons = document.querySelectorAll('.header-get-shortcut, .header-primary-cta, .mobile-get-shortcut, .footer-get-shortcut, .footer-quick-link');
+      headerButtons.forEach(button => {
+        button.addEventListener('click', (e) => handleButtonClick(e, '/add-dtiktok/'));
+      });
+
+      // Handle hero button and all other download links
+      const heroButtons = document.querySelectorAll('.scroll-to-download, a[href="#download"]');
+      heroButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          smoothScrollTo('download');
+        });
+      });
+
+      // Add smooth scrolling to all internal anchor links
+      const anchorLinks = document.querySelectorAll('a[href^="#"]');
+      anchorLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href.startsWith('#') && href.length > 1) {
+            e.preventDefault();
+            const targetId = href.substring(1);
+            smoothScrollTo(targetId);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html> 
