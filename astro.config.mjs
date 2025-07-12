@@ -2,7 +2,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import cloudflare from '@astrojs/cloudflare';
-import sitemap from '@astrojs/sitemap';
 
 // Dynamic site URL function - matches layout.astro domain detection logic
 function getSiteUrl() {
@@ -26,27 +25,14 @@ function getSiteUrl() {
     return process.env.DEPLOY_PRIME_URL;
   }
   
-  // Default fallback - matches the layout fallback
-  return 'https://dtiktokv3.pages.dev';
+  // Default fallback - updated to correct domain
+  return 'https://dtiktokv4.pages.dev';
 }
 
 // https://astro.build/config
 export default defineConfig({
   site: getSiteUrl(),
-  integrations: [
-    tailwind(), 
-    sitemap({
-      // Filter out unwanted pages
-      filter: (page) => {
-        // Exclude admin pages, API endpoints, and utility pages
-        return !page.includes('/admin/') && 
-               !page.includes('/api/') && 
-               !page.includes('/404') &&
-               !page.includes('/_') &&
-               !page.includes('/test/');
-      }
-    })
-  ],
+  integrations: [tailwind()],
   output: 'server',
   adapter: cloudflare(),
   build: {
