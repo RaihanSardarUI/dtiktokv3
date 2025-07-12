@@ -1,0 +1,88 @@
+---
+// AdBanner.astro - Reusable advertisement component
+export interface Props {
+  position?: 'top' | 'middle' | 'bottom' | 'sidebar';
+  className?: string;
+}
+
+const { position = 'middle', className = '' } = Astro.props;
+---
+
+<div class={`ad-banner ad-${position} ${className}`}>
+  <div class="ad-container">
+    <!-- Ad Label for transparency -->
+    <div class="ad-label">Advertisement</div>
+    
+    <!-- Ad Content -->
+    <div id="ad-content" class="ad-content">
+      <script type="text/javascript" is:inline>
+        atOptions = {
+          'key': '5db4e115c9cae4168f6efca75fe17bd9',
+          'format': 'iframe',
+          'height': 250,
+          'width': 300,
+          'params': {}
+        };
+      </script>
+      <script type="text/javascript" src="//cautiouslyanalysecrystal.com/5db4e115c9cae4168f6efca75fe17bd9/invoke.js" is:inline></script>
+    </div>
+  </div>
+</div>
+
+<style>
+  .ad-banner {
+    @apply w-full flex justify-center my-6;
+  }
+  
+  .ad-container {
+    @apply flex flex-col items-center space-y-2 p-4 bg-base-200/50 rounded-lg border border-base-300;
+    max-width: 320px;
+  }
+  
+  .ad-label {
+    @apply text-xs text-base-content/60 uppercase tracking-wider font-medium;
+  }
+  
+  .ad-content {
+    @apply flex justify-center items-center;
+    min-height: 250px;
+    width: 300px;
+  }
+  
+  /* Position-specific styles */
+  .ad-top {
+    @apply mt-4 mb-8;
+  }
+  
+  .ad-middle {
+    @apply my-8;
+  }
+  
+  .ad-bottom {
+    @apply mt-8 mb-4;
+  }
+  
+  .ad-sidebar {
+    @apply sticky top-24;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .ad-container {
+      max-width: 280px;
+    }
+    
+    .ad-content {
+      width: 260px;
+      min-height: 200px;
+    }
+  }
+  
+  /* Loading state */
+  .ad-content:empty::before {
+    content: "Loading advertisement...";
+    @apply text-sm text-base-content/40 flex items-center justify-center;
+    height: 250px;
+    width: 300px;
+  }
+</style> 

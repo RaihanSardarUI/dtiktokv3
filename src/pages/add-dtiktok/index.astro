@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/AdBanner.astro';
 
 // Ensure this page is rendered server-side for proper domain detection
 export const prerender = false;
@@ -253,6 +254,9 @@ const dtiktokConfig = {
             </div>
           </div>
         </div>
+        
+        <!-- Advertisement -->
+        <AdBanner position="middle" />
         
         <!-- YAS Download Advantages -->
         <div class="max-w-4xl mx-auto">
