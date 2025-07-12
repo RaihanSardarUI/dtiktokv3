@@ -1,9 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// Ensure this page is rendered server-side for proper domain detection
+export const prerender = false;
 ---
 
 <Layout 
-  title="Page Not Found - D-TikTok.com" 
+  title={`Page Not Found - ${new URL(Astro.url.origin).hostname}`} 
   description="The page you're looking for could not be found. Return to DTikTok homepage to download TikTok videos on iOS."
 >
   <div class="min-h-screen flex items-center justify-center">

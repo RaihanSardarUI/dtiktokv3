@@ -1,8 +1,29 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getDtiktokConfig } from '../../utils/config.js';
 
-const dtiktokConfig = getDtiktokConfig();
+// Ensure this page is rendered server-side for proper domain detection
+export const prerender = false;
+
+// Static configuration (no dynamic dashboard needed)
+const dtiktokConfig = {
+  version: "4.4.3",
+  releaseDate: "29.03.25",
+  downloadUrl: "https://www.icloud.com/shortcuts/30721c6b5e934657b27b5490f8ab6e04",
+  fileSize: "1.5MB",
+  iosSupport: "IOS 17 and latest",
+  isActive: true,
+  updateNotes: "Latest stable release with improved performance and bug fixes",
+  features: [
+    "Download TikTok Videos Without Watermark",
+    "High-Quality Downloads",
+    "Audio-Only Download Option",
+    "Fast and Easy to Use",
+    "100% Free and Safe",
+    "Compatible with Latest iOS Versions",
+    "Lightweight and Quick Setup",
+    "Regular Updates"
+  ]
+};
 ---
 
 <Layout title="(+Add) DTikTok Shortcut On Your iPad Or iPhone in 2024" description="Add DTikTok to your iPhone or iPad. Follow @dtiktokshortcut on TikTok and get the latest DTikTok Shortcut version 4.4.3.">
@@ -28,7 +49,7 @@ const dtiktokConfig = getDtiktokConfig();
         </a>
       </div>
       
-      <h1 class="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
+      <h1 class="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent" style="font-size: clamp(3rem, 7vw, 3.75rem) !important;">
         Add DTikTok Shortcut
       </h1>
       <p class="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
@@ -57,61 +78,61 @@ const dtiktokConfig = getDtiktokConfig();
   </section>
 
   <!-- Main Content -->
-  <section class="py-16 px-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
+  <section class="py-12 sm:py-16 px-4 sm:px-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
     <div class="max-w-6xl mx-auto">
       
       <!-- Shortcuts Showcase -->
-      <div class="mb-20">
-        <h2 class="text-4xl font-bold text-center mb-16 text-gray-800 dark:text-white">
+      <div class="mb-12 sm:mb-20">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 lg:mb-16 text-gray-800 dark:text-white px-4">
           Choose Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Perfect Shortcut</span>
         </h2>
         
-        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-2xl mx-auto px-4">
           
           <!-- DTikTok Card -->
           <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition-opacity duration-500"></div>
-            <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl transform group-hover:-translate-y-2 transition-all duration-500 border border-gray-200 dark:border-gray-700">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition-opacity duration-500"></div>
+            <div class="relative bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 shadow-2xl transform group-hover:-translate-y-1 transition-all duration-500 border border-gray-200 dark:border-gray-700">
               
               <!-- Featured Badge -->
-              <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+              <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg mb-2">
                   Best For TikTok Video
                 </div>
               </div>
               
               <!-- Icon -->
-              <div class="flex justify-center mb-6 pt-4">
+              <div class="flex justify-center mb-3 pt-5">
                 <div class="relative">
-                  <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-4 shadow-lg">
-                    <img src="/DTikTok.webp" alt="DTikTok" class="w-full h-full object-cover rounded-xl" />
+                  <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl p-2 shadow-lg">
+                    <img src="/DTikTok.webp" alt="DTikTok" class="w-full h-full object-cover rounded-lg" />
                   </div>
-                  <div class="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                    <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                     </svg>
                   </div>
                 </div>
               </div>
               
-              <h3 class="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">DTikTok</h3>
+              <h3 class="text-xl font-bold text-center mb-4 text-gray-800 dark:text-white">DTIKTOK</h3>
               
               <!-- Version & Date -->
-              <div class="space-y-3 mb-8">
-                <div class="flex items-center justify-between p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
-                  <span class="text-gray-600 dark:text-gray-300 font-medium">Version</span>
+              <div class="space-y-2 mb-4 text-center">
+                <div class="text-gray-600 dark:text-gray-300 text-sm">
+                  <span class="font-medium">Version: </span>
                   <span class="text-blue-600 dark:text-blue-400 font-bold">4.4.3</span>
                 </div>
-                <div class="flex items-center justify-between p-4 bg-purple-50 dark:bg-purple-900/20 rounded-xl">
-                  <span class="text-gray-600 dark:text-gray-300 font-medium">Updated</span>
+                <div class="text-gray-600 dark:text-gray-300 text-sm">
+                  <span class="font-medium">Update On: </span>
                   <span class="text-purple-600 dark:text-purple-400 font-bold">29.03.25</span>
                 </div>
               </div>
               
               <!-- Download Button -->
               <a href={dtiktokConfig.downloadUrl} target="_blank" 
-                 class="w-full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-2xl hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 class="w-full inline-flex items-center justify-center px-4 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl mb-3 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m3-2h3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6a2 2 0 012-2h3" />
                 </svg>
                 +Add Shortcut
@@ -119,8 +140,8 @@ const dtiktokConfig = getDtiktokConfig();
               
               <!-- Status Badge -->
               <div class="text-center">
-                <span class="inline-flex items-center px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 rounded-full text-sm font-medium">
-                  <div class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                <span class="inline-flex items-center px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 rounded-full text-xs font-medium">
+                  <div class="w-1.5 h-1.5 bg-green-500 rounded-full mr-1.5 animate-pulse"></div>
                   Latest Version
                 </span>
               </div>
@@ -129,43 +150,43 @@ const dtiktokConfig = getDtiktokConfig();
           
           <!-- Water Eject Card -->
           <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-3xl blur opacity-25 group-hover:opacity-75 transition-opacity duration-500"></div>
-            <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl transform group-hover:-translate-y-2 transition-all duration-500 border border-gray-200 dark:border-gray-700">
+            <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-2xl blur opacity-25 group-hover:opacity-75 transition-opacity duration-500"></div>
+            <div class="relative bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 shadow-2xl transform group-hover:-translate-y-1 transition-all duration-500 border border-gray-200 dark:border-gray-700">
               
               <!-- Alternative Badge -->
-              <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <div class="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+              <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <div class="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
                   Original
                 </div>
               </div>
               
               <!-- Icon -->
-              <div class="flex justify-center mb-6 pt-4">
+              <div class="flex justify-center mb-3 pt-3">
                 <div class="relative">
-                  <div class="w-24 h-24 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-2xl p-4 shadow-lg">
-                    <img src="/Water-Eject.webp" alt="Water Eject" class="w-full h-full object-cover rounded-xl" />
+                  <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-xl p-2 shadow-lg">
+                    <img src="/Water-Eject.webp" alt="Water Eject" class="w-full h-full object-cover rounded-lg" />
                   </div>
                 </div>
               </div>
               
-              <h3 class="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">Water Eject</h3>
+              <h3 class="text-xl font-bold text-center mb-4 text-gray-800 dark:text-white">WATER EJECT</h3>
               
               <!-- Version & Date -->
-              <div class="space-y-3 mb-8">
-                <div class="flex items-center justify-between p-4 bg-orange-50 dark:bg-orange-900/20 rounded-xl">
-                  <span class="text-gray-600 dark:text-gray-300 font-medium">Version</span>
+              <div class="space-y-2 mb-4 text-center">
+                <div class="text-gray-600 dark:text-gray-300 text-sm">
+                  <span class="font-medium">Version: </span>
                   <span class="text-orange-600 dark:text-orange-400 font-bold">2.0</span>
                 </div>
-                <div class="flex items-center justify-between p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl">
-                  <span class="text-gray-600 dark:text-gray-300 font-medium">Updated</span>
+                <div class="text-gray-600 dark:text-gray-300 text-sm">
+                  <span class="font-medium">Update On: </span>
                   <span class="text-yellow-600 dark:text-yellow-400 font-bold">11.05.25</span>
                 </div>
               </div>
               
               <!-- Download Button -->
               <a href="https://watereject.com.co/" target="_blank" 
-                 class="w-full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-bold rounded-2xl hover:from-orange-600 hover:to-yellow-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 class="w-full inline-flex items-center justify-center px-4 py-2.5 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-bold rounded-xl hover:from-orange-600 hover:to-yellow-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl mb-3 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
                 +Add Water Eject
@@ -173,8 +194,8 @@ const dtiktokConfig = getDtiktokConfig();
               
               <!-- Status Badge -->
               <div class="text-center">
-                <span class="inline-flex items-center px-4 py-2 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-400 rounded-full text-sm font-medium">
-                  <div class="w-2 h-2 bg-yellow-500 rounded-full mr-2 animate-pulse"></div>
+                <span class="inline-flex items-center px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-400 rounded-full text-xs font-medium">
+                  <div class="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-1.5 animate-pulse"></div>
                   Latest Version
                 </span>
               </div>

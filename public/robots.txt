@@ -10,8 +10,7 @@ Allow: /disclaimer/
 Allow: /privacy-policy/
 Allow: /terms-and-conditions/
 
-# Block admin and sensitive areas
-Disallow: /admin/
+# Block sensitive areas
 Disallow: /api/
 Disallow: /_astro/
 Disallow: /src/
@@ -81,12 +80,10 @@ Disallow: /
 # Allow Google and Bing specifically for better SEO
 User-agent: Googlebot
 Allow: /
-Disallow: /admin/
 Disallow: /api/
 
 User-agent: Bingbot
 Allow: /
-Disallow: /admin/
 Disallow: /api/
 
 # Sitemap location

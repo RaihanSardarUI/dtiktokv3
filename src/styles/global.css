@@ -53,11 +53,12 @@ body {
   background: linear-gradient(135deg, rgba(240, 86, 95, 0.1) 0%, rgba(255, 75, 75, 0.1) 50%, rgba(6, 147, 227, 0.1) 100%);
 }
 
-/* Glass morphism effect */
+/* Glass morphism effect with improved contrast */
 .glass {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
 }
 
 /* Hover effects */
@@ -86,9 +87,182 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Heading styles with white color */
+/* Heading styles with white color and consistent font sizes */
 h1, h2, h3, h4, h5, h6 {
   color: #ffffff !important;
+}
+
+/* Ensure proper font sizes for headings in all contexts */
+h1 {
+  font-size: 2.5rem !important;
+}
+
+/* Fix for H1 tags in sectioning elements (HTML5 outline algorithm deprecation) */
+/* Using higher specificity to override Tailwind classes */
+section h1.text-5xl,
+section h1.text-6xl,
+section h1.text-7xl,
+section h1.text-9xl,
+article h1.text-5xl,
+article h1.text-6xl,
+article h1.text-7xl,
+article h1.text-9xl,
+aside h1.text-5xl,
+aside h1.text-6xl,
+aside h1.text-7xl,
+aside h1.text-9xl,
+nav h1.text-5xl,
+nav h1.text-6xl,
+nav h1.text-7xl,
+nav h1.text-9xl,
+section h1,
+article h1,
+aside h1,
+nav h1 {
+  font-size: 2.5rem !important;
+}
+
+/* Media query for responsive H1 sizing in sectioning elements */
+@media (min-width: 768px) {
+  section h1.text-5xl,
+  section h1.text-6xl,
+  section h1.text-7xl,
+  section h1.text-9xl,
+  article h1.text-5xl,
+  article h1.text-6xl,
+  article h1.text-7xl,
+  article h1.text-9xl,
+  aside h1.text-5xl,
+  aside h1.text-6xl,
+  aside h1.text-7xl,
+  aside h1.text-9xl,
+  nav h1.text-5xl,
+  nav h1.text-6xl,
+  nav h1.text-7xl,
+  nav h1.text-9xl,
+  section h1,
+  article h1,
+  aside h1,
+  nav h1 {
+    font-size: 3.5rem !important;
+  }
+}
+
+/* Specific overrides for different H1 types with higher specificity */
+section h1.gradient-text.text-5xl.font-black,
+section h1.gradient-text.text-7xl.font-black,
+section h1.gradient-text {
+  font-size: 3rem !important;
+}
+
+@media (min-width: 768px) {
+  section h1.gradient-text.text-5xl.font-black,
+  section h1.gradient-text.text-7xl.font-black,
+  section h1.gradient-text {
+    font-size: 4.5rem !important;
+  }
+}
+
+/* 404 page H1 */
+section h1.text-9xl.font-black {
+  font-size: 8rem !important;
+}
+
+/* Add-DTikTok page H1 */
+section h1.bg-gradient-to-r.text-5xl.font-black,
+section h1.bg-gradient-to-r.text-6xl.font-black,
+section h1.bg-gradient-to-r {
+  font-size: 3rem !important;
+}
+
+@media (min-width: 768px) {
+  section h1.bg-gradient-to-r.text-5xl.font-black,
+  section h1.bg-gradient-to-r.text-6xl.font-black,
+  section h1.bg-gradient-to-r {
+    font-size: 3.75rem !important;
+  }
+}
+
+h2 {
+  font-size: 2rem !important;
+}
+
+h3 {
+  font-size: 1.75rem !important;
+}
+
+/* Improve contrast for primary text */
+.text-primary {
+  color: #ff6b6b !important;
+}
+
+/* Ensure sufficient contrast for links */
+.link-hover:hover {
+  color: #ff8a8a !important;
+}
+
+/* Accessibility improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Mobile-first responsive improvements */
+@media (max-width: 640px) {
+  /* Better mobile spacing */
+  .glass {
+    padding: 1rem !important;
+  }
+  
+  /* Smaller hover effects on mobile */
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Better mobile text scaling */
+  .gradient-text {
+    background-size: 200% 200%;
+  }
+  
+  /* Disable hover animations on mobile */
+  .group:hover .group-hover\:scale-105 {
+    transform: scale(1.02);
+  }
+  
+  /* Better mobile touch targets */
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improved mobile readability */
+  p {
+    line-height: 1.6;
+  }
+}
+
+/* Tablet responsive improvements */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Optimize for tablet */
+  .glass {
+    padding: 1.5rem !important;
+  }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1025px) {
+  /* Full hover effects on desktop */
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(240, 86, 95, 0.25);
+  }
 }
 
 /* Decorative brush stroke borders */
@@ -116,4 +290,25 @@ h1, h2, h3, h4, h5, h6 {
   height: 8px;
   width: 150%;
   opacity: 0.9;
+}
+
+/* Table of Contents specific styles */
+nav[aria-label="Page contents"] h3 {
+  font-size: 0.875rem !important; /* text-sm */
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+}
+
+nav[aria-label="Page contents"] p {
+  font-size: 0.75rem !important; /* text-xs */
+  line-height: 1.2 !important;
+}
+
+/* Better spacing for table of contents items */
+nav[aria-label="Page contents"] a {
+  padding: 0.75rem !important;
+  border-radius: 0.5rem !important;
+  min-height: 60px !important;
+  display: flex !important;
+  align-items: center !important;
 }

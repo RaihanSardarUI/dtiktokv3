@@ -1,14 +1,57 @@
 ---
 import '../styles/global.css';
-import { getDtiktokConfig } from '../utils/config.js';
 
 export interface Props {
   title: string;
   description: string;
+  canonical?: string;
+  robots?: string;
 }
 
-const { title, description } = Astro.props;
-const dtiktokConfig = getDtiktokConfig();
+// Ensure this component is rendered server-side to access request headers
+export const prerender = false;
+
+const { title, description, canonical, robots } = Astro.props;
+
+// Get the current domain for meta tags
+// Use site config if available, otherwise use request headers for domain detection
+const currentDomain = Astro.site ? Astro.site.origin : 
+  (Astro.request.headers.get('host') ? 
+    `https://${Astro.request.headers.get('host')}` : 
+    'http://localhost:4321');
+
+// Generate canonical URL
+const canonicalUrl = canonical || `${currentDomain}${Astro.url.pathname}`;
+
+// Static configuration (no dynamic dashboard needed)
+const dtiktokConfig = {
+  version: "4.4.3",
+  releaseDate: "29.03.25",
+  downloadUrl: "https://www.icloud.com/shortcuts/30721c6b5e934657b27b5490f8ab6e04",
+  fileSize: "1.5MB",
+  iosSupport: "IOS 17 and latest",
+  isActive: true,
+  updateNotes: "Latest stable release with improved performance and bug fixes",
+  features: [
+    "Download TikTok Videos Without Watermark",
+    "High-Quality Downloads",
+    "Audio-Only Download Option",
+    "Fast and Easy to Use",
+    "100% Free and Safe",
+    "Compatible with Latest iOS Versions",
+    "Lightweight and Quick Setup",
+    "Regular Updates"
+  ],
+  seo: {
+    searchConsole: "",
+    analyticsId: "",
+    adsTxt: "",
+    robotsTxt: "",
+    otherVerification: "",
+    customMeta: "",
+    headAdsCode: ""
+  }
+};
 ---
 
 <!DOCTYPE html>
@@ -37,6 +80,12 @@ const dtiktokConfig = getDtiktokConfig();
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
   
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonicalUrl} />
+  
+  <!-- Robots meta tag -->
+  {robots && <meta name="robots" content={robots} />}
+  
   <!-- Critical resource hints -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -57,19 +106,18 @@ const dtiktokConfig = getDtiktokConfig();
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://d-tiktok.com/" />
-  <meta property="og:image" content="https://d-tiktok.com/DTikTok.webp" />
-  <meta property="og:site_name" content="D-TikTok.com" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={currentDomain + "/DTikTok.webp"} />
+  <meta property="og:site_name" content={new URL(currentDomain).hostname} />
   
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content="https://d-tiktok.com/DTikTok.webp" />
+  <meta name="twitter:image" content={currentDomain + "/DTikTok.webp"} />
   
   <!-- Structured Data for Organization -->
-  <script type="application/ld+json">
-  {
+  <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "DTikTok",
@@ -85,10 +133,12 @@ const dtiktokConfig = getDtiktokConfig();
       "price": "0",
       "priceCurrency": "USD"
     },
-    "downloadUrl": "${dtiktokConfig.downloadUrl}",
-    "version": "${dtiktokConfig.version}",
-    "fileSize": "${dtiktokConfig.fileSize}"
-  }
+    "downloadUrl": dtiktokConfig.downloadUrl,
+    "version": dtiktokConfig.version,
+    "fileSize": dtiktokConfig.fileSize,
+    "url": canonicalUrl,
+    "image": currentDomain + "/DTikTok.webp"
+  })}>
   </script>
 
   <!-- Dynamic SEO Configuration -->
@@ -289,11 +339,12 @@ const dtiktokConfig = getDtiktokConfig();
         </div>
         
         <!-- Primary CTA Button -->
-        <a href="#download" class="btn btn-primary btn-sm lg:btn-md ml-2 shadow-lg hover:shadow-xl hover-lift header-primary-cta">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <a href="#download" class="btn btn-primary btn-sm lg:btn-md ml-2 shadow-lg hover:shadow-xl hover-lift header-primary-cta" aria-label="Get DTikTok Shortcut - Download now">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
           </svg>
           <span class="hidden sm:inline">Get DTikTok</span>
+          <span class="sr-only sm:hidden">Get DTikTok Shortcut</span>
         </a>
       </div>
     </nav>
@@ -374,10 +425,11 @@ const dtiktokConfig = getDtiktokConfig();
                 <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-.88-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
               </svg>
             </a>
-            <a href="#download" class="btn btn-circle btn-outline hover-lift group footer-get-shortcut" title="Get DTikTok">
-              <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="#download" class="btn btn-circle btn-outline hover-lift group footer-get-shortcut" title="Get DTikTok Shortcut" aria-label="Get DTikTok Shortcut - Download now">
+              <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
               </svg>
+              <span class="sr-only">Get DTikTok Shortcut</span>
             </a>
           </div>
         </div>
@@ -400,8 +452,8 @@ const dtiktokConfig = getDtiktokConfig();
               </a>
             </li>
             <li>
-              <a href="#download" class="link link-hover hover:text-primary transition-all duration-300 flex items-center justify-center lg:justify-start group footer-quick-link">
-                <svg class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <a href="#download" class="link link-hover hover:text-primary transition-all duration-300 flex items-center justify-center lg:justify-start group footer-quick-link" aria-label="Add DTikTok Shortcut to your device">
+                <svg class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                 </svg>
                 Add Shortcut
@@ -473,7 +525,7 @@ const dtiktokConfig = getDtiktokConfig();
       <div class="grid md:grid-cols-2 gap-6 items-center">
         <!-- Copyright & Legal Info -->
         <div class="text-center md:text-left space-y-2">
-          <p class="text-sm font-semibold">© 2024 D-TikTok.com - All rights reserved</p>
+          <p class="text-sm font-semibold">© 2024 {new URL(Astro.url.origin).hostname} - All rights reserved</p>
           <p class="text-xs text-base-content/60 leading-relaxed">
             We are not associated with TikTok by any means. TikTok is a registered trademark of Bytedance Ltd. 
             This is a promotional website only. Use at your own discretion and respect copyright laws.
@@ -491,7 +543,7 @@ const dtiktokConfig = getDtiktokConfig();
            <p class="text-xs">
              <span class="text-warning font-semibold">Domain Migration:</span> 
              <span class="line-through text-base-content/40">DTiktok.Net</span> → 
-             <span class="text-dtiktok-pink font-semibold">D-TikTok.com</span>
+             <span class="text-dtiktok-pink font-semibold">{new URL(Astro.url.origin).hostname}</span>
            </p>
         </div>
       </div>

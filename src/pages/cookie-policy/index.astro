@@ -1,5 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+// Ensure this page is rendered server-side for proper domain detection
+export const prerender = false;
 ---
 
 <Layout 
@@ -19,7 +22,7 @@ import Layout from '../../layouts/Layout.astro';
       <div class="prose prose-lg prose-invert max-w-none">
         
         <p class="text-lg text-gray-300 leading-relaxed mb-8">
-          This is the Cookie Policy for Dtiktok, accessible from <a href="https://d-tiktok.com/" class="text-accent hover:underline">https://d-tiktok.com/</a>
+          This is the Cookie Policy for Dtiktok, accessible from <a href={Astro.url.origin} class="text-accent hover:underline">{Astro.url.origin}</a>
         </p>
 
         <!-- What Are Cookies -->
@@ -139,7 +142,7 @@ import Layout from '../../layouts/Layout.astro';
           </p>
           
           <ul class="list-disc list-inside space-y-2 text-gray-300">
-            <li>By visiting this link: <a href="https://d-tiktok.com/" class="text-accent hover:underline">https://d-tiktok.com/</a></li>
+            <li>By visiting this link: <a href={Astro.url.origin} class="text-accent hover:underline">{Astro.url.origin}</a></li>
           </ul>
         </section>
 

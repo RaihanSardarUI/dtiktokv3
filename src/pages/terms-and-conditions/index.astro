@@ -1,5 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+// Ensure this page is rendered server-side for proper domain detection
+export const prerender = false;
 ---
 
 <Layout 
@@ -19,7 +22,7 @@ import Layout from '../../layouts/Layout.astro';
       <div class="prose prose-lg prose-invert max-w-none">
         
         <p class="text-lg text-gray-300 leading-relaxed mb-8">
-          Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the D-TikTok.com website (the "Service") operated by us.
+          Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the {new URL(Astro.url.origin).hostname} website (the "Service") operated by us.
         </p>
         
         <p class="text-lg text-gray-300 leading-relaxed mb-8">
@@ -79,10 +82,10 @@ import Layout from '../../layouts/Layout.astro';
         <section class="mb-12">
           <h2 class="text-3xl font-bold text-white mb-6">Third Party Links</h2>
           <p class="text-gray-300 mb-4">
-            Our Service may contain links to third-party web sites or services that are not owned or controlled by D-TikTok.com.
+                      Our Service may contain links to third-party web sites or services that are not owned or controlled by {new URL(Astro.url.origin).hostname}.
           </p>
           <p class="text-gray-300 mb-4">
-            D-TikTok.com has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that D-TikTok.com shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
+          {new URL(Astro.url.origin).hostname} has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that {new URL(Astro.url.origin).hostname} shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
           </p>
           <p class="text-gray-300 mb-8">
             We strongly advise you to read the terms and conditions and privacy policies of any third-party web sites or services that you visit.
@@ -93,7 +96,7 @@ import Layout from '../../layouts/Layout.astro';
         <section class="mb-12">
           <h2 class="text-3xl font-bold text-white mb-6">Intellectual Property</h2>
           <p class="text-gray-300 mb-4">
-            The Service and its original content, features and functionality are and will remain the exclusive property of D-TikTok.com and its licensors. The Service is protected by copyright, trademark, and other laws. Our trademarks and trade dress may not be used in connection with any product or service without our prior written consent.
+            The Service and its original content, features and functionality are and will remain the exclusive property of {new URL(Astro.url.origin).hostname} and its licensors. The Service is protected by copyright, trademark, and other laws. Our trademarks and trade dress may not be used in connection with any product or service without our prior written consent.
           </p>
         </section>
 
@@ -101,7 +104,7 @@ import Layout from '../../layouts/Layout.astro';
         <section class="mb-12">
           <h2 class="text-3xl font-bold text-white mb-6">DMCA Notice</h2>
           <p class="text-gray-300 mb-4">
-            D-TikTok.com complies with the Digital Millennium Copyright Act (DMCA). If you believe that your copyrighted work has been copied in a way that constitutes copyright infringement and is accessible on this site, you may notify our copyright agent.
+            {new URL(Astro.url.origin).hostname} complies with the Digital Millennium Copyright Act (DMCA). If you believe that your copyrighted work has been copied in a way that constitutes copyright infringement and is accessible on this site, you may notify our copyright agent.
           </p>
           <p class="text-gray-300 mb-8">
             We will respond to valid DMCA takedown notices and may remove or disable access to content that is claimed to be infringing.
@@ -123,7 +126,7 @@ import Layout from '../../layouts/Layout.astro';
         <section class="mb-12">
           <h2 class="text-3xl font-bold text-white mb-6">Limitation of Liability</h2>
           <p class="text-gray-300 mb-4">
-            In no event shall D-TikTok.com, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your use of the Service.
+            In no event shall {new URL(Astro.url.origin).hostname}, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your use of the Service.
           </p>
         </section>
 
@@ -156,7 +159,7 @@ import Layout from '../../layouts/Layout.astro';
             If you have any questions about these Terms and Conditions, please contact us at:
           </p>
           <ul class="list-disc list-inside space-y-2 text-gray-300">
-            <li>Website: <a href="https://d-tiktok.com" class="text-accent hover:underline">https://d-tiktok.com</a></li>
+            <li>Website: <a href={Astro.url.origin} class="text-accent hover:underline">{Astro.url.origin}</a></li>
           </ul>
         </section>
 
@@ -165,7 +168,7 @@ import Layout from '../../layouts/Layout.astro';
           <div class="bg-base-200 p-6 rounded-lg">
             <h3 class="text-xl font-bold text-primary mb-4">Important Legal Notice</h3>
             <p class="text-gray-300 mb-4">
-              D-TikTok.com is not affiliated with, endorsed by, or sponsored by TikTok or ByteDance Ltd. TikTok is a registered trademark of ByteDance Ltd.
+              {new URL(Astro.url.origin).hostname} is not affiliated with, endorsed by, or sponsored by TikTok or ByteDance Ltd. TikTok is a registered trademark of ByteDance Ltd.
             </p>
             <p class="text-gray-300">
               This website provides shortcuts and tools for educational and personal use only. Users are responsible for complying with applicable laws and TikTok's terms of service.
