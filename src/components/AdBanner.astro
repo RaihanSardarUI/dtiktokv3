@@ -1,13 +1,11 @@
 ---
-// AdBanner.astro - Reusable advertisement component with async loading
+// AdBanner.astro - Reusable advertisement component
 export interface Props {
   position?: 'top' | 'middle' | 'bottom' | 'sidebar';
   className?: string;
-  lazy?: boolean;
 }
 
-const { position = 'middle', className = '', lazy = true } = Astro.props;
-const adId = `ad-${Math.random().toString(36).substr(2, 9)}`;
+const { position = 'middle', className = '' } = Astro.props;
 ---
 
 <div class={`ad-banner ad-${position} ${className}`}>
@@ -16,87 +14,20 @@ const adId = `ad-${Math.random().toString(36).substr(2, 9)}`;
     <div class="ad-label">Advertisement</div>
     
     <!-- Ad Content -->
-    <div id={adId} class="ad-content" data-ad-key="5db4e115c9cae4168f6efca75fe17bd9">
-      <div class="ad-placeholder">Loading advertisement...</div>
+    <div id="ad-content" class="ad-content">
+      <script type="text/javascript" is:inline>
+        atOptions = {
+          'key': '5db4e115c9cae4168f6efca75fe17bd9',
+          'format': 'iframe',
+          'height': 250,
+          'width': 300,
+          'params': {}
+        };
+      </script>
+      <script type="text/javascript" src="//cautiouslyanalysecrystal.com/5db4e115c9cae4168f6efca75fe17bd9/invoke.js" is:inline></script>
     </div>
   </div>
 </div>
-
-<script define:vars={{ adId, lazy }}>
-  // Async ad loading function
-  async function loadAd(containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    
-    const key = container.getAttribute('data-ad-key');
-    const placeholder = container.querySelector('.ad-placeholder');
-    
-    try {
-      // Set up ad options
-      window.atOptions = {
-        'key': key,
-        'format': 'iframe',
-        'height': 250,
-        'width': 300,
-        'params': {}
-      };
-      
-      // Create and load the ad script asynchronously
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.async = true;
-      script.src = `//cautiouslyanalysecrystal.com/${key}/invoke.js`;
-      
-      // Handle successful load
-      script.onload = () => {
-        if (placeholder) {
-          placeholder.style.display = 'none';
-        }
-      };
-      
-      // Handle errors
-      script.onerror = () => {
-        if (placeholder) {
-          placeholder.textContent = 'Ad failed to load';
-          placeholder.style.color = '#666';
-        }
-      };
-      
-      // Add to container
-      container.appendChild(script);
-      
-    } catch (error) {
-      console.warn('Ad loading failed:', error);
-      if (placeholder) {
-        placeholder.textContent = 'Ad unavailable';
-        placeholder.style.color = '#666';
-      }
-    }
-  }
-  
-  // Load ad immediately or with intersection observer
-  if (lazy && 'IntersectionObserver' in window) {
-    // Lazy load when ad comes into view
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          loadAd(adId);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      rootMargin: '50px'
-    });
-    
-    const adElement = document.getElementById(adId);
-    if (adElement) {
-      observer.observe(adElement);
-    }
-  } else {
-    // Load immediately but still async
-    setTimeout(() => loadAd(adId), 100);
-  }
-</script>
 
 <style>
   .ad-banner {
@@ -116,16 +47,6 @@ const adId = `ad-${Math.random().toString(36).substr(2, 9)}`;
     @apply flex justify-center items-center;
     min-height: 250px;
     width: 300px;
-    position: relative;
-  }
-  
-  .ad-placeholder {
-    @apply text-sm text-gray-500 flex items-center justify-center;
-    height: 250px;
-    width: 300px;
-    position: absolute;
-    top: 0;
-    left: 0;
   }
   
   /* Position-specific styles */
@@ -155,20 +76,13 @@ const adId = `ad-${Math.random().toString(36).substr(2, 9)}`;
       width: 260px;
       min-height: 200px;
     }
-    
-    .ad-placeholder {
-      width: 260px;
-      height: 200px;
-    }
   }
   
-  /* Loading animation */
-  .ad-placeholder {
-    animation: pulse 2s infinite;
-  }
-  
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+  /* Loading state */
+  .ad-content:empty::before {
+    content: "Loading advertisement...";
+    @apply text-sm text-gray-500 flex items-center justify-center;
+    height: 250px;
+    width: 300px;
   }
 </style> 
