@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { getCurrentDomain, getCanonicalUrl } from '../utils/domainUtils.js';
 
 export interface Props {
   title: string;
@@ -13,15 +14,12 @@ export const prerender = false;
 
 const { title, description, canonical, robots } = Astro.props;
 
-// Get the current domain for meta tags
-// Use site config if available, otherwise use request headers for domain detection
-const currentDomain = Astro.site ? Astro.site.origin : 
-  (Astro.request.headers.get('host') ? 
-    `https://${Astro.request.headers.get('host')}` : 
-    'http://localhost:4321');
+// Use shared domain detection utility
+const currentDomain = getCurrentDomain(Astro);
+const currentHostname = new URL(currentDomain).hostname;
 
-// Generate canonical URL
-const canonicalUrl = canonical || `${currentDomain}${Astro.url.pathname}`;
+// Generate canonical URL using shared utility
+const canonicalUrl = canonical || getCanonicalUrl(Astro.url.pathname, Astro);
 
 // Static configuration (no dynamic dashboard needed)
 const dtiktokConfig = {
@@ -108,7 +106,7 @@ const dtiktokConfig = {
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:image" content={currentDomain + "/DTikTok.webp"} />
-  <meta property="og:site_name" content={new URL(currentDomain).hostname} />
+  <meta property="og:site_name" content={currentHostname} />
   
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -532,7 +530,7 @@ const dtiktokConfig = {
       <div class="grid md:grid-cols-2 gap-6 items-center">
         <!-- Copyright & Legal Info -->
         <div class="text-center md:text-left space-y-2">
-          <p class="text-sm font-semibold">© 2024 {new URL(Astro.url.origin).hostname} - All rights reserved</p>
+          <p class="text-sm font-semibold">© 2024 {currentHostname} - All rights reserved</p>
           <p class="text-xs text-base-content/60 leading-relaxed">
             We are not associated with TikTok by any means. TikTok is a registered trademark of Bytedance Ltd. 
             This is a promotional website only. Use at your own discretion and respect copyright laws.
@@ -550,7 +548,7 @@ const dtiktokConfig = {
            <p class="text-xs">
              <span class="text-warning font-semibold">Domain Migration:</span> 
              <span class="line-through text-base-content/40">DTiktok.Net</span> → 
-             <span class="text-dtiktok-pink font-semibold">{new URL(Astro.url.origin).hostname}</span>
+             <span class="text-dtiktok-pink font-semibold">{currentHostname}</span>
            </p>
         </div>
       </div>

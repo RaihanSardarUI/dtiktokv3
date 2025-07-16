@@ -190,7 +190,27 @@ npx wrangler pages deploy dist
 - Project setup: `npx wrangler pages project create dtiktokv3`
 
 ### Environment Variables
-The project is designed to be domain-agnostic and works without environment variables.
+
+The project now supports environment variables for better domain handling:
+
+1. **Copy the sample file**:
+```bash
+cp env.sample .env
+```
+
+2. **Configure your domain**:
+```bash
+# .env
+SITE_URL=http://localhost:4321  # Development
+# SITE_URL=https://yourdomain.com  # Production
+NODE_ENV=development
+```
+
+3. **For production deployment**, set in Cloudflare Pages dashboard:
+- `SITE_URL`: `https://yourdomain.com`
+- `NODE_ENV`: `production`
+
+See `ENVIRONMENT_SETUP.md` for complete configuration guide.
 
 ## ♿ Accessibility Features
 

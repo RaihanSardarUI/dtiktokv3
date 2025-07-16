@@ -1,10 +1,9 @@
 import type { APIRoute } from 'astro';
+import { getCurrentDomainForAPI } from '../utils/domainUtils';
 
 export const GET: APIRoute = async ({ request }) => {
-  // Get the current domain using the same logic as layout.astro
-  const currentDomain = request.headers.get('host') ? 
-    `https://${request.headers.get('host')}` : 
-    'https://dtiktokv4.pages.dev';
+  // Get the current domain using shared utility function
+  const currentDomain = getCurrentDomainForAPI(request);
 
   // Define all your site pages
   const pages = [

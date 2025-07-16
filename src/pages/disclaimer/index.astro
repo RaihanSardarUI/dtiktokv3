@@ -1,8 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getCurrentDomain } from '../../utils/domainUtils.js';
 
 // Ensure this page is rendered server-side for proper domain detection
 export const prerender = false;
+
+// Get current domain for consistent URL generation
+const currentDomain = getCurrentDomain(Astro);
+const currentHostname = new URL(currentDomain).hostname;
 ---
 
 <Layout 
@@ -30,7 +35,7 @@ export const prerender = false;
           <h2 class="text-3xl font-bold text-white mb-6">Website Disclaimers</h2>
           
           <p class="text-gray-300 mb-4">
-            All the information on this website – <a href={Astro.url.origin} class="text-accent hover:underline">{Astro.url.origin}</a> – is published in good faith and for general information purpose only. {new URL(Astro.url.origin).hostname} does not make any warranties about the completeness, reliability and accuracy of this information. Any action you take upon the information you find on this website ({new URL(Astro.url.origin).hostname}), is strictly at your own risk. {new URL(Astro.url.origin).hostname} will not be liable for any losses and/or damages in connection with the use of our website.
+            All the information on this website – <a href={currentDomain} class="text-accent hover:underline">{currentDomain}</a> – is published in good faith and for general information purpose only. {currentHostname} does not make any warranties about the completeness, reliability and accuracy of this information. Any action you take upon the information you find on this website ({currentHostname}), is strictly at your own risk. {currentHostname} will not be liable for any losses and/or damages in connection with the use of our website.
           </p>
           
           <p class="text-gray-300 mb-8">
@@ -74,7 +79,7 @@ export const prerender = false;
         <section class="mb-12">
           <h3 class="text-2xl font-semibold text-primary mb-4">Copyright Notice</h3>
           <p class="text-gray-300 mb-4">
-            {new URL(Astro.url.origin).hostname} is not affiliated with, endorsed by, or sponsored by TikTok or ByteDance Ltd. TikTok is a registered trademark of ByteDance Ltd. All trademarks, service marks, trade names, trade dress, product names and logos appearing on the site are the property of their respective owners.
+            {currentHostname} is not affiliated with, endorsed by, or sponsored by TikTok or ByteDance Ltd. TikTok is a registered trademark of ByteDance Ltd. All trademarks, service marks, trade names, trade dress, product names and logos appearing on the site are the property of their respective owners.
           </p>
         </section>
 
@@ -93,7 +98,7 @@ export const prerender = false;
             If you have any questions about this Disclaimer, please contact us:
           </p>
           <ul class="list-disc list-inside space-y-2 text-gray-300">
-            <li>Website: <a href={Astro.url.origin} class="text-accent hover:underline">{Astro.url.origin}</a></li>
+            <li>Website: <a href={currentDomain} class="text-accent hover:underline">{currentDomain}</a></li>
             <li>Contact: Through our website contact form</li>
           </ul>
         </section>

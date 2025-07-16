@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import AdBanner from '../components/AdBanner.astro';
+import { getCurrentDomain } from '../utils/domainUtils.js';
 
 // Ensure this page is rendered server-side for proper domain detection
 export const prerender = false;
@@ -25,6 +26,9 @@ const dtiktokConfig = {
     "Regular Updates"
   ]
 };
+
+// Get current domain for consistent URL generation
+const currentDomain = getCurrentDomain(Astro);
 
 // FAQ Schema Data
 const faqData = [
@@ -588,7 +592,7 @@ const faqData = [
                   <div class="flex-1">
                     <h3 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">#Step 2 Find Shortcuts Link</h3>
                     <p class="text-white/80 font-medium text-sm sm:text-base leading-relaxed">
-                      Visit the Official website of DTikTok ({Astro.url.origin}) and Find the Add Shortcut Button, when find the button then click on It For The Next Process.
+                      Visit the Official website of DTikTok ({currentDomain}) and Find the Add Shortcut Button, when find the button then click on It For The Next Process.
                     </p>
                   </div>
                 </div>
@@ -1161,7 +1165,7 @@ const faqData = [
                 <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">DMCA Compliance</span>
               </h3>
               <p class="text-white/90 leading-relaxed font-medium text-sm sm:text-base">
-                <strong><a href={Astro.url.origin} class="text-primary hover:text-white transition-colors underline" aria-label={`Visit ${new URL(Astro.url.origin).hostname} official website`}>{new URL(Astro.url.origin).hostname}</a></strong> complies with 17 U.S.C. * 512 and the Digital Millennium Copyright Act (DMCA). It is our policy to respond to any infringement notices and take appropriate action. If your copyrighted material has been posted on the site and you want this material removed, Contact us.
+                <strong><a href={currentDomain} class="text-primary hover:text-white transition-colors underline" aria-label={`Visit ${currentHostname} official website`}>{currentHostname}</a></strong> complies with 17 U.S.C. * 512 and the Digital Millennium Copyright Act (DMCA). It is our policy to respond to any infringement notices and take appropriate action. If your copyrighted material has been posted on the site and you want this material removed, Contact us.
               </p>
             </div>
           </div>
@@ -1218,7 +1222,7 @@ const faqData = [
                 <span class="bg-gradient-to-r from-success to-info bg-clip-text text-transparent">Domain Update</span>
               </h3>
               <p class="text-white/90 leading-relaxed font-medium text-sm sm:text-base">
-                Note: Our official domain has changed from <a href="https://dtiktok.net/" class="text-primary hover:text-white transition-colors underline" aria-label="Old DTiktok.Net website">DTiktok.Net</a> to <a href={Astro.url.origin} class="text-primary hover:text-white transition-colors underline" aria-label={`New ${new URL(Astro.url.origin).hostname} website`}>{new URL(Astro.url.origin).hostname}</a>. We have enhanced all content with expert reviews, curated recommendations, safety checks, and original guides to ensure a better and fully compliant user experience.
+                Note: Our official domain has changed from <a href="https://dtiktok.net/" class="text-primary hover:text-white transition-colors underline" aria-label="Old DTiktok.Net website">DTiktok.Net</a> to <a href={currentDomain} class="text-primary hover:text-white transition-colors underline" aria-label={`New ${currentHostname} website`}>{currentHostname}</a>. We have enhanced all content with expert reviews, curated recommendations, safety checks, and original guides to ensure a better and fully compliant user experience.
               </p>
             </div>
           </div>

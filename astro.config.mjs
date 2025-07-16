@@ -3,30 +3,40 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import cloudflare from '@astrojs/cloudflare';
 
-// Dynamic site URL function - matches layout.astro domain detection logic
+// Dynamic site URL function - improved environment variable handling
 function getSiteUrl() {
-  // Check for environment variable first
+  // Priority order for URL detection:
+  
+  // 1. Explicit SITE_URL (highest priority)
   if (process.env.SITE_URL) {
     return process.env.SITE_URL;
   }
   
-  // Check for Cloudflare Pages environment variables
+  // 2. Custom domain override
+  if (process.env.CUSTOM_DOMAIN) {
+    return process.env.CUSTOM_DOMAIN;
+  }
+  
+  // 3. Cloudflare Pages environment variables
   if (process.env.CF_PAGES_URL) {
     return process.env.CF_PAGES_URL;
   }
   
-  // Check for Vercel environment variables
+  // 4. Vercel environment variables
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;
   }
   
-  // Check for Netlify environment variables
+  // 5. Netlify environment variables
   if (process.env.DEPLOY_PRIME_URL) {
     return process.env.DEPLOY_PRIME_URL;
   }
   
-  // Default fallback - updated to correct domain
-  return 'https://dtiktokv4.pages.dev';
+  // 6. Development fallback with better localhost handling
+  const devPort = process.env.PORT || '4321';
+  return process.env.NODE_ENV === 'production' 
+    ? 'https://dtiktokv4.pages.dev' 
+    : `http://localhost:${devPort}`;
 }
 
 // https://astro.build/config
