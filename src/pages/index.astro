@@ -113,7 +113,16 @@ const faqData = [
       <div class="mb-8">
         <div class="avatar mb-6">
           <div class="w-24 h-24 rounded-full ring-4 ring-primary ring-offset-4 ring-offset-base-100 hover:ring-offset-8 transition-all duration-300">
-            <img src="/DTikTok.webp" alt="DTikTok Logo" class="object-cover" width="96" height="96" loading="eager" />
+            <img 
+              src="/optimized/DTikTok-96.webp" 
+              srcset="/optimized/DTikTok-96.webp 1x, /optimized/DTikTok-192.webp 2x" 
+              alt="DTikTok Logo" 
+              class="object-cover" 
+              width="96" 
+              height="96" 
+              loading="eager" 
+              decoding="async"
+            />
           </div>
         </div>
         <h1 class="text-5xl md:text-7xl font-black mb-6 gradient-text" style="font-size: clamp(3rem, 8vw, 4.5rem) !important;">DTikTok</h1>

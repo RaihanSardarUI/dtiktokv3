@@ -90,7 +90,7 @@ const dtiktokConfig = {
   
   <!-- Preload critical resources with high priority -->
   <link rel="preload" href="/DTikTok-BG.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="preload" href="/DTikTok.webp" as="image" type="image/webp" fetchpriority="high">
+      <link rel="preload" href="/optimized/DTikTok-96.webp" as="image" type="image/webp" fetchpriority="high">
   
   <!-- Styles will be automatically processed by Astro -->
   
@@ -105,14 +105,14 @@ const dtiktokConfig = {
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalUrl} />
-  <meta property="og:image" content={currentDomain + "/DTikTok.webp"} />
+  <meta property="og:image" content={currentDomain + "/optimized/DTikTok-256.webp"} />
   <meta property="og:site_name" content={currentHostname} />
   
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={currentDomain + "/DTikTok.webp"} />
+  <meta name="twitter:image" content={currentDomain + "/optimized/DTikTok-256.webp"} />
   
   <!-- Structured Data for Organization -->
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -135,7 +135,7 @@ const dtiktokConfig = {
     "version": dtiktokConfig.version,
     "fileSize": dtiktokConfig.fileSize,
     "url": canonicalUrl,
-    "image": currentDomain + "/DTikTok.webp"
+    "image": currentDomain + "/optimized/DTikTok-256.webp"
   })}>
   </script>
 
@@ -204,9 +204,14 @@ const dtiktokConfig = {
       background: linear-gradient(135deg, #1a1a1a 0%, #202020 50%, #2a2a2a 100%);
     }
     
-    /* Gradient backgrounds */
+    /* Gradient backgrounds - optimized to prevent layout shifts */
     .gradient-bg {
       background: linear-gradient(135deg, #1a1a1a 0%, #202020 50%, #2a2a2a 100%);
+      /* Prevent layout shifts by ensuring stable background */
+      min-height: 100vh;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
     
     .hero-gradient {
@@ -259,7 +264,7 @@ const dtiktokConfig = {
 
   
 </head>
-<body class="bg-base-100 text-base-content min-h-screen gradient-bg">
+<body class="bg-base-100 text-base-content min-h-screen gradient-bg" style="background: linear-gradient(135deg, #1a1a1a 0%, #202020 50%, #2a2a2a 100%); min-height: 100vh;">
   <!-- Main Container with max-width and borders -->
   <div class="main-container">
     <!-- Header/Navigation -->
@@ -270,7 +275,16 @@ const dtiktokConfig = {
         <a href="/" class="flex items-center space-x-3 hover:scale-105 transition-transform duration-300">
           <div class="avatar">
             <div class="w-10 h-10 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100">
-              <img src="/DTikTok.webp" alt="DTikTok" class="object-cover" />
+              <img 
+                src="/optimized/DTikTok-96.webp" 
+                srcset="/optimized/DTikTok-96.webp 1x, /optimized/DTikTok-192.webp 2x"
+                alt="DTikTok" 
+                class="object-cover" 
+                width="40" 
+                height="40"
+                loading="lazy" 
+                decoding="async"
+              />
             </div>
           </div>
           <div class="flex flex-col">
@@ -380,7 +394,16 @@ const dtiktokConfig = {
           <div class="flex items-center justify-center lg:justify-start mb-6">
             <div class="avatar mr-4">
               <div class="w-16 h-16 rounded-full ring-4 ring-primary/30 ring-offset-4 ring-offset-transparent">
-                <img src="/DTikTok.webp" alt="DTikTok" class="object-cover" />
+                <img 
+                  src="/optimized/DTikTok-96.webp" 
+                  srcset="/optimized/DTikTok-96.webp 1x, /optimized/DTikTok-192.webp 2x"
+                  alt="DTikTok" 
+                  class="object-cover" 
+                  width="64" 
+                  height="64"
+                  loading="lazy" 
+                  decoding="async"
+                />
               </div>
             </div>
             <div>

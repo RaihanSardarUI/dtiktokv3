@@ -109,7 +109,16 @@ const dtiktokConfig = {
               <div class="flex justify-center mb-3 pt-5">
                 <div class="relative">
                   <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl p-2 shadow-lg">
-                    <img src="/DTikTok.webp" alt="DTikTok" class="w-full h-full object-cover rounded-lg" />
+                    <img 
+            src="/optimized/DTikTok-256.webp" 
+            srcset="/optimized/DTikTok-256.webp 1x, /optimized/DTikTok-512.webp 2x"
+            alt="DTikTok" 
+            class="w-full h-full object-cover rounded-lg" 
+            width="256" 
+            height="256"
+            loading="lazy" 
+            decoding="async"
+          />
                   </div>
                   <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
                     <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">

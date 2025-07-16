@@ -56,7 +56,7 @@ export const GET: APIRoute = async ({ request }) => {
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>${page.url === '/' ? `
     <image:image>
-      <image:loc>${currentDomain}/DTikTok.webp</image:loc>
+              <image:loc>${currentDomain}/optimized/DTikTok-256.webp</image:loc>
       <image:title>DTikTok - TikTok Video Downloader</image:title>
       <image:caption>Free iOS shortcut to download TikTok videos without watermark</image:caption>
     </image:image>` : ''}${page.url === '/add-dtiktok/' ? `
