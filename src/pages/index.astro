@@ -29,6 +29,7 @@ const dtiktokConfig = {
 
 // Get current domain for consistent URL generation
 const currentDomain = getCurrentDomain(Astro);
+const currentHostname = new URL(currentDomain).hostname;
 
 // FAQ Schema Data
 const faqData = [

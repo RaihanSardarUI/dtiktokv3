@@ -3,40 +3,31 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import cloudflare from '@astrojs/cloudflare';
 
-// Dynamic site URL function - improved environment variable handling
+// Function to get site URL from environment variables only
 function getSiteUrl() {
-  // Priority order for URL detection:
+  // Priority order for environment variables only:
+  // 1. SITE_URL (highest priority)
+  // 2. CUSTOM_DOMAIN (override)  
+  // 3. CF_PAGES_URL (Cloudflare Pages)
+  // 4. Throw error if none set
   
-  // 1. Explicit SITE_URL (highest priority)
-  if (process.env.SITE_URL) {
-    return process.env.SITE_URL;
+  const siteUrl = process.env.SITE_URL;
+  if (siteUrl) {
+    return siteUrl;
   }
   
-  // 2. Custom domain override
-  if (process.env.CUSTOM_DOMAIN) {
-    return process.env.CUSTOM_DOMAIN;
+  const customDomain = process.env.CUSTOM_DOMAIN;
+  if (customDomain) {
+    return customDomain;
   }
   
-  // 3. Cloudflare Pages environment variables
-  if (process.env.CF_PAGES_URL) {
-    return process.env.CF_PAGES_URL;
+  const cfPagesUrl = process.env.CF_PAGES_URL;
+  if (cfPagesUrl) {
+    return cfPagesUrl;
   }
   
-  // 4. Vercel environment variables
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-  
-  // 5. Netlify environment variables
-  if (process.env.DEPLOY_PRIME_URL) {
-    return process.env.DEPLOY_PRIME_URL;
-  }
-  
-  // 6. Development fallback with better localhost handling
-  const devPort = process.env.PORT || '4321';
-  return process.env.NODE_ENV === 'production' 
-    ? 'https://dtiktokv4.pages.dev' 
-    : `http://localhost:${devPort}`;
+  // Throw error if no environment variable is set
+  throw new Error('No domain environment variable found. Please set SITE_URL, CUSTOM_DOMAIN, or CF_PAGES_URL');
 }
 
 // https://astro.build/config
@@ -45,22 +36,11 @@ export default defineConfig({
   integrations: [tailwind()],
   output: 'server',
   adapter: cloudflare(),
-  build: {
-    inlineStylesheets: 'auto',
-  },
-  compressHTML: true,
   vite: {
-    build: {
-      target: 'es2022',
-      minify: 'terser',
-      terserOptions: {
-        compress: {
-          drop_console: true,
-          drop_debugger: true,
-          pure_funcs: ['console.log'],
-        },
-      },
-    },
-    assetsInclude: ['**/*.webp'],
-  },
+    define: {
+      'import.meta.env.SITE_URL': JSON.stringify(process.env.SITE_URL),
+      'import.meta.env.CUSTOM_DOMAIN': JSON.stringify(process.env.CUSTOM_DOMAIN),
+      'import.meta.env.CF_PAGES_URL': JSON.stringify(process.env.CF_PAGES_URL),
+    }
+  }
 });

@@ -1,18 +1,17 @@
 /**
  * Shared domain detection utility for DTikTok website
- * This ensures consistent domain detection across all components
+ * This ensures consistent domain detection using ONLY environment variables
  */
 
 import type { AstroGlobal } from 'astro';
 
 /**
- * Get current domain using environment variables and request headers
+ * Get current domain using ONLY environment variables
  * Priority order:
  * 1. SITE_URL environment variable (highest priority)
  * 2. CUSTOM_DOMAIN override
  * 3. CF_PAGES_URL (Cloudflare Pages)
- * 4. Request headers (fallback)
- * 5. Environment-based fallback
+ * 4. Throws error if none set
  */
 export function getCurrentDomain(astroGlobal?: AstroGlobal): string {
   // 1. Explicit SITE_URL environment variable (highest priority)
@@ -25,34 +24,18 @@ export function getCurrentDomain(astroGlobal?: AstroGlobal): string {
     return import.meta.env.CUSTOM_DOMAIN;
   }
   
-  // 3. Astro.site configuration (if available)
-  if (astroGlobal?.site) {
-    return astroGlobal.site.origin;
-  }
-  
-  // 4. Cloudflare Pages environment variables
+  // 3. Cloudflare Pages environment variables
   if (import.meta.env.CF_PAGES_URL) {
     return import.meta.env.CF_PAGES_URL;
   }
   
-  // 5. Request headers detection (fallback)
-  if (astroGlobal?.request) {
-    const host = astroGlobal.request.headers.get('host');
-    if (host) {
-      // Use HTTPS for production-like hostnames, HTTP for localhost
-      const protocol = host.includes('localhost') || host.includes('127.0.0.1') ? 'http' : 'https';
-      return `${protocol}://${host}`;
-    }
-  }
-  
-  // 6. Final fallback
-  return import.meta.env.NODE_ENV === 'production' 
-    ? 'https://dtiktokv4.pages.dev' 
-    : 'http://localhost:4321';
+  // 4. Throw error if no environment variable is set
+  throw new Error('No domain environment variable found. Please set SITE_URL, CUSTOM_DOMAIN, or CF_PAGES_URL');
 }
 
 /**
- * Get current domain for API routes (without Astro global)
+ * Get current domain for API routes using ONLY environment variables
+ * Same priority as getCurrentDomain but for API context
  */
 export function getCurrentDomainForAPI(request: Request): string {
   // 1. Explicit SITE_URL environment variable (highest priority)
@@ -70,22 +53,12 @@ export function getCurrentDomainForAPI(request: Request): string {
     return import.meta.env.CF_PAGES_URL;
   }
   
-  // 4. Request headers detection (fallback)
-  const host = request.headers.get('host');
-  if (host) {
-    // Use HTTPS for production-like hostnames, HTTP for localhost
-    const protocol = host.includes('localhost') || host.includes('127.0.0.1') ? 'http' : 'https';
-    return `${protocol}://${host}`;
-  }
-  
-  // 5. Final fallback
-  return import.meta.env.NODE_ENV === 'production' 
-    ? 'https://dtiktokv4.pages.dev' 
-    : 'http://localhost:4321';
+  // 4. Throw error if no environment variable is set
+  throw new Error('No domain environment variable found. Please set SITE_URL, CUSTOM_DOMAIN, or CF_PAGES_URL');
 }
 
 /**
- * Generate canonical URL for a given path
+ * Get canonical URL for a given path using environment variables only
  */
 export function getCanonicalUrl(path: string, astroGlobal?: AstroGlobal): string {
   const domain = getCurrentDomain(astroGlobal);
@@ -93,9 +66,9 @@ export function getCanonicalUrl(path: string, astroGlobal?: AstroGlobal): string
 }
 
 /**
- * Generate full URL for assets (images, etc.)
+ * Get asset URL for a given path using environment variables only
  */
-export function getAssetUrl(assetPath: string, astroGlobal?: AstroGlobal): string {
+export function getAssetUrl(path: string, astroGlobal?: AstroGlobal): string {
   const domain = getCurrentDomain(astroGlobal);
-  return `${domain}${assetPath.startsWith('/') ? '' : '/'}${assetPath}`;
+  return `${domain}${path}`;
 } 
