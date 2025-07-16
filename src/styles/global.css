@@ -5,10 +5,29 @@
 /* Custom styles */
 html {
   scroll-behavior: smooth;
+  /* Fix mobile zoom issues */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Mobile zoom fixes - prevent transform conflicts on touch devices */
+@media (max-width: 768px) and (hover: none) {
+  /* Remove problematic will-change and transform properties on mobile */
+  [style*="will-change: transform"] {
+    will-change: auto !important;
+  }
+  
+  /* Disable hover transforms on touch devices */
+  .hover\:scale-105:hover,
+  .hover\:scale-110:hover,
+  .group-hover\:scale-105,
+  .group-hover\:scale-110 {
+    transform: none !important;
+  }
 }
 
 /* Custom animations - fallback for Tailwind config */
