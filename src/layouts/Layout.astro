@@ -88,8 +88,9 @@ const dtiktokConfig = {
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   
-  <!-- Preload critical resources with high priority -->
-  <link rel="preload" href="/DTikTok-BG.webp" as="image" type="image/webp" fetchpriority="high">
+      <!-- Preload critical resources with high priority - optimized for LCP -->
+    <link rel="preload" href="/optimized/bg/DTikTok-BG-sm.webp" as="image" type="image/webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" href="/optimized/bg/DTikTok-BG-md.webp" as="image" type="image/webp" fetchpriority="high" media="(min-width: 769px)">
       <link rel="preload" href="/optimized/DTikTok-96.webp" as="image" type="image/webp" fetchpriority="high">
   
   <!-- Styles will be automatically processed by Astro -->

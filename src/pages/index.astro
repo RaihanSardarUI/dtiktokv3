@@ -79,17 +79,23 @@ const faqData = [
   
   <!-- Hero Section -->
   <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <!-- Background Image - Optimized for LCP -->
+        <!-- Background Image - Optimized for LCP with responsive loading -->
     <div class="absolute inset-0 z-0">
       <img 
-        src="/DTikTok-BG.webp" 
+        src="/optimized/bg/DTikTok-BG-md.webp" 
+        srcset="/optimized/bg/DTikTok-BG-sm.webp 480w, 
+                /optimized/bg/DTikTok-BG-md.webp 768w, 
+                /optimized/bg/DTikTok-BG-lg.webp 1024w, 
+                /optimized/bg/DTikTok-BG-xl.webp 1440w, 
+                /optimized/bg/DTikTok-BG-2xl.webp 1920w"
+        sizes="100vw"
         alt="DTikTok Background" 
         class="w-full h-full object-cover opacity-30" 
-        width="1200" 
-        height="800" 
+        width="1024" 
+        height="683" 
         loading="eager" 
-        fetchpriority="high"
-        decoding="sync"
+        fetchpriority="high" 
+        decoding="async" 
         style="transform: translateZ(0);"
       />
       <div class="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70"></div>
