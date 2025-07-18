@@ -1,14 +1,11 @@
 ---
-// AdBanner.astro - Advertisement component with proper ad loading
+// AdBanner.astro - Simple advertisement component
 export interface Props {
   position?: 'top' | 'middle' | 'bottom' | 'sidebar';
   className?: string;
 }
 
 const { position = 'middle', className = '' } = Astro.props;
-
-// Generate unique ID for this ad instance
-const adId = `ad-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
 <div class={`ad-banner ad-${position} ${className}`}>
@@ -17,8 +14,17 @@ const adId = `ad-${Math.random().toString(36).substr(2, 9)}`;
     <div class="ad-label">Advertisement</div>
     
     <!-- Ad Content Container -->
-    <div id={adId} class="ad-content">
-      <!-- Ad will be injected here -->
+    <div class="ad-content">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '5db4e115c9cae4168f6efca75fe17bd9',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//chillimagepublisher.com/5db4e115c9cae4168f6efca75fe17bd9/invoke.js"></script>
     </div>
   </div>
 </div>
@@ -26,50 +32,24 @@ const adId = `ad-${Math.random().toString(36).substr(2, 9)}`;
 <style>
   .ad-banner {
     @apply w-full flex justify-center my-6;
-    overflow: hidden;
-    contain: layout style;
   }
   
   .ad-container {
     @apply flex flex-col items-center space-y-2 p-4 bg-gray-800/50 rounded-lg border border-gray-700;
     max-width: 320px;
-    overflow: hidden;
-    box-sizing: border-box;
-    contain: layout style paint;
-    position: relative;
+    width: 100%;
   }
   
   .ad-label {
     @apply text-xs text-gray-400 uppercase tracking-wider font-medium;
-    flex-shrink: 0;
   }
   
   .ad-content {
     @apply flex justify-center items-center;
-    min-height: 250px;
     width: 300px;
+    height: 250px;
     max-width: 300px;
     max-height: 250px;
-    overflow: hidden;
-    box-sizing: border-box;
-    contain: layout style paint;
-    position: relative;
-  }
-  
-  .ad-content * {
-    max-width: 100% !important;
-    max-height: 100% !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
-  }
-  
-  .ad-content iframe {
-    width: 300px !important;
-    height: 250px !important;
-    max-width: 300px !important;
-    max-height: 250px !important;
-    border: none !important;
-    overflow: hidden !important;
   }
   
   .ad-top {
@@ -95,94 +75,9 @@ const adId = `ad-${Math.random().toString(36).substr(2, 9)}`;
     
     .ad-content {
       width: 260px;
-      min-height: 200px;
+      height: 200px;
       max-width: 260px;
       max-height: 200px;
     }
-    
-    .ad-content iframe {
-      width: 260px !important;
-      height: 200px !important;
-      max-width: 260px !important;
-      max-height: 200px !important;
-    }
   }
-</style>
-
-<script define:vars={{ adId }}>
-  // Load ad for this specific container
-  function loadAdForContainer() {
-    try {
-      const adContainer = document.getElementById(adId);
-      if (!adContainer) {
-        console.error(`Ad container ${adId} not found`);
-        return;
-      }
-
-      // Check if ad is already loaded
-      if (adContainer.querySelector('iframe') || adContainer.querySelector('ins') || adContainer.querySelector('script')) {
-        console.log(`Ad already loaded for ${adId}`);
-        return;
-      }
-
-      // Set up ad configuration
-      const isMobile = window.innerWidth <= 768;
-      const adConfig = {
-        'key': '5db4e115c9cae4168f6efca75fe17bd9',
-        'format': 'iframe',
-        'height': isMobile ? 200 : 250,
-        'width': isMobile ? 260 : 300,
-        'params': {}
-      };
-
-      // Create a div to hold the ad
-      const adDiv = document.createElement('div');
-      adDiv.style.width = adConfig.width + 'px';
-      adDiv.style.height = adConfig.height + 'px';
-      adDiv.style.display = 'block';
-      adDiv.style.margin = '0 auto';
-      
-      // Set global atOptions for this ad
-      window.atOptions = adConfig;
-
-      // Create and configure the script element
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.async = true;
-      script.defer = true;
-      script.src = '//chillimagepublisher.com/5db4e115c9cae4168f6efca75fe17bd9/invoke.js';
-      
-      // Add error handling
-      script.onerror = function() {
-        console.error(`Failed to load ad script for ${adId}`);
-        adContainer.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #666; font-size: 14px;">Ad failed to load</div>';
-      };
-      
-      script.onload = function() {
-        console.log(`Ad script loaded successfully for ${adId}`);
-      };
-
-      // Clear the container and add the ad div and script
-      adContainer.innerHTML = '';
-      adContainer.appendChild(adDiv);
-      adContainer.appendChild(script);
-      
-      console.log(`Ad loading initiated for ${adId}`, adConfig);
-      
-    } catch (error) {
-      console.error(`Error loading ad for ${adId}:`, error);
-      const adContainer = document.getElementById(adId);
-      if (adContainer) {
-        adContainer.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #666; font-size: 14px;">Ad error</div>';
-      }
-    }
-  }
-
-  // Load ad when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadAdForContainer);
-  } else {
-    // Small delay to ensure proper initialization
-    setTimeout(loadAdForContainer, 100);
-  }
-</script> 
+</style> 
