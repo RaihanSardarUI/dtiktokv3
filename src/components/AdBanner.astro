@@ -26,21 +26,56 @@ const adId = `ad-${Math.random().toString(36).substr(2, 9)}`;
 <style>
   .ad-banner {
     @apply w-full flex justify-center my-6;
+    /* Ensure the banner itself doesn't overflow */
+    overflow: hidden;
+    contain: layout style;
   }
   
   .ad-container {
     @apply flex flex-col items-center space-y-2 p-4 bg-gray-800/50 rounded-lg border border-gray-700;
     max-width: 320px;
+    /* Critical fixes for ad overflow */
+    overflow: hidden;
+    box-sizing: border-box;
+    contain: layout style paint;
+    position: relative;
   }
   
   .ad-label {
     @apply text-xs text-gray-400 uppercase tracking-wider font-medium;
+    /* Ensure label doesn't affect container size */
+    flex-shrink: 0;
   }
   
   .ad-content {
     @apply flex justify-center items-center;
     min-height: 250px;
     width: 300px;
+    /* Strict containment for ad content */
+    max-width: 300px;
+    max-height: 250px;
+    overflow: hidden;
+    box-sizing: border-box;
+    contain: layout style paint;
+    position: relative;
+  }
+  
+  /* Ensure any injected ad content respects container boundaries */
+  .ad-content * {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  
+  /* Specific fixes for iframe ads */
+  .ad-content iframe {
+    width: 300px !important;
+    height: 250px !important;
+    max-width: 300px !important;
+    max-height: 250px !important;
+    border: none !important;
+    overflow: hidden !important;
   }
   
   /* Position-specific styles */
@@ -69,6 +104,15 @@ const adId = `ad-${Math.random().toString(36).substr(2, 9)}`;
     .ad-content {
       width: 260px;
       min-height: 200px;
+      max-width: 260px;
+      max-height: 200px;
+    }
+    
+    .ad-content iframe {
+      width: 260px !important;
+      height: 200px !important;
+      max-width: 260px !important;
+      max-height: 200px !important;
     }
   }
 </style>

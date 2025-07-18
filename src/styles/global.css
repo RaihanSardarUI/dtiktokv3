@@ -387,3 +387,48 @@ nav[aria-label="Page contents"] a {
 .progress-animation {
   animation: progress-bar 2s ease-in-out infinite;
 }
+
+/* Global ad containment fixes */
+/* Ensure all ad-related content stays within bounds */
+.ad-banner,
+.ad-container,
+.ad-content {
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+/* Force all ad scripts and iframes to respect container boundaries */
+.ad-content > *,
+.ad-content iframe,
+.ad-content div,
+.ad-content script + * {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+/* Specific fixes for common ad network elements */
+[id^="ad-"],
+[class*="ad-"],
+[class*="advertisement"] {
+  overflow: hidden !important;
+  contain: layout style paint !important;
+}
+
+/* Fix for dynamically injected ad content */
+script[src*="chillimagepublisher.com"] + *,
+script[src*="invoke.js"] + * {
+  max-width: 300px !important;
+  max-height: 250px !important;
+  overflow: hidden !important;
+}
+
+/* Mobile ad containment */
+@media (max-width: 768px) {
+  script[src*="chillimagepublisher.com"] + *,
+  script[src*="invoke.js"] + * {
+    max-width: 260px !important;
+    max-height: 200px !important;
+  }
+}
