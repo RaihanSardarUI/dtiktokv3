@@ -1,0 +1,114 @@
+---
+// PageLoader.astro - A comprehensive loading overlay component
+---
+
+<div id="page-loader" class="fixed inset-0 z-[9999] bg-base-100 flex items-center justify-center transition-opacity duration-500" style="background: linear-gradient(135deg, #1a1a1a 0%, #202020 50%, #2a2a2a 100%);">
+  <div class="text-center">
+    <!-- Spinner -->
+    <div class="relative">
+      <div class="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto mb-4"></div>
+      <div class="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-accent rounded-full animate-spin mx-auto" style="animation-delay: -0.15s; animation-duration: 1s;"></div>
+    </div>
+    
+    <!-- Loading text -->
+    <div class="text-primary font-semibold text-lg mb-2">Loading...</div>
+    <div class="text-base-content/70 text-sm">Please wait while we prepare your content</div>
+    
+    <!-- Progress bar -->
+    <div class="w-48 bg-base-200 rounded-full h-1 mt-4 mx-auto overflow-hidden">
+      <div class="h-full bg-gradient-to-r from-primary to-accent rounded-full animate-pulse" style="width: 100%; animation-duration: 2s;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation Loading Bar -->
+<div id="nav-loader" class="fixed top-0 left-0 right-0 z-[9998] h-1 bg-primary/20 hidden">
+  <div class="h-full bg-gradient-to-r from-primary to-accent animate-pulse" style="width: 100%; animation-duration: 1s;"></div>
+</div>
+
+<style>
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+  
+  .fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+  }
+  
+  .slide-in {
+    animation: slideIn 0.3s ease-out forwards;
+  }
+</style>
+
+<script>
+  // Page loader functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const loader = document.getElementById('page-loader');
+    const navLoader = document.getElementById('nav-loader');
+    
+    // Hide initial page loader when page is fully loaded
+    window.addEventListener('load', function() {
+      if (loader) {
+        loader.classList.add('fade-out');
+        setTimeout(() => {
+          loader.style.display = 'none';
+        }, 500);
+      }
+    });
+    
+    // Fallback: hide loader after maximum 5 seconds
+    setTimeout(() => {
+      if (loader && loader.style.display !== 'none') {
+        loader.classList.add('fade-out');
+        setTimeout(() => {
+          loader.style.display = 'none';
+        }, 500);
+      }
+    }, 5000);
+    
+    // Add loading for navigation links
+    const navigationLinks = document.querySelectorAll('a[href^="/"], a[href^="./"], a[href^="../"]');
+    navigationLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        
+        // Skip if it's an anchor link, download link, or external link
+        if (href.startsWith('#') || 
+            href.includes('download') || 
+            href.startsWith('http') || 
+            href.startsWith('mailto:') || 
+            href.startsWith('tel:') ||
+            this.target === '_blank') {
+          return;
+        }
+        
+        // Show navigation loader
+        if (navLoader) {
+          navLoader.classList.remove('hidden');
+          navLoader.classList.add('slide-in');
+        }
+        
+        // Hide navigation loader after a delay (in case navigation is instant)
+        setTimeout(() => {
+          if (navLoader) {
+            navLoader.classList.add('hidden');
+            navLoader.classList.remove('slide-in');
+          }
+        }, 2000);
+      });
+    });
+    
+    // Hide navigation loader when page changes
+    window.addEventListener('beforeunload', function() {
+      if (navLoader) {
+        navLoader.classList.add('hidden');
+      }
+    });
+  });
+</script>

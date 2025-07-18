@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { getCurrentDomain, getCanonicalUrl } from '../utils/domainUtils.js';
+import PageLoader from '../components/PageLoader.astro';
 
 export interface Props {
   title: string;
@@ -266,6 +267,9 @@ const dtiktokConfig = {
   
 </head>
 <body class="bg-base-100 text-base-content min-h-screen gradient-bg" style="background: linear-gradient(135deg, #1a1a1a 0%, #202020 50%, #2a2a2a 100%); min-height: 100vh;">
+  <!-- Page Loader -->
+  <PageLoader />
+  
   <!-- Main Container with max-width and borders -->
   <div class="main-container">
     <!-- Header/Navigation -->
@@ -636,6 +640,29 @@ const dtiktokConfig = {
             const targetId = href.substring(1);
             smoothScrollTo(targetId);
           }
+        });
+      });
+    });
+    
+    // Initialize loading utilities
+    import('../utils/loadingUtils.js').then(({ loadingManager }) => {
+      // Set up lazy loading for images and iframes
+      loadingManager.setupLazyLoading();
+      
+      // Preload critical resources
+      const criticalResources = [
+        '/optimized/DTikTok-96.webp',
+        '/optimized/DTikTok-192.webp',
+        '/optimized/DTikTok-512.webp'
+      ];
+      loadingManager.preloadResources(criticalResources);
+      
+      // Handle form submissions with loading states
+      const forms = document.querySelectorAll('form');
+      forms.forEach(form => {
+        loadingManager.handleFormLoading(form, {
+          loadingText: 'Processing...',
+          showLoader: true
         });
       });
     });
