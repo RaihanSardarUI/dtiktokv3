@@ -328,3 +328,39 @@ nav[aria-label="Page contents"] a {
   display: flex !important;
   align-items: center !important;
 }
+
+/* Page Loading Styles */
+.page-loading {
+  overflow: hidden;
+}
+
+/* Smooth loading transitions */
+.loading-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Prevent layout shift during loading */
+.main-container {
+  min-height: 100vh;
+}
+
+/* Loading spinner improvements */
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 2s linear infinite;
+}
+
+/* Navigation loading bar */
+@keyframes progress-bar {
+  0% { width: 0%; }
+  50% { width: 70%; }
+  100% { width: 100%; }
+}
+
+.progress-animation {
+  animation: progress-bar 2s ease-in-out infinite;
+}
