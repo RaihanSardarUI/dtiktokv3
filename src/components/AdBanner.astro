@@ -73,30 +73,13 @@ const adId = `ad-${Math.random().toString(36).substr(2, 9)}`;
   }
 </style>
 
-<script define:vars={{ adId }}>
-  // Simple ad loading - no complex optimizations
-  (function() {
-    'use strict';
-    
-    const adContainer = document.getElementById(adId);
-    if (!adContainer) return;
-    
-    // Set your ad configuration
-    window.atOptions = {
-      'key': '5db4e115c9cae4168f6efca75fe17bd9',
-      'format': 'iframe',
-      'height': window.innerWidth <= 768 ? 200 : 250,
-      'width': window.innerWidth <= 768 ? 260 : 300,
-      'params': {}
-    };
-    
-    // Load your ad script
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = '//chillimagepublisher.com/5db4e115c9cae4168f6efca75fe17bd9/invoke.js';
-    
-    // Append script to the ad container
-    adContainer.appendChild(script);
-    
-  })();
-</script> 
+<script type="text/javascript">
+	atOptions = {
+		'key' : '5db4e115c9cae4168f6efca75fe17bd9',
+		'format' : 'iframe',
+		'height' : 250,
+		'width' : 300,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//chillimagepublisher.com/5db4e115c9cae4168f6efca75fe17bd9/invoke.js"></script> 
