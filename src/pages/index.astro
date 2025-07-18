@@ -101,11 +101,11 @@ const faqData = [
       <div class="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70"></div>
     </div>
     
-    <!-- Animated Background Elements - Deferred -->
-    <div class="absolute inset-0 z-10" style="animation-delay: 0.5s;">
-      <div class="absolute top-20 left-20 w-32 h-32 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
-      <div class="absolute bottom-20 right-20 w-40 h-40 bg-secondary/20 rounded-full blur-xl animate-pulse" style="animation-delay: 1s;"></div>
-      <div class="absolute top-1/2 left-1/4 w-20 h-20 bg-accent/20 rounded-full blur-xl animate-pulse" style="animation-delay: 2s;"></div>
+    <!-- Animated Background Elements - Optimized for CLS -->
+    <div class="absolute inset-0 z-10 animate-element" style="animation-delay: 0.5s;">
+      <div class="absolute top-20 left-20 w-32 h-32 bg-primary/20 rounded-full blur-xl animate-pulse animate-element" style="transform: translateZ(0);"></div>
+      <div class="absolute bottom-20 right-20 w-40 h-40 bg-secondary/20 rounded-full blur-xl animate-pulse animate-element" style="animation-delay: 1s; transform: translateZ(0);"></div>
+      <div class="absolute top-1/2 left-1/4 w-20 h-20 bg-accent/20 rounded-full blur-xl animate-pulse animate-element" style="animation-delay: 2s; transform: translateZ(0);"></div>
     </div>
     
 

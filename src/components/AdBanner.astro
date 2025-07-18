@@ -13,18 +13,50 @@ const { position = 'middle', className = '' } = Astro.props;
     <!-- Ad Label for transparency -->
     <div class="ad-label">Advertisement</div>
     
-    <!-- Ad Content -->
-    <div id="ad-content" class="ad-content">
+    <!-- Ad Content with reserved space to prevent CLS -->
+    <div id="ad-content" class="ad-content" style="min-height: 250px; width: 300px; display: flex; align-items: center; justify-content: center;">
+      <div class="ad-placeholder">
+        <div class="loading-spinner"></div>
+        <span class="loading-text">Loading ad...</span>
+      </div>
       <script type="text/javascript" is:inline>
-        atOptions = {
-          'key': '5db4e115c9cae4168f6efca75fe17bd9',
-          'format': 'iframe',
-          'height': 250,
-          'width': 300,
-          'params': {}
-        };
+        // Defer ad loading to prevent blocking
+        (function() {
+          function loadAd() {
+            if (typeof atOptions === 'undefined') {
+              window.atOptions = {
+                'key': '5db4e115c9cae4168f6efca75fe17bd9',
+                'format': 'iframe',
+                'height': 250,
+                'width': 300,
+                'params': {}
+              };
+            }
+            
+            const script = document.createElement('script');
+            script.src = '//cautiouslyanalysecrystal.com/5db4e115c9cae4168f6efca75fe17bd9/invoke.js';
+            script.async = true;
+            script.defer = true;
+            
+            // Hide placeholder when ad loads
+            script.onload = function() {
+              const placeholder = document.querySelector('.ad-placeholder');
+              if (placeholder) {
+                placeholder.style.display = 'none';
+              }
+            };
+            
+            document.head.appendChild(script);
+          }
+          
+          // Load ad after page is interactive
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadAd);
+          } else {
+            setTimeout(loadAd, 100);
+          }
+        })();
       </script>
-      <script type="text/javascript" src="//cautiouslyanalysecrystal.com/5db4e115c9cae4168f6efca75fe17bd9/invoke.js" is:inline></script>
     </div>
   </div>
 </div>
@@ -32,11 +64,16 @@ const { position = 'middle', className = '' } = Astro.props;
 <style>
   .ad-banner {
     @apply w-full flex justify-center my-6;
+    /* Reserve space to prevent CLS */
+    min-height: 290px;
   }
   
   .ad-container {
     @apply flex flex-col items-center space-y-2 p-4 bg-gray-800/50 rounded-lg border border-gray-700;
     max-width: 320px;
+    /* Fixed dimensions for layout stability */
+    width: 320px;
+    height: 290px;
   }
   
   .ad-label {
@@ -45,8 +82,40 @@ const { position = 'middle', className = '' } = Astro.props;
   
   .ad-content {
     @apply flex justify-center items-center;
+    /* Fixed dimensions to prevent layout shifts */
     min-height: 250px;
     width: 300px;
+    position: relative;
+  }
+  
+  /* Loading placeholder styles */
+  .ad-placeholder {
+    @apply flex flex-col items-center justify-center space-y-3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #374151;
+    border-top: 2px solid #f0565f;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  .loading-text {
+    @apply text-sm text-gray-400;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
   
   /* Position-specific styles */
@@ -66,10 +135,16 @@ const { position = 'middle', className = '' } = Astro.props;
     @apply sticky top-24;
   }
   
-  /* Responsive adjustments */
+  /* Responsive adjustments with aspect ratio preservation */
   @media (max-width: 768px) {
+    .ad-banner {
+      min-height: 240px;
+    }
+    
     .ad-container {
       max-width: 280px;
+      width: 280px;
+      height: 240px;
     }
     
     .ad-content {
@@ -78,11 +153,9 @@ const { position = 'middle', className = '' } = Astro.props;
     }
   }
   
-  /* Loading state */
-  .ad-content:empty::before {
-    content: "Loading advertisement...";
-    @apply text-sm text-gray-500 flex items-center justify-center;
-    height: 250px;
-    width: 300px;
+  /* Ensure content doesn't overflow */
+  .ad-content > iframe {
+    max-width: 100%;
+    max-height: 100%;
   }
 </style> 

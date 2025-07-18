@@ -8,7 +8,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "cf:dev": "wrangler pages dev dist",
-    "cf:deploy": "npm run build && wrangler pages deploy dist"
+    "cf:deploy": "npm run build && wrangler pages deploy dist",
+    "perf:audit": "lighthouse http://localhost:4321 --only-categories=performance --output=html --output-path=./lighthouse-report.html",
+    "perf:ci": "lhci autorun"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.0",

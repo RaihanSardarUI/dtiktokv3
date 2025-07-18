@@ -90,15 +90,92 @@ const dtiktokConfig = {
   
       <!-- Preload critical resources with high priority - optimized for LCP -->
     <link rel="preload" href="/optimized/bg/DTikTok-BG-sm.webp" as="image" type="image/webp" fetchpriority="high" media="(max-width: 768px)">
-    <link rel="preload" href="/optimized/bg/DTikTok-BG-md.webp" as="image" type="image/webp" fetchpriority="high" media="(min-width: 769px)">
+    <link rel="preload" href="/optimized/bg/DTikTok-BG-md.webp" as="image" type="image/webp" fetchpriority="high" media="(min-width: 769px) and (max-width: 1024px)">
+    <link rel="preload" href="/optimized/bg/DTikTok-BG-lg.webp" as="image" type="image/webp" fetchpriority="high" media="(min-width: 1025px)">
       <link rel="preload" href="/optimized/DTikTok-96.webp" as="image" type="image/webp" fetchpriority="high">
+  
+  <!-- Prefetch likely navigation targets -->
+  <link rel="prefetch" href="/add-dtiktok/" as="document">
+  
+  <!-- Critical CSS for immediate rendering -->
+  <style is:inline>
+    /* Font fallback optimization */
+    @font-face {
+      font-family: 'Inter-fallback';
+      src: local('Arial'), local('Helvetica'), local('sans-serif');
+      size-adjust: 106.5%;
+      ascent-override: 90%;
+      descent-override: 22%;
+      line-gap-override: 0%;
+    }
+    
+    /* Critical styles for LCP */
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Inter', 'Inter-fallback', system-ui, sans-serif;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    
+    body {
+      font-family: 'Inter', 'Inter-fallback', system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Hero section critical styles */
+    .hero-section {
+      min-height: 100vh;
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #f0565f, #ff8a95);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Prevent layout shifts for dynamic content */
+    .ad-container {
+      min-height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Optimize animations for CLS */
+    .animate-element {
+      transform: translateZ(0);
+      will-change: transform;
+    }
+    
+    /* Prevent mobile zoom issues */
+    @media (max-width: 768px) and (hover: none) {
+      [style*="will-change: transform"] {
+        will-change: auto !important;
+      }
+      
+      .hover\:scale-105:hover,
+      .hover\:scale-110:hover,
+      .group-hover\:scale-105,
+      .group-hover\:scale-110 {
+        transform: none !important;
+      }
+    }
+  </style>
   
   <!-- Styles will be automatically processed by Astro -->
   
   <!-- Google Fonts with optimization -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
   
   <!-- Open Graph Meta Tags -->
@@ -170,6 +247,23 @@ const dtiktokConfig = {
   {dtiktokConfig.seo?.headAdsCode && (
     <Fragment set:html={dtiktokConfig.seo.headAdsCode} />
   )}
+  
+  <!-- Speculation Rules API for instant navigation -->
+  <script type="speculationrules">
+    {
+      "prerender": [{
+        "where": { "href_matches": "/add-dtiktok/*" },
+        "eagerness": "moderate"
+      }],
+      "prefetch": [{
+        "where": { "href_matches": "/privacy-policy/*" },
+        "eagerness": "conservative"
+      }, {
+        "where": { "href_matches": "/terms-and-conditions/*" },
+        "eagerness": "conservative"
+      }]
+    }
+  </script>
   
   <style>
     html {
@@ -580,65 +674,122 @@ const dtiktokConfig = {
   </footer>
   </div>
 
-  <!-- Smooth Scrolling JavaScript -->
+  <!-- Optimized JavaScript for better INP -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Function to smooth scroll to element
-      function smoothScrollTo(elementId) {
-        const element = document.getElementById(elementId);
-        if (element) {
+    // Early font loading optimization
+    if ('fonts' in document) {
+      document.fonts.ready.then(() => {
+        document.documentElement.classList.add('fonts-loaded');
+      });
+    }
+
+    // Optimized smooth scrolling with requestAnimationFrame
+    function smoothScrollTo(elementId) {
+      const element = document.getElementById(elementId);
+      if (element) {
+        requestAnimationFrame(() => {
           element.scrollIntoView({
             behavior: 'smooth',
             block: 'start',
             inline: 'nearest'
           });
-        }
+        });
       }
+    }
 
-      // Handle all header buttons with smart behavior
-      function handleButtonClick(event, fallbackUrl) {
-        event.preventDefault();
-        
-        // Check if we're on the homepage
-        const isHomepage = window.location.pathname === '/' || window.location.pathname === '/index.html';
-        
-        if (isHomepage) {
-          // On homepage: scroll to download section
-          smoothScrollTo('download');
-        } else {
-          // On other pages: navigate to homepage download section
-          window.location.href = '/#download';
-        }
+    // Handle button clicks with performance optimization
+    function handleButtonClick(event, fallbackUrl) {
+      event.preventDefault();
+      
+      const isHomepage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+      
+      if (isHomepage) {
+        smoothScrollTo('download');
+      } else {
+        window.location.href = '/#download';
       }
+    }
 
-      // Add event listeners to header and footer buttons
-      const headerButtons = document.querySelectorAll('.header-get-shortcut, .header-primary-cta, .mobile-get-shortcut, .footer-get-shortcut, .footer-quick-link');
-      headerButtons.forEach(button => {
-        button.addEventListener('click', (e) => handleButtonClick(e, '/add-dtiktok/'));
-      });
+    // Task scheduling for better INP
+    function scheduleTask(callback) {
+      if ('scheduler' in window && 'yield' in scheduler) {
+        scheduler.yield().then(callback);
+      } else {
+        setTimeout(callback, 0);
+      }
+    }
 
-      // Handle hero button and all other download links
-      const heroButtons = document.querySelectorAll('.scroll-to-download, a[href="#download"]');
-      heroButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+    // Event delegation for better performance
+    document.addEventListener('click', function(e) {
+      const target = e.target;
+      const closestButton = target.closest('button, a');
+      
+      if (!closestButton) return;
+      
+      // Handle CTA and header buttons
+      if (closestButton.matches('.header-get-shortcut, .header-primary-cta, .mobile-get-shortcut, .footer-get-shortcut, .footer-quick-link')) {
+        scheduleTask(() => handleButtonClick(e, '/add-dtiktok/'));
+        return;
+      }
+      
+      // Handle scroll-to-download buttons
+      if (closestButton.matches('.scroll-to-download') || closestButton.closest('.scroll-to-download')) {
+        e.preventDefault();
+        scheduleTask(() => smoothScrollTo('download'));
+        return;
+      }
+      
+      // Handle anchor links
+      if (closestButton.matches('a[href^="#"]')) {
+        const href = closestButton.getAttribute('href');
+        if (href && href.startsWith('#') && href.length > 1) {
           e.preventDefault();
-          smoothScrollTo('download');
-        });
-      });
+          const targetId = href.substring(1);
+          scheduleTask(() => smoothScrollTo(targetId));
+        }
+      }
+    }, { passive: false });
 
-      // Add smooth scrolling to all internal anchor links
-      const anchorLinks = document.querySelectorAll('a[href^="#"]');
-      anchorLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          const href = this.getAttribute('href');
-          if (href.startsWith('#') && href.length > 1) {
-            e.preventDefault();
-            const targetId = href.substring(1);
-            smoothScrollTo(targetId);
-          }
-        });
-      });
-    });
+    // Passive scroll listener for better performance
+    let scrollTimeout;
+    document.addEventListener('scroll', function() {
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      scrollTimeout = setTimeout(() => {
+        // Any scroll-based functionality can go here
+      }, 100);
+    }, { passive: true });
+
+         // Intersection Observer for lazy loading animations
+     if ('IntersectionObserver' in window) {
+       const animationObserver = new IntersectionObserver((entries) => {
+         entries.forEach(entry => {
+           if (entry.isIntersecting) {
+             entry.target.classList.add('animate-in');
+             animationObserver.unobserve(entry.target);
+           }
+         });
+       }, { threshold: 0.1, rootMargin: '50px' });
+
+       // Observe elements that should animate in
+       document.querySelectorAll('.animate-on-scroll').forEach(el => {
+         animationObserver.observe(el);
+       });
+     }
+
+     // Service Worker registration for caching optimization
+     if ('serviceWorker' in navigator) {
+       window.addEventListener('load', () => {
+         navigator.serviceWorker.register('/sw.js')
+           .then((registration) => {
+             console.log('SW registered: ', registration);
+           })
+           .catch((registrationError) => {
+             console.log('SW registration failed: ', registrationError);
+           });
+       });
+     }
   </script>
 </body>
 </html> 

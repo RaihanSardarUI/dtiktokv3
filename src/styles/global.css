@@ -30,6 +30,63 @@ body {
   }
 }
 
+/* Optimize animations for better CLS */
+.animate-element {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Use transform for animations instead of layout-inducing properties */
+.animate-safe {
+  transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+}
+
+/* Prevent layout shifts during font loading */
+.fonts-loaded {
+  /* Font has loaded, remove fallback adjustments if needed */
+}
+
+/* Aspect ratio utilities for dynamic content */
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* Intersection Observer animation classes */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Prevent content jumping during image loading */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure proper containment for layout stability */
+.contain-layout {
+  contain: layout;
+}
+
+.contain-size {
+  contain: size;
+}
+
+.contain-paint {
+  contain: paint;
+}
+
 /* Custom animations - fallback for Tailwind config */
 @keyframes fadeInUp {
   0% {
