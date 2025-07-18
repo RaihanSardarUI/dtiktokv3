@@ -32,16 +32,20 @@ const { position = 'middle', className = '' } = Astro.props;
 <style>
   .ad-banner {
     @apply w-full flex justify-center my-6;
+    overflow: hidden;
   }
   
   .ad-container {
     @apply flex flex-col items-center space-y-2 p-4 bg-gray-800/50 rounded-lg border border-gray-700;
-    max-width: 320px;
+    max-width: 340px;
     width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
   }
   
   .ad-label {
     @apply text-xs text-gray-400 uppercase tracking-wider font-medium;
+    flex-shrink: 0;
   }
   
   .ad-content {
@@ -50,6 +54,24 @@ const { position = 'middle', className = '' } = Astro.props;
     height: 250px;
     max-width: 300px;
     max-height: 250px;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .ad-content * {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .ad-content iframe {
+    width: 300px !important;
+    height: 250px !important;
+    max-width: 300px !important;
+    max-height: 250px !important;
+    border: none !important;
+    overflow: hidden !important;
   }
   
   .ad-top {
@@ -70,7 +92,7 @@ const { position = 'middle', className = '' } = Astro.props;
   
   @media (max-width: 768px) {
     .ad-container {
-      max-width: 280px;
+      max-width: 300px;
     }
     
     .ad-content {
@@ -78,6 +100,13 @@ const { position = 'middle', className = '' } = Astro.props;
       height: 200px;
       max-width: 260px;
       max-height: 200px;
+    }
+    
+    .ad-content iframe {
+      width: 260px !important;
+      height: 200px !important;
+      max-width: 260px !important;
+      max-height: 200px !important;
     }
   }
 </style> 
