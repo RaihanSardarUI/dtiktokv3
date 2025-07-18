@@ -52,25 +52,34 @@
     const loader = document.getElementById('page-loader');
     const navLoader = document.getElementById('nav-loader');
     
-    // Hide initial page loader when page is fully loaded
-    window.addEventListener('load', function() {
+    // Hide initial page loader when critical content is loaded (not waiting for ads)
+    let criticalContentLoaded = false;
+    
+    function hidePageLoader() {
+      if (criticalContentLoaded) return;
+      criticalContentLoaded = true;
+      
       if (loader) {
         loader.classList.add('fade-out');
         setTimeout(() => {
           loader.style.display = 'none';
         }, 500);
       }
-    });
+    }
     
-    // Fallback: hide loader after maximum 5 seconds
+    // Hide loader when DOM content is loaded (don't wait for ads)
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+      hidePageLoader();
+    } else {
+      document.addEventListener('DOMContentLoaded', hidePageLoader);
+    }
+    
+    // Fallback: hide loader after maximum 3 seconds (reduced from 5)
     setTimeout(() => {
       if (loader && loader.style.display !== 'none') {
-        loader.classList.add('fade-out');
-        setTimeout(() => {
-          loader.style.display = 'none';
-        }, 500);
+        hidePageLoader();
       }
-    }, 5000);
+    }, 3000);
     
     // Add loading for navigation links
     const navigationLinks = document.querySelectorAll('a[href^="/"], a[href^="./"], a[href^="../"]');

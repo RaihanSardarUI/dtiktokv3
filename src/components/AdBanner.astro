@@ -1,30 +1,40 @@
 ---
-// AdBanner.astro - Reusable advertisement component
+// AdBanner.astro - Optimized advertisement component with fast loading
 export interface Props {
   position?: 'top' | 'middle' | 'bottom' | 'sidebar';
   className?: string;
+  priority?: 'high' | 'normal' | 'low';
+  lazy?: boolean;
 }
 
-const { position = 'middle', className = '' } = Astro.props;
+const { position = 'middle', className = '', priority = 'normal', lazy = false } = Astro.props;
+
+// Generate unique ID for this ad instance
+const adId = `ad-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
-<div class={`ad-banner ad-${position} ${className}`}>
+<!-- DNS Prefetch for faster ad loading -->
+<link rel="dns-prefetch" href="//cautiouslyanalysecrystal.com">
+<link rel="preconnect" href="https://cautiouslyanalysecrystal.com" crossorigin>
+
+<div class={`ad-banner ad-${position} ${className}`} data-ad-priority={priority}>
   <div class="ad-container">
     <!-- Ad Label for transparency -->
     <div class="ad-label">Advertisement</div>
     
-    <!-- Ad Content -->
-    <div id="ad-content" class="ad-content">
-      <script type="text/javascript" is:inline>
-        atOptions = {
-          'key': '5db4e115c9cae4168f6efca75fe17bd9',
-          'format': 'iframe',
-          'height': 250,
-          'width': 300,
-          'params': {}
-        };
-      </script>
-      <script type="text/javascript" src="//cautiouslyanalysecrystal.com/5db4e115c9cae4168f6efca75fe17bd9/invoke.js" is:inline></script>
+    <!-- Ad Content with loading state -->
+    <div id={adId} class="ad-content" data-ad-id={adId}>
+      <!-- Loading placeholder -->
+      <div class="ad-loading" id={`${adId}-loading`}>
+        <div class="ad-spinner"></div>
+        <span class="ad-loading-text">Loading ad...</span>
+      </div>
+      
+      <!-- Error fallback -->
+      <div class="ad-error hidden" id={`${adId}-error`}>
+        <div class="ad-error-icon">⚠️</div>
+        <span class="ad-error-text">Ad failed to load</span>
+      </div>
     </div>
   </div>
 </div>
@@ -44,9 +54,39 @@ const { position = 'middle', className = '' } = Astro.props;
   }
   
   .ad-content {
-    @apply flex justify-center items-center;
+    @apply flex justify-center items-center relative;
     min-height: 250px;
     width: 300px;
+  }
+  
+  /* Loading state styles */
+  .ad-loading {
+    @apply flex flex-col items-center justify-center space-y-3;
+    height: 250px;
+    width: 300px;
+  }
+  
+  .ad-spinner {
+    @apply w-8 h-8 border-2 border-gray-600 border-t-blue-500 rounded-full animate-spin;
+  }
+  
+  .ad-loading-text {
+    @apply text-sm text-gray-500 font-medium;
+  }
+  
+  /* Error state styles */
+  .ad-error {
+    @apply flex flex-col items-center justify-center space-y-2;
+    height: 250px;
+    width: 300px;
+  }
+  
+  .ad-error-icon {
+    @apply text-2xl opacity-50;
+  }
+  
+  .ad-error-text {
+    @apply text-xs text-gray-500;
   }
   
   /* Position-specific styles */
@@ -72,17 +112,227 @@ const { position = 'middle', className = '' } = Astro.props;
       max-width: 280px;
     }
     
-    .ad-content {
+    .ad-content, .ad-loading, .ad-error {
       width: 260px;
       min-height: 200px;
     }
   }
   
-  /* Loading state */
-  .ad-content:empty::before {
-    content: "Loading advertisement...";
-    @apply text-sm text-gray-500 flex items-center justify-center;
-    height: 250px;
-    width: 300px;
+  /* Hide loading state when ad is loaded */
+  .ad-content.ad-loaded .ad-loading {
+    display: none;
   }
-</style> 
+  
+  /* Animation for smooth transitions */
+  .ad-content > * {
+    transition: opacity 0.3s ease;
+  }
+  
+  .ad-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script define:vars={{ adId, priority, lazy }}>
+  // Advanced ad loading with performance optimizations
+  (function() {
+    'use strict';
+    
+    const adContainer = document.getElementById(adId);
+    const loadingElement = document.getElementById(`${adId}-loading`);
+    const errorElement = document.getElementById(`${adId}-error`);
+    
+    if (!adContainer) return;
+    
+    // Ad configuration
+    const adConfig = {
+      key: '5db4e115c9cae4168f6efca75fe17bd9',
+      format: 'iframe',
+      height: window.innerWidth <= 768 ? 200 : 250,
+      width: window.innerWidth <= 768 ? 260 : 300,
+      params: {}
+    };
+    
+    // Performance monitoring
+    const adPerformance = {
+      startTime: performance.now(),
+      loadTime: null,
+      success: false
+    };
+    
+    // Error handling and timeout
+    let adTimeout;
+    let adLoaded = false;
+    
+    function showError(message = 'Ad failed to load') {
+      if (loadingElement) loadingElement.style.display = 'none';
+      if (errorElement) {
+        errorElement.classList.remove('hidden');
+        errorElement.querySelector('.ad-error-text').textContent = message;
+      }
+      adPerformance.success = false;
+      console.warn(`Ad loading failed for ${adId}:`, message);
+    }
+    
+    function hideLoading() {
+      if (loadingElement) {
+        loadingElement.style.opacity = '0';
+        setTimeout(() => {
+          loadingElement.style.display = 'none';
+        }, 300);
+      }
+    }
+    
+    function markAdAsLoaded() {
+      if (adLoaded) return;
+      adLoaded = true;
+      
+      adPerformance.loadTime = performance.now() - adPerformance.startTime;
+      adPerformance.success = true;
+      
+      hideLoading();
+      adContainer.classList.add('ad-loaded', 'ad-fade-in');
+      
+      // Clear timeout
+      if (adTimeout) {
+        clearTimeout(adTimeout);
+      }
+      
+      // Log performance
+      console.log(`Ad ${adId} loaded in ${adPerformance.loadTime.toFixed(2)}ms`);
+    }
+    
+    function loadAd() {
+      try {
+        // Set global ad options
+        window.atOptions = adConfig;
+        
+        // Create and configure script element
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://cautiouslyanalysecrystal.com/5db4e115c9cae4168f6efca75fe17bd9/invoke.js';
+        script.async = true;
+        script.defer = true;
+        
+        // Add error handling
+        script.onerror = function() {
+          showError('Script failed to load');
+        };
+        
+        // Add load success handler
+        script.onload = function() {
+          // Wait a bit for the ad to render
+          setTimeout(() => {
+            // Check if ad content was actually loaded
+            const adIframe = adContainer.querySelector('iframe');
+            if (adIframe || adContainer.querySelector('.ad-content > div:not(.ad-loading):not(.ad-error)')) {
+              markAdAsLoaded();
+            } else {
+              // Try to detect ad content for a few more seconds
+              let attempts = 0;
+              const checkInterval = setInterval(() => {
+                attempts++;
+                const iframe = adContainer.querySelector('iframe');
+                const adContent = adContainer.querySelector('.ad-content > div:not(.ad-loading):not(.ad-error)');
+                
+                if (iframe || adContent) {
+                  clearInterval(checkInterval);
+                  markAdAsLoaded();
+                } else if (attempts >= 10) { // Stop after 5 seconds
+                  clearInterval(checkInterval);
+                  showError('Ad content not found');
+                }
+              }, 500);
+            }
+          }, 1000);
+        };
+        
+        // Set timeout for ad loading
+        adTimeout = setTimeout(() => {
+          if (!adLoaded) {
+            showError('Ad loading timeout');
+          }
+        }, 8000); // 8 second timeout
+        
+        // Append script to ad container
+        adContainer.appendChild(script);
+        
+      } catch (error) {
+        showError('Ad initialization failed');
+        console.error('Ad loading error:', error);
+      }
+    }
+    
+    function shouldLoadAd() {
+      // Check if ads are blocked
+      if (window.atOptions && window.atOptions.blocked) {
+        showError('Ad blocker detected');
+        return false;
+      }
+      
+      // Check network conditions
+      if (navigator.connection && navigator.connection.effectiveType === 'slow-2g') {
+        showError('Slow network detected');
+        return false;
+      }
+      
+      return true;
+    }
+    
+    // Initialize ad loading based on priority and lazy loading
+    function initializeAd() {
+      if (!shouldLoadAd()) return;
+      
+      if (lazy) {
+        // Use Intersection Observer for lazy loading
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                observer.unobserve(entry.target);
+                loadAd();
+              }
+            });
+          }, {
+            rootMargin: '100px' // Start loading 100px before ad comes into view
+          });
+          
+          observer.observe(adContainer);
+        } else {
+          // Fallback for browsers without Intersection Observer
+          loadAd();
+        }
+      } else {
+        // Load immediately based on priority
+        const delay = priority === 'high' ? 0 : priority === 'normal' ? 500 : 1500;
+        setTimeout(loadAd, delay);
+      }
+    }
+    
+    // Start initialization
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeAd);
+    } else {
+      initializeAd();
+    }
+    
+    // Handle page visibility changes
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden && !adLoaded) {
+        // Pause ad loading when page is hidden
+        if (adTimeout) {
+          clearTimeout(adTimeout);
+        }
+      } else if (!document.hidden && !adLoaded) {
+        // Resume ad loading when page becomes visible
+        initializeAd();
+      }
+    });
+    
+  })();
+</script> 
