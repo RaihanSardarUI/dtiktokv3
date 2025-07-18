@@ -78,7 +78,7 @@ const faqData = [
   </script>
   
   <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <section class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
         <!-- Background Image - Optimized for LCP with responsive loading -->
     <div class="absolute inset-0 z-0">
       <img 
@@ -88,7 +88,7 @@ const faqData = [
                 /optimized/bg/DTikTok-BG-lg.webp 1024w, 
                 /optimized/bg/DTikTok-BG-xl.webp 1440w, 
                 /optimized/bg/DTikTok-BG-2xl.webp 1920w"
-        sizes="100vw"
+        sizes="(max-width: 1200px) 100vw, 1200px"
         alt="DTikTok Background" 
         class="w-full h-full object-cover opacity-30" 
         width="1024" 
@@ -96,13 +96,13 @@ const faqData = [
         loading="eager" 
         fetchpriority="high" 
         decoding="async" 
-        style="transform: translateZ(0);"
+        style="transform: translateZ(0); max-width: 100%;"
       />
       <div class="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70"></div>
     </div>
     
     <!-- Animated Background Elements - Deferred -->
-    <div class="absolute inset-0 z-10" style="animation-delay: 0.5s;">
+    <div class="absolute inset-0 z-10 overflow-hidden" style="animation-delay: 0.5s;">
       <div class="absolute top-20 left-20 w-32 h-32 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
       <div class="absolute bottom-20 right-20 w-40 h-40 bg-secondary/20 rounded-full blur-xl animate-pulse" style="animation-delay: 1s;"></div>
       <div class="absolute top-1/2 left-1/4 w-20 h-20 bg-accent/20 rounded-full blur-xl animate-pulse" style="animation-delay: 2s;"></div>
@@ -371,7 +371,7 @@ const faqData = [
   </section>
 
   <!-- Introduction -->
-  <section class="py-20 px-6 bg-gradient-to-br from-base-100 via-base-200 to-base-100 relative overflow-hidden">
+  <section class="py-20 px-6 bg-gradient-to-br from-base-100 via-base-200 to-base-100 relative overflow-hidden max-w-full">
     <!-- Background Elements -->
     <div class="absolute inset-0 opacity-10">
       <div class="absolute top-20 left-20 w-40 h-40 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
@@ -444,7 +444,7 @@ const faqData = [
   </section>
 
   <!-- Why DTikTok is the Best -->
-  <section id="why-best" class="py-20 px-6 bg-gradient-to-br from-base-100 via-base-200 to-base-100 relative overflow-hidden">
+  <section id="why-best" class="py-20 px-6 bg-gradient-to-br from-base-100 via-base-200 to-base-100 relative overflow-hidden max-w-full">
     <!-- Background Elements -->
     <div class="absolute inset-0 opacity-20">
       <div class="absolute top-32 left-32 w-80 h-80 bg-primary/15 rounded-full blur-3xl animate-pulse"></div>
