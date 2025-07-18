@@ -60,7 +60,7 @@ const dtiktokConfig = {
   <meta name="description" content={description} />
   <meta name="keywords" content="DTiktok, TikTok downloader, iOS shortcut, iPhone, iPad, video download, watermark free, RHN" />
   <meta name="author" content="RHN" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimum-scale=0.5, user-scalable=yes" />
   <!-- Favicon and App Icons -->
   <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
@@ -204,6 +204,42 @@ const dtiktokConfig = {
       border-right: 2px solid #f0565f;
       min-height: 100vh;
       background: linear-gradient(135deg, #1a1a1a 0%, #202020 50%, #2a2a2a 100%);
+      /* Fix zoom-out issues */
+      position: relative;
+      overflow-x: hidden;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    /* Ensure all child elements respect container boundaries */
+    .main-container * {
+      box-sizing: border-box;
+    }
+    
+    /* Fix for full-width sections within constrained container */
+    .main-container .hero-section {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    
+    /* Prevent background images from breaking container */
+    .main-container .hero-section .absolute {
+      max-width: 100%;
+    }
+    
+    /* Ensure all sections respect container boundaries */
+    .main-container section {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    
+    /* Fix for background elements in sections */
+    .main-container section .absolute {
+      max-width: 100%;
+      box-sizing: border-box;
     }
     
     /* Gradient backgrounds - optimized to prevent layout shifts */
@@ -256,6 +292,45 @@ const dtiktokConfig = {
     /* Scroll offset for smooth navigation */
     #download, #about, #features, #why-best, #installation, #screenshots, #faq, #conclusion {
       scroll-margin-top: 100px;
+    }
+    
+    /* Additional zoom-out fixes */
+    @media (max-width: 1200px) {
+      .main-container {
+        margin: 0 auto;
+        padding: 0 10px;
+      }
+      
+      /* Ensure sections don't overflow */
+      .main-container section {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+      
+      /* Fix absolute positioned elements */
+      .main-container .absolute {
+        max-width: calc(100% - 20px);
+        left: 10px;
+        right: 10px;
+      }
+    }
+    
+    /* Prevent horizontal scrolling */
+    body {
+      overflow-x: hidden;
+    }
+    
+    /* Fix for very small zoom levels */
+    @media (max-width: 600px) {
+      .main-container {
+        border-left: 1px solid #f0565f;
+        border-right: 1px solid #f0565f;
+        padding: 0 5px;
+      }
+      
+      .hero-section {
+        padding: 0 10px;
+      }
     }
   </style>
 
