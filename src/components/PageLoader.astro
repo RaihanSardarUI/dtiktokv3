@@ -1,0 +1,183 @@
+---
+// PageLoader.astro - Loading screen component
+export interface Props {
+  showLoader?: boolean;
+}
+
+const { showLoader = true } = Astro.props;
+---
+
+{showLoader && (
+  <div id="page-loader" class="page-loader">
+    <div class="loader-container">
+      <!-- DTikTok Logo -->
+      <div class="loader-logo">
+        <img 
+          src="/optimized/DTikTok-96.webp" 
+          alt="DTikTok" 
+          class="loader-icon"
+          width="64" 
+          height="64"
+        />
+      </div>
+      
+      <!-- Loading Animation -->
+      <div class="loader-spinner">
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+      </div>
+      
+      <!-- Loading Text -->
+      <div class="loader-text">
+        <h2>DTikTok</h2>
+        <p>Loading your TikTok downloader...</p>
+      </div>
+    </div>
+  </div>
+)}
+
+<style>
+  .page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #202020 50%, #2a2a2a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  
+  .page-loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .loader-container {
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .loader-logo {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .loader-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 3px solid #f0565f;
+    animation: pulse 2s infinite;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .loader-spinner {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 2rem;
+  }
+  
+  .spinner-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top: 3px solid #f0565f;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  .spinner-ring:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    top: 10px;
+    left: 10px;
+    border-top-color: #ff4b4b;
+    animation-duration: 1.5s;
+    animation-direction: reverse;
+  }
+  
+  .spinner-ring:nth-child(3) {
+    width: 40px;
+    height: 40px;
+    top: 20px;
+    left: 20px;
+    border-top-color: #0693e3;
+    animation-duration: 2s;
+  }
+  
+  .loader-text h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #f0565f, #ff4b4b, #0693e3);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .loader-text p {
+    font-size: 1rem;
+    color: #ffffff80;
+    margin: 0;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .loader-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto;
+    }
+    
+    .loader-spinner {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .spinner-ring:nth-child(2) {
+      width: 45px;
+      height: 45px;
+      top: 7.5px;
+      left: 7.5px;
+    }
+    
+    .spinner-ring:nth-child(3) {
+      width: 30px;
+      height: 30px;
+      top: 15px;
+      left: 15px;
+    }
+    
+    .loader-text h2 {
+      font-size: 1.5rem;
+    }
+    
+    .loader-text p {
+      font-size: 0.875rem;
+    }
+  }
+</style>

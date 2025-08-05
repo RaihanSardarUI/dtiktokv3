@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { getCurrentDomain, getCanonicalUrl } from '../utils/domainUtils.js';
+import PageLoader from '../components/PageLoader.astro';
 
 export interface Props {
   title: string;
@@ -59,7 +60,7 @@ const dtiktokConfig = {
   <meta name="description" content={description} />
   <meta name="keywords" content="DTiktok, TikTok downloader, iOS shortcut, iPhone, iPad, video download, watermark free, RHN" />
   <meta name="author" content="RHN" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
   <!-- Favicon and App Icons -->
   <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
@@ -203,6 +204,10 @@ const dtiktokConfig = {
       border-right: 2px solid #f0565f;
       min-height: 100vh;
       background: linear-gradient(135deg, #1a1a1a 0%, #202020 50%, #2a2a2a 100%);
+      /* Prevent horizontal overflow */
+      overflow-x: hidden;
+      width: 100%;
+      box-sizing: border-box;
     }
     
     /* Gradient backgrounds - optimized to prevent layout shifts */
@@ -266,6 +271,9 @@ const dtiktokConfig = {
   
 </head>
 <body class="bg-base-100 text-base-content min-h-screen gradient-bg" style="background: linear-gradient(135deg, #1a1a1a 0%, #202020 50%, #2a2a2a 100%); min-height: 100vh;">
+  <!-- Page Loader -->
+  <PageLoader />
+  
   <!-- Main Container with max-width and borders -->
   <div class="main-container">
     <!-- Header/Navigation -->
@@ -338,24 +346,136 @@ const dtiktokConfig = {
           </a>
         </div>
         
-        <!-- Mobile Menu Dropdown -->
-        <div class="dropdown dropdown-end lg:hidden">
-          <label tabindex="0" class="btn btn-ghost btn-circle">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-            </svg>
-          </label>
-          <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-2xl bg-base-200 rounded-box w-52 glass">
-            <li><a href="/" class="hover:text-primary">🏠 Home</a></li>
-            <li><a href="#download" class="hover:text-primary mobile-get-shortcut">⬇️ Add Shortcut</a></li>
-            <li><a href="/privacy-policy/" class="hover:text-primary">🔒 Privacy Policy</a></li>
-            <li><a href="/terms-and-conditions/" class="hover:text-primary">📄 Terms & Conditions</a></li>
-            <li class="border-t border-white/10 mt-2 pt-2">
-              <a href="https://www.tiktok.com/@dtiktokshortcut" target="_blank" class="hover:text-primary">
-                📱 Follow on TikTok
-              </a>
-            </li>
-          </ul>
+        <!-- Modern Mobile Menu -->
+        <div class="lg:hidden">
+          <button id="mobile-menu-button" class="mobile-menu-trigger" aria-label="Open mobile menu">
+            <div class="hamburger-icon">
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+            </div>
+          </button>
+          
+          <!-- Mobile Menu Overlay -->
+          <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+            <div class="mobile-menu-container">
+              <!-- Menu Header -->
+              <div class="mobile-menu-header">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100">
+                    <img 
+                      src="/optimized/DTikTok-96.webp" 
+                      alt="DTikTok" 
+                      class="w-full h-full object-cover rounded-full" 
+                      width="40" 
+                      height="40"
+                    />
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-white">DTikTok</h3>
+                    <p class="text-xs text-primary font-semibold">v{dtiktokConfig.version}</p>
+                  </div>
+                </div>
+                <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close mobile menu">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              
+              <!-- Menu Items -->
+              <nav class="mobile-menu-nav">
+                <a href="/" class="mobile-menu-item">
+                  <div class="mobile-menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                  </div>
+                  <div class="mobile-menu-text">
+                    <span class="mobile-menu-title">Home</span>
+                    <span class="mobile-menu-subtitle">Main page</span>
+                  </div>
+                  <div class="mobile-menu-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </a>
+                
+                <a href="#download" class="mobile-menu-item mobile-get-shortcut">
+                  <div class="mobile-menu-icon bg-primary/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m3-2h3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6a2 2 0 012-2h3" />
+                    </svg>
+                  </div>
+                  <div class="mobile-menu-text">
+                    <span class="mobile-menu-title text-primary">Add Shortcut</span>
+                    <span class="mobile-menu-subtitle">Get DTikTok now</span>
+                  </div>
+                  <div class="mobile-menu-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </a>
+                
+                <a href="/privacy-policy/" class="mobile-menu-item">
+                  <div class="mobile-menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <div class="mobile-menu-text">
+                    <span class="mobile-menu-title">Privacy Policy</span>
+                    <span class="mobile-menu-subtitle">Data protection</span>
+                  </div>
+                  <div class="mobile-menu-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </a>
+                
+                <a href="/terms-and-conditions/" class="mobile-menu-item">
+                  <div class="mobile-menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                  <div class="mobile-menu-text">
+                    <span class="mobile-menu-title">Terms & Conditions</span>
+                    <span class="mobile-menu-subtitle">Legal information</span>
+                  </div>
+                  <div class="mobile-menu-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </a>
+              </nav>
+              
+              <!-- Menu Footer -->
+              <div class="mobile-menu-footer">
+                <div class="mobile-menu-divider"></div>
+                <a href="https://www.tiktok.com/@dtiktokshortcut" target="_blank" class="mobile-menu-social">
+                  <div class="mobile-menu-icon bg-pink-500/20">
+                    <svg class="w-5 h-5 text-pink-400" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-.88-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+                    </svg>
+                  </div>
+                  <div class="mobile-menu-text">
+                    <span class="mobile-menu-title text-pink-400">Follow on TikTok</span>
+                    <span class="mobile-menu-subtitle">@dtiktokshortcut</span>
+                  </div>
+                  <div class="mobile-menu-external">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
         
         <!-- Primary CTA Button -->
@@ -579,6 +699,117 @@ const dtiktokConfig = {
     </div>
   </footer>
   </div>
+
+  <!-- Loading System JavaScript -->
+  <script>
+    // Initialize loading system
+    function initializeLoadingSystem() {
+      const loader = document.getElementById('page-loader');
+      
+      // Show loader immediately
+      if (loader) {
+        loader.style.display = 'flex';
+        document.body.classList.add('loading');
+      }
+      
+      // Hide loader when page is fully loaded
+      function hideLoader() {
+        if (loader) {
+          loader.classList.add('fade-out');
+          document.body.classList.remove('loading');
+          setTimeout(() => {
+            loader.style.display = 'none';
+          }, 500);
+        }
+      }
+      
+      // Wait for all content to load
+      if (document.readyState === 'loading') {
+        window.addEventListener('load', () => {
+          setTimeout(hideLoader, 800);
+        });
+      } else {
+        setTimeout(hideLoader, 300);
+      }
+      
+      // Fallback: hide loader after maximum time
+      setTimeout(hideLoader, 5000);
+    }
+    
+    // Initialize immediately
+    initializeLoadingSystem();
+    
+    // Prevent horizontal scroll
+    function preventHorizontalScroll() {
+      document.documentElement.style.overflowX = 'hidden';
+      document.body.style.overflowX = 'hidden';
+      
+      // Fix for mobile
+      if (window.innerWidth <= 768) {
+        document.documentElement.style.width = '100%';
+        document.body.style.width = '100%';
+        document.documentElement.style.maxWidth = '100%';
+        document.body.style.maxWidth = '100%';
+      }
+    }
+    
+    // Apply fixes
+    preventHorizontalScroll();
+    window.addEventListener('resize', preventHorizontalScroll);
+    
+    // Mobile Menu Functionality
+    function initializeMobileMenu() {
+      const menuButton = document.getElementById('mobile-menu-button');
+      const menuOverlay = document.getElementById('mobile-menu-overlay');
+      const menuClose = document.getElementById('mobile-menu-close');
+      const body = document.body;
+      
+      if (!menuButton || !menuOverlay || !menuClose) return;
+      
+      // Open menu
+      function openMenu() {
+        menuButton.classList.add('active');
+        menuOverlay.classList.add('active');
+        body.classList.add('mobile-menu-open');
+      }
+      
+      // Close menu
+      function closeMenu() {
+        menuButton.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        body.classList.remove('mobile-menu-open');
+      }
+      
+      // Event listeners
+      menuButton.addEventListener('click', openMenu);
+      menuClose.addEventListener('click', closeMenu);
+      
+      // Close menu when clicking overlay
+      menuOverlay.addEventListener('click', (e) => {
+        if (e.target === menuOverlay) {
+          closeMenu();
+        }
+      });
+      
+      // Close menu on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menuOverlay.classList.contains('active')) {
+          closeMenu();
+        }
+      });
+      
+      // Close menu when clicking menu items
+      const menuItems = menuOverlay.querySelectorAll('.mobile-menu-item, .mobile-menu-social');
+      menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+          setTimeout(closeMenu, 300); // Small delay for better UX
+        });
+      });
+    }
+    
+    // Initialize mobile menu
+    initializeMobileMenu();
+  </script>
 
   <!-- Smooth Scrolling JavaScript -->
   <script>
