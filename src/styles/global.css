@@ -671,8 +671,9 @@ afari fixes for add-dtiktok page */
       color: transparent !important;
     }
   }
-}/
-* Universal fix for all gradient text blur issues on iOS */
+}
+
+/* Universal fix for all gradient text blur issues on iOS */
 .bg-clip-text,
 [class*="bg-clip-text"] {
   /* Improve text rendering */
@@ -907,8 +908,9 @@ Non-blurry highlight text classes for headings */
       -webkit-text-fill-color: #22c55e !important;
     }
   }
-}/* Non-bl
-urry button styles for hero and download sections */
+}
+
+/* Non-blurry button styles for hero and download sections */
 .hero-button {
   background: linear-gradient(90deg, #f0565f 0%, rgba(240, 86, 95, 0.9) 50%, #ff4b4b 100%);
   /* Anti-blur optimizations */
