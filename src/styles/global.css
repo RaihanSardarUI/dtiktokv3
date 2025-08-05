@@ -30,6 +30,74 @@ body {
   }
 }
 
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Fix for iOS Safari gradient and backdrop-filter issues */
+  .glass {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+  
+  /* Fix gradient backgrounds on iOS */
+  .bg-gradient-to-r,
+  .bg-gradient-to-br,
+  .bg-gradient-to-l {
+    background-attachment: scroll !important;
+  }
+  
+  /* Ensure color opacity works on iOS */
+  .bg-primary\/10 {
+    background-color: rgba(240, 86, 95, 0.1) !important;
+  }
+  
+  .bg-secondary\/10 {
+    background-color: rgba(255, 75, 75, 0.1) !important;
+  }
+  
+  .bg-accent\/10 {
+    background-color: rgba(6, 147, 227, 0.1) !important;
+  }
+  
+  .bg-success\/10 {
+    background-color: rgba(34, 197, 94, 0.1) !important;
+  }
+  
+  .bg-info\/10 {
+    background-color: rgba(6, 147, 227, 0.1) !important;
+  }
+  
+  .bg-warning\/10 {
+    background-color: rgba(251, 191, 36, 0.1) !important;
+  }
+  
+  /* Fix border colors on iOS */
+  .border-primary\/20 {
+    border-color: rgba(240, 86, 95, 0.2) !important;
+  }
+  
+  .border-secondary\/20 {
+    border-color: rgba(255, 75, 75, 0.2) !important;
+  }
+  
+  .border-accent\/20 {
+    border-color: rgba(6, 147, 227, 0.2) !important;
+  }
+  
+  .border-success\/20 {
+    border-color: rgba(34, 197, 94, 0.2) !important;
+  }
+  
+  .border-info\/20 {
+    border-color: rgba(6, 147, 227, 0.2) !important;
+  }
+  
+  .border-warning\/20 {
+    border-color: rgba(251, 191, 36, 0.2) !important;
+  }
+}
+
 /* Custom animations - fallback for Tailwind config */
 @keyframes fadeInUp {
   0% {
@@ -73,8 +141,11 @@ body {
 .glass {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #ffffff;
+  /* iOS Safari fallback */
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 /* Hover effects */
@@ -87,7 +158,7 @@ body {
   box-shadow: 0 20px 40px rgba(240, 86, 95, 0.2);
 }
 
-/* Animated gradient text */
+/* Animated gradient text - improved for iOS */
 .gradient-text {
   background: linear-gradient(45deg, #f0565f, #ff4b4b, #0693e3);
   background-size: 300% 300%;
@@ -95,6 +166,14 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradient-animation 3s ease infinite;
+  /* Improve text rendering and prevent blur */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 @keyframes gradient-animation {
@@ -103,109 +182,74 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Heading styles with white color and consistent font sizes */
+/* Improved heading styles - more flexible and maintainable */
 h1, h2, h3, h4, h5, h6 {
+  /* Only set color for dark theme contexts, allow Tailwind to control elsewhere */
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+/* Default heading colors for dark theme */
+.bg-base-100 h1,
+.bg-base-200 h1,
+.bg-base-300 h1,
+section.bg-base-100 h1,
+section.bg-base-200 h1,
+section.bg-base-300 h1 {
+  color: #ffffff;
+}
+
+.bg-base-100 h2,
+.bg-base-200 h2,
+.bg-base-300 h2,
+section.bg-base-100 h2,
+section.bg-base-200 h2,
+section.bg-base-300 h2 {
+  color: #ffffff;
+}
+
+.bg-base-100 h3,
+.bg-base-200 h3,
+.bg-base-300 h3,
+section.bg-base-100 h3,
+section.bg-base-200 h3,
+section.bg-base-300 h3 {
+  color: #ffffff;
+}
+
+/* Allow Tailwind classes to work properly */
+.text-white {
   color: #ffffff !important;
 }
 
-/* Ensure proper font sizes for headings in all contexts */
-h1 {
-  font-size: 2.5rem !important;
+.text-gray-800 {
+  color: #1f2937 !important;
 }
 
-/* Fix for H1 tags in sectioning elements (HTML5 outline algorithm deprecation) */
-/* Using higher specificity to override Tailwind classes */
-section h1.text-5xl,
-section h1.text-6xl,
-section h1.text-7xl,
-section h1.text-9xl,
-article h1.text-5xl,
-article h1.text-6xl,
-article h1.text-7xl,
-article h1.text-9xl,
-aside h1.text-5xl,
-aside h1.text-6xl,
-aside h1.text-7xl,
-aside h1.text-9xl,
-nav h1.text-5xl,
-nav h1.text-6xl,
-nav h1.text-7xl,
-nav h1.text-9xl,
-section h1,
-article h1,
-aside h1,
-nav h1 {
-  font-size: 2.5rem !important;
+.dark\:text-white {
+  color: #ffffff !important;
 }
 
-/* Media query for responsive H1 sizing in sectioning elements */
-@media (min-width: 768px) {
-  section h1.text-5xl,
-  section h1.text-6xl,
-  section h1.text-7xl,
-  section h1.text-9xl,
-  article h1.text-5xl,
-  article h1.text-6xl,
-  article h1.text-7xl,
-  article h1.text-9xl,
-  aside h1.text-5xl,
-  aside h1.text-6xl,
-  aside h1.text-7xl,
-  aside h1.text-9xl,
-  nav h1.text-5xl,
-  nav h1.text-6xl,
-  nav h1.text-7xl,
-  nav h1.text-9xl,
-  section h1,
-  article h1,
-  aside h1,
-  nav h1 {
-    font-size: 3.5rem !important;
+/* Responsive heading improvements */
+@media (max-width: 640px) {
+  /* Better mobile heading sizes */
+  h1 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    line-height: 1.3;
+  }
+  
+  h3 {
+    font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+    line-height: 1.4;
   }
 }
 
-/* Specific overrides for different H1 types with higher specificity */
-section h1.gradient-text.text-5xl.font-black,
-section h1.gradient-text.text-7xl.font-black,
-section h1.gradient-text {
-  font-size: 3rem !important;
-}
-
-@media (min-width: 768px) {
-  section h1.gradient-text.text-5xl.font-black,
-  section h1.gradient-text.text-7xl.font-black,
-  section h1.gradient-text {
-    font-size: 4.5rem !important;
-  }
-}
-
-/* 404 page H1 */
-section h1.text-9xl.font-black {
-  font-size: 8rem !important;
-}
-
-/* Add-DTikTok page H1 */
-section h1.bg-gradient-to-r.text-5xl.font-black,
-section h1.bg-gradient-to-r.text-6xl.font-black,
-section h1.bg-gradient-to-r {
-  font-size: 3rem !important;
-}
-
-@media (min-width: 768px) {
-  section h1.bg-gradient-to-r.text-5xl.font-black,
-  section h1.bg-gradient-to-r.text-6xl.font-black,
-  section h1.bg-gradient-to-r {
-    font-size: 3.75rem !important;
-  }
-}
-
-h2 {
-  font-size: 2rem !important;
-}
-
-h3 {
-  font-size: 1.75rem !important;
-}
+/* Remove overly restrictive heading font sizes - let Tailwind handle this */
 
 /* Improve contrast for primary text */
 .text-primary {
@@ -308,16 +352,16 @@ h3 {
   opacity: 0.9;
 }
 
-/* Table of Contents specific styles */
+/* Table of Contents specific styles - more flexible */
 nav[aria-label="Page contents"] h3 {
-  font-size: 0.875rem !important; /* text-sm */
-  font-weight: 600 !important;
-  line-height: 1.25 !important;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 600;
+  line-height: 1.25;
 }
 
 nav[aria-label="Page contents"] p {
-  font-size: 0.75rem !important; /* text-xs */
-  line-height: 1.2 !important;
+  font-size: 0.75rem; /* text-xs */
+  line-height: 1.2;
 }
 
 /* Better spacing for table of contents items */
@@ -327,4 +371,736 @@ nav[aria-label="Page contents"] a {
   min-height: 60px !important;
   display: flex !important;
   align-items: center !important;
+}
+/* Addition
+al iOS Safari fixes for download section */
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+  /* iOS specific download section fixes */
+  #download .glass {
+    background: rgba(26, 26, 26, 0.9) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(240, 86, 95, 0.3) !important;
+  }
+  
+  /* Fix gradient cards in download section */
+  #download .bg-gradient-to-br {
+    background: linear-gradient(135deg, rgba(240, 86, 95, 0.15) 0%, rgba(240, 86, 95, 0.05) 100%) !important;
+  }
+  
+  /* Ensure proper color visibility on iOS */
+  #download .text-white {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Fix button gradients on iOS */
+  #download .bg-gradient-to-r {
+    background: linear-gradient(90deg, #f0565f 0%, #ff4b4b 100%) !important;
+  }
+  
+  /* Ensure borders are visible */
+  #download .border {
+    border-width: 1px !important;
+    border-style: solid !important;
+  }
+}
+
+/* WebKit specific fixes for all iOS devices */
+@supports (-webkit-appearance: none) {
+  /* Force hardware acceleration for better rendering */
+  .glass,
+  .bg-gradient-to-r,
+  .bg-gradient-to-br {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  /* Fix color opacity rendering */
+  .bg-primary\/10,
+  .bg-secondary\/10,
+  .bg-accent\/10,
+  .bg-success\/10,
+  .bg-info\/10,
+  .bg-warning\/10 {
+    background-blend-mode: normal !important;
+  }
+}/* iOS S
+afari fixes for add-dtiktok page */
+@supports (-webkit-touch-callout: none) {
+  /* Fix hero section gradients on iOS */
+  .bg-gradient-to-br {
+    background-attachment: scroll !important;
+  }
+  
+  /* Fix backdrop-blur in hero section */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+  
+  /* Fix color opacity backgrounds on iOS */
+  .bg-pink-500\/10 {
+    background-color: rgba(236, 72, 153, 0.1) !important;
+  }
+  
+  .bg-blue-500\/10 {
+    background-color: rgba(59, 130, 246, 0.1) !important;
+  }
+  
+  .bg-purple-500\/10 {
+    background-color: rgba(168, 85, 247, 0.1) !important;
+  }
+  
+  .bg-pink-500\/20 {
+    background-color: rgba(236, 72, 153, 0.2) !important;
+  }
+  
+  .bg-purple-500\/20 {
+    background-color: rgba(168, 85, 247, 0.2) !important;
+  }
+  
+  /* Fix border colors on iOS */
+  .border-pink-500\/30 {
+    border-color: rgba(236, 72, 153, 0.3) !important;
+  }
+  
+  .border-white\/20 {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+  
+  .border-white\/40 {
+    border-color: rgba(255, 255, 255, 0.4) !important;
+  }
+  
+  /* Fix dark mode backgrounds on iOS */
+  .dark\:bg-gray-800 {
+    background-color: rgba(31, 41, 55, 0.95) !important;
+  }
+  
+  .dark\:bg-gray-900 {
+    background-color: rgba(17, 24, 39, 0.95) !important;
+  }
+  
+  /* Fix advantage section backgrounds on iOS */
+  .bg-blue-50 {
+    background-color: rgba(239, 246, 255, 0.8) !important;
+  }
+  
+  .dark\:bg-blue-900\/20 {
+    background-color: rgba(30, 58, 138, 0.2) !important;
+  }
+  
+  .bg-purple-50 {
+    background-color: rgba(250, 245, 255, 0.8) !important;
+  }
+  
+  .dark\:bg-purple-900\/20 {
+    background-color: rgba(88, 28, 135, 0.2) !important;
+  }
+  
+  .bg-indigo-50 {
+    background-color: rgba(238, 242, 255, 0.8) !important;
+  }
+  
+  .dark\:bg-indigo-900\/20 {
+    background-color: rgba(49, 46, 129, 0.2) !important;
+  }
+  
+  .bg-green-50 {
+    background-color: rgba(240, 253, 244, 0.8) !important;
+  }
+  
+  .dark\:bg-green-900\/20 {
+    background-color: rgba(20, 83, 45, 0.2) !important;
+  }
+  
+  .bg-orange-50 {
+    background-color: rgba(255, 247, 237, 0.8) !important;
+  }
+  
+  .dark\:bg-orange-900\/20 {
+    background-color: rgba(154, 52, 18, 0.2) !important;
+  }
+  
+  .bg-red-50 {
+    background-color: rgba(254, 242, 242, 0.8) !important;
+  }
+  
+  .dark\:bg-red-900\/20 {
+    background-color: rgba(127, 29, 29, 0.2) !important;
+  }
+  
+  .bg-pink-50 {
+    background-color: rgba(253, 242, 248, 0.8) !important;
+  }
+  
+  .dark\:bg-pink-900\/20 {
+    background-color: rgba(131, 24, 67, 0.2) !important;
+  }
+  
+  .bg-yellow-50 {
+    background-color: rgba(254, 252, 232, 0.8) !important;
+  }
+  
+  .dark\:bg-yellow-900\/20 {
+    background-color: rgba(133, 77, 14, 0.2) !important;
+  }
+  
+  .bg-teal-50 {
+    background-color: rgba(240, 253, 250, 0.8) !important;
+  }
+  
+  .dark\:bg-teal-900\/20 {
+    background-color: rgba(19, 78, 74, 0.2) !important;
+  }
+  
+  .bg-cyan-50 {
+    background-color: rgba(236, 254, 255, 0.8) !important;
+  }
+  
+  .dark\:bg-cyan-900\/20 {
+    background-color: rgba(22, 78, 99, 0.2) !important;
+  }
+  
+  /* Fix conclusion section gradients */
+  .bg-gradient-to-br.from-green-50.to-blue-50 {
+    background: linear-gradient(135deg, rgba(240, 253, 244, 0.8) 0%, rgba(239, 246, 255, 0.8) 100%) !important;
+  }
+  
+  .dark\:from-green-900\/20.dark\:to-blue-900\/20 {
+    background: linear-gradient(135deg, rgba(20, 83, 45, 0.2) 0%, rgba(30, 58, 138, 0.2) 100%) !important;
+  }
+}
+
+/* Additional iOS fixes for text visibility */
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+  /* Ensure text is visible on iOS */
+  .text-white {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .text-gray-800 {
+    color: #1f2937 !important;
+  }
+  
+  .dark\:text-white {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .dark\:text-gray-300 {
+    color: #d1d5db !important;
+  }
+  
+  /* Fix gradient text on iOS */
+  .bg-clip-text {
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-attachment: scroll !important;
+  }
+  
+  /* Ensure buttons are visible */
+  .bg-gradient-to-r.from-blue-600.to-purple-600 {
+    background: linear-gradient(90deg, #2563eb 0%, #9333ea 100%) !important;
+  }
+  
+  .bg-gradient-to-r.from-orange-500.to-yellow-500 {
+    background: linear-gradient(90deg, #f97316 0%, #eab308 100%) !important;
+  }
+  
+  .bg-gradient-to-r.from-pink-500.to-purple-600 {
+    background: linear-gradient(90deg, #ec4899 0%, #9333ea 100%) !important;
+  }
+  
+  .bg-gradient-to-r.from-green-500.to-blue-500 {
+    background: linear-gradient(90deg, #22c55e 0%, #3b82f6 100%) !important;
+  }
+}/* Fix
+ for blurry gradient titles on iOS */
+.gradient-title {
+  background: linear-gradient(45deg, #f472b6, #a855f7, #3b82f6);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Prevent blur on iOS */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* iOS Safari specific fixes for gradient titles */
+@supports (-webkit-touch-callout: none) {
+  .gradient-title {
+    /* Fallback for iOS Safari */
+    background: linear-gradient(45deg, #f472b6 0%, #a855f7 50%, #3b82f6 100%) !important;
+    background-size: 100% 100% !important;
+    background-attachment: scroll !important;
+    /* Better text rendering on iOS */
+    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Fallback for older browsers or rendering issues */
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+  .gradient-title {
+    /* If gradient fails, show solid color */
+    color: #f472b6 !important;
+    -webkit-text-fill-color: #f472b6 !important;
+  }
+  
+  /* Only apply gradient if supported properly */
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    .gradient-title {
+      background: linear-gradient(45deg, #f472b6, #a855f7, #3b82f6) !important;
+      background-clip: text !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      color: transparent !important;
+    }
+  }
+}/
+* Universal fix for all gradient text blur issues on iOS */
+.bg-clip-text,
+[class*="bg-clip-text"] {
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+  /* Prevent blur with hardware acceleration */
+  transform: translateZ(0) !important;
+  -webkit-transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+}
+
+/* iOS Safari specific gradient text fixes */
+@supports (-webkit-touch-callout: none) {
+  .bg-clip-text,
+  [class*="bg-clip-text"] {
+    /* Better text rendering on iOS */
+    -webkit-text-stroke: 0.25px rgba(255, 255, 255, 0.05) !important;
+    text-shadow: 0 0 0.5px rgba(0, 0, 0, 0.1) !important;
+    background-attachment: scroll !important;
+  }
+  
+  /* Fix specific gradient combinations */
+  .bg-gradient-to-r.from-success.to-info.bg-clip-text {
+    background: linear-gradient(90deg, #22c55e 0%, #0693e3 100%) !important;
+  }
+  
+  .bg-gradient-to-r.from-primary.via-secondary.to-accent.bg-clip-text {
+    background: linear-gradient(90deg, #f0565f 0%, #ff4b4b 50%, #0693e3 100%) !important;
+  }
+  
+  .bg-gradient-to-r.from-pink-500.to-purple-500.bg-clip-text {
+    background: linear-gradient(90deg, #ec4899 0%, #a855f7 100%) !important;
+  }
+  
+  .bg-gradient-to-r.from-primary.to-secondary.bg-clip-text {
+    background: linear-gradient(90deg, #f0565f 0%, #ff4b4b 100%) !important;
+  }
+  
+  .bg-gradient-to-r.from-secondary.to-accent.bg-clip-text {
+    background: linear-gradient(90deg, #ff4b4b 0%, #0693e3 100%) !important;
+  }
+  
+  .bg-gradient-to-r.from-accent.to-primary.bg-clip-text {
+    background: linear-gradient(90deg, #0693e3 0%, #f0565f 100%) !important;
+  }
+}
+
+/* Fallback for browsers with poor gradient text support */
+@media screen and (max-width: 768px) {
+  /* On mobile, provide fallback colors if gradient text is problematic */
+  .bg-clip-text.text-transparent {
+    /* Ensure text is never completely invisible */
+    text-shadow: 0 0 0 #f0565f !important;
+  }
+}
+
+/* Additional fix for button text gradients */
+.bg-gradient-to-r.from-white.to-white\/90.bg-clip-text {
+  /* Fix white gradient text in buttons */
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.9) 100%) !important;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .bg-gradient-to-r.from-white.to-white\/90.bg-clip-text {
+    background: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    color: #ffffff !important;
+  }
+}/* 
+Better heading system that works with Tailwind */
+.heading-primary {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.heading-secondary {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.heading-tertiary {
+  font-size: clamp(1.25rem, 3vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+/* Heading color utilities that work with the theme */
+.heading-light {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.heading-dark {
+  color: #1f2937;
+}
+
+.heading-gradient {
+  background: linear-gradient(45deg, #f0565f, #ff4b4b, #0693e3);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* iOS-specific heading fixes */
+@supports (-webkit-touch-callout: none) {
+  .heading-gradient {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+  
+  /* Ensure headings are readable on iOS */
+  h1, h2, h3, h4, h5, h6 {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}/* 
+Non-blurry highlight text classes for headings */
+.highlight-blue-purple {
+  background: linear-gradient(90deg, #2563eb 0%, #9333ea 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* Anti-blur optimizations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Prevent text selection issues */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.highlight-orange-red {
+  background: linear-gradient(90deg, #f97316 0%, #ef4444 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* Anti-blur optimizations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.highlight-green-blue {
+  background: linear-gradient(90deg, #22c55e 0%, #3b82f6 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* Anti-blur optimizations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* iOS Safari specific fixes for highlight text */
+@supports (-webkit-touch-callout: none) {
+  .highlight-blue-purple,
+  .highlight-orange-red,
+  .highlight-green-blue {
+    /* Better rendering on iOS */
+    background-attachment: scroll !important;
+    -webkit-text-stroke: 0.25px rgba(255, 255, 255, 0.02);
+    text-shadow: 0 0 0.5px rgba(0, 0, 0, 0.05);
+    /* Force hardware acceleration */
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  
+  /* Fallback colors for iOS if gradient fails */
+  .highlight-blue-purple {
+    color: #2563eb !important;
+  }
+  
+  .highlight-orange-red {
+    color: #f97316 !important;
+  }
+  
+  .highlight-green-blue {
+    color: #22c55e !important;
+  }
+}
+
+/* Additional fallback for older iOS versions */
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+  /* If gradient text is not supported, show solid colors */
+  @supports not (background-clip: text) and not (-webkit-background-clip: text) {
+    .highlight-blue-purple {
+      background: none !important;
+      color: #2563eb !important;
+      -webkit-text-fill-color: #2563eb !important;
+    }
+    
+    .highlight-orange-red {
+      background: none !important;
+      color: #f97316 !important;
+      -webkit-text-fill-color: #f97316 !important;
+    }
+    
+    .highlight-green-blue {
+      background: none !important;
+      color: #22c55e !important;
+      -webkit-text-fill-color: #22c55e !important;
+    }
+  }
+}/* Non-bl
+urry button styles for hero and download sections */
+.hero-button {
+  background: linear-gradient(90deg, #f0565f 0%, rgba(240, 86, 95, 0.9) 50%, #ff4b4b 100%);
+  /* Anti-blur optimizations */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Better rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hero-button:hover {
+  background: linear-gradient(90deg, rgba(240, 86, 95, 0.9) 0%, rgba(255, 75, 75, 0.9) 100%);
+}
+
+.download-button {
+  background: linear-gradient(90deg, #f0565f 0%, rgba(240, 86, 95, 0.9) 50%, #ff4b4b 100%);
+  /* Anti-blur optimizations */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Better rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.download-button:hover {
+  background: linear-gradient(90deg, rgba(240, 86, 95, 0.9) 0%, rgba(255, 75, 75, 0.9) 100%);
+}
+
+.hero-button-text {
+  /* Ensure crisp text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  /* Prevent text blur */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* iOS Safari specific button fixes */
+@supports (-webkit-touch-callout: none) {
+  .hero-button,
+  .download-button {
+    /* Better gradient rendering on iOS */
+    background-attachment: scroll !important;
+    /* Force hardware acceleration */
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    /* Improve button appearance */
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  .hero-button-text {
+    /* Better text rendering on iOS */
+    -webkit-text-stroke: 0.25px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Remove backdrop-blur issues on iOS */
+  .hero-button,
+  .download-button {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* Button hover effects that work well on iOS */
+.hero-button:hover,
+.download-button:hover {
+  /* Smooth transitions without blur */
+  transition: all 0.3s ease;
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 768px) {
+  .hero-button,
+  .download-button {
+    /* Simpler effects on mobile to prevent blur */
+    transform: none;
+    -webkit-transform: none;
+  }
+  
+  .hero-button:hover,
+  .download-button:hover {
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+  }
+}
+
+/* Fallback for browsers with poor gradient support */
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+  @supports not (background: linear-gradient(90deg, #f0565f, #ff4b4b)) {
+    .hero-button,
+    .download-button {
+      background: #f0565f !important;
+    }
+  }
+}/* F
+ix for download button text visibility */
+.download-button-text {
+  /* Ensure text is always visible */
+  color: #ffffff !important;
+  position: relative;
+  z-index: 20;
+  /* Better text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Strong text shadow for visibility */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  /* Prevent text selection issues */
+  user-select: none;
+  -webkit-user-select: none;
+  /* Ensure text doesn't disappear */
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Ensure proper z-index stacking for download button */
+.download-button {
+  /* Create stacking context */
+  position: relative;
+  z-index: 1;
+}
+
+.download-button .relative {
+  /* Ensure content is above background effects */
+  z-index: 10 !important;
+}
+
+/* iOS specific fixes for text visibility */
+@supports (-webkit-touch-callout: none) {
+  .download-button-text {
+    /* Force text visibility on iOS */
+    -webkit-text-fill-color: #ffffff !important;
+    color: #ffffff !important;
+    /* Stronger shadow for iOS */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+    /* Prevent iOS text rendering issues */
+    -webkit-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
+  }
+  
+  /* Ensure button background doesn't interfere with text */
+  .download-button {
+    /* Solid background fallback for iOS */
+    background-color: #f0565f !important;
+  }
+}
+
+/* Additional mobile fixes */
+@media (max-width: 768px) {
+  .download-button-text {
+    /* Ensure text is visible on mobile */
+    font-weight: 900 !important;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+    /* Prevent mobile text rendering issues */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
+
+/* Fallback for browsers with rendering issues */
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+  .download-button-text {
+    /* Ensure text is never transparent */
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: #ffffff !important;
+    color: #ffffff !important;
+  }
+}
+
+/* Fix z-index issues with absolute positioned elements */
+.download-button [class*="absolute"] {
+  /* Ensure background elements stay behind text */
+  z-index: 0 !important;
+}
+
+.download-button [class*="absolute"].z-5 {
+  /* Shine effect should be above background but below text */
+  z-index: 5 !important;
+}
+
+.download-button [class*="relative"].z-10 {
+  /* Text content should be on top */
+  z-index: 10 !important;
 }
