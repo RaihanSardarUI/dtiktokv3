@@ -2,7 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== FIXED THEME - IGNORE iOS DARK/LIGHT MODE ===== */
+/* Force dark theme regardless of system preference */
+html {
+  background-color: #282828 !important;
+  color: #ffffff !important;
+  color-scheme: dark !important;
+  -webkit-color-scheme: dark !important;
+}
 
+body {
+  background-color: #282828 !important;
+  color: #ffffff !important;
+}
+
+/* Override any system theme changes */
+*,
+*::before,
+*::after {
+  background-color: #282828 !important;
+  color: #ffffff !important;
+}
+
+/* Ignore prefers-color-scheme completely */
+@media (prefers-color-scheme: light) {
+
+  html,
+  body,
+  *,
+  *::before,
+  *::after {
+    background-color: #282828 !important;
+    color: #ffffff !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+
+  html,
+  body,
+  *,
+  *::before,
+  *::after {
+    background-color: #282828 !important;
+    color: #ffffff !important;
+  }
+}
 
 /* ===== MODERN GLOBAL STYLES ===== */
 
@@ -13,6 +58,8 @@ html {
   -ms-text-size-adjust: 100%;
   overflow-x: hidden;
   width: 100%;
+  background-color: #282828 !important;
+  color: #ffffff !important;
 }
 
 body {
@@ -23,6 +70,8 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #282828 !important;
+  color: #ffffff !important;
 }
 
 /* Universal Box Sizing */
@@ -35,10 +84,26 @@ body {
   html {
     -webkit-overflow-scrolling: touch;
     text-rendering: optimizeLegibility;
+    background-color: #282828 !important;
+    color: #ffffff !important;
+    color-scheme: dark !important;
+    -webkit-color-scheme: dark !important;
   }
 
   body {
     -webkit-overflow-scrolling: touch;
+    background-color: #282828 !important;
+    color: #ffffff !important;
+  }
+
+  /* Force all elements on iOS to use dark theme */
+  *,
+  *::before,
+  *::after {
+    background-color: #282828 !important;
+    color: #ffffff !important;
+    color-scheme: dark !important;
+    -webkit-color-scheme: dark !important;
   }
 
   /* iOS viewport height fix */
@@ -60,10 +125,13 @@ section {
   overflow-x: hidden;
   width: 100%;
   max-width: 100%;
+  background-color: #282828 !important;
+  color: #ffffff !important;
 }
 
 div {
-  /* No background color - adapts to system theme */
+  background-color: #282828 !important;
+  color: #ffffff !important;
 }
 
 /* ===== CORE ANIMATIONS ===== */
