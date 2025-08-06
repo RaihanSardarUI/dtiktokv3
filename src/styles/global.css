@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 /* ===== MODERN GLOBAL STYLES ===== */
 
 /* Base HTML & Body Setup */
@@ -11,7 +13,6 @@ html {
   -ms-text-size-adjust: 100%;
   overflow-x: hidden;
   width: 100%;
-  background-color: #282828 !important;
 }
 
 body {
@@ -22,24 +23,11 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #282828 !important;
 }
 
 /* Universal Box Sizing */
 * {
   box-sizing: border-box;
-}
-
-/* Force dark background everywhere */
-*,
-*::before,
-*::after {
-  background-color: #282828 !important;
-}
-
-/* Root element background fix */
-:root {
-  background-color: #282828 !important;
 }
 
 /* ===== iOS SAFARI OPTIMIZATIONS ===== */
@@ -72,11 +60,10 @@ section {
   overflow-x: hidden;
   width: 100%;
   max-width: 100%;
-  background-color: #282828 !important;
 }
 
 div {
-  background-color: #282828 !important;
+  /* No background color - adapts to system theme */
 }
 
 /* ===== CORE ANIMATIONS ===== */
