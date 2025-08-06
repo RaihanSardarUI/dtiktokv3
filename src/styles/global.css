@@ -58,6 +58,11 @@ section {
   overflow-x: hidden;
   width: 100%;
   max-width: 100%;
+  background-color: #282828;
+}
+
+div {
+  background-color: #282828;
 }
 
 /* ===== CORE ANIMATIONS ===== */
