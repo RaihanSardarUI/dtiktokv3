@@ -24,22 +24,24 @@ const canonicalUrl = canonical || getCanonicalUrl(Astro.url.pathname, Astro);
 
 // Static configuration (no dynamic dashboard needed)
 const dtiktokConfig = {
-  version: "4.4.4",
-  releaseDate: "16.07.25",
-  downloadUrl: "https://www.icloud.com/shortcuts/c403a958deda4de2b53e1f03e3f5c248",
-  fileSize: "1.5MB",
+  version: "4.4.5",
+  releaseDate: "08.01.25",
+  downloadUrl: "https://www.icloud.com/shortcuts/0b5ce8f001fd4b4eb74e2ae9adf4e2a9",
+  fileSize: "1.6MB",
   iosSupport: "IOS 17 and latest",
   isActive: true,
-  updateNotes: "Latest stable release with improved performance and bug fixes",
+  updateNotes: "Major update with multiple quality options and enhanced audio/video download capabilities",
   features: [
     "Download TikTok Videos Without Watermark",
-    "High-Quality Downloads",
-    "Audio-Only Download Option",
+    "Multiple Quality Options (HD, Standard, Low)",
+    "Enhanced Audio-Only Download",
+    "Video + Audio Download Options",
     "Fast and Easy to Use",
     "100% Free and Safe",
     "Compatible with Latest iOS Versions",
     "Lightweight and Quick Setup",
-    "Regular Updates"
+    "Regular Updates",
+    "All Previous Issues Fixed"
   ],
   seo: {
     searchConsole: "",
@@ -60,7 +62,7 @@ const dtiktokConfig = {
   <meta name="description" content={description} />
   <meta name="keywords" content="DTiktok, TikTok downloader, iOS shortcut, iPhone, iPad, video download, watermark free, RHN" />
   <meta name="author" content="RHN" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, interactive-widget=resizes-content" />
   <!-- Favicon and App Icons -->
   <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
@@ -76,6 +78,8 @@ const dtiktokConfig = {
   <meta name="theme-color" content="#f0565f" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="DTikTok" />
+  <meta name="format-detection" content="telephone=no" />
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
   
@@ -275,7 +279,7 @@ const dtiktokConfig = {
   <PageLoader />
   
   <!-- Main Container with max-width and borders -->
-  <div class="main-container">
+  <div class="main-container ios-optimized">
     <!-- Header/Navigation -->
     <header class="sticky top-0 z-50 glass border-b border-white/10">
       <nav class="navbar px-4 lg:px-8">
@@ -496,7 +500,7 @@ const dtiktokConfig = {
   </main>
 
   <!-- Footer -->
-  <footer class="relative overflow-hidden">
+  <footer class="relative overflow-hidden ios-optimized safe-area-inset-bottom">
     <!-- Background with gradient -->
     <div class="absolute inset-0 bg-gradient-to-br from-base-300 via-base-200 to-base-300"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5"></div>
