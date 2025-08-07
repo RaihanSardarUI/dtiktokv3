@@ -81,6 +81,13 @@ const dtiktokConfig = {
   <meta name="apple-mobile-web-app-title" content="DTikTok" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="generator" content={Astro.generator} />
+  
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://chillimagepublisher.com https://apps.apple.com https://itunes.apple.com; frame-src 'self' https://chillimagepublisher.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://chillimagepublisher.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  
   <title>{title}</title>
   
   <!-- Canonical URL -->
@@ -272,6 +279,65 @@ const dtiktokConfig = {
      crossorigin="anonymous"></script>
 
 
+  
+  <!-- Anti-Redirect Security Script -->
+  <script is:inline>
+    // Prevent unauthorized redirects
+    (function() {
+      const originalLocation = window.location.href;
+      const allowedDomains = [
+        window.location.hostname,
+        'apps.apple.com',
+        'itunes.apple.com',
+        'www.tiktok.com',
+        'g.co',
+        'fonts.googleapis.com',
+        'fonts.gstatic.com'
+      ];
+      
+      // Override window.location.href setter
+      let locationHref = window.location.href;
+      Object.defineProperty(window.location, 'href', {
+        get: function() { return locationHref; },
+        set: function(url) {
+          try {
+            const newUrl = new URL(url, window.location.origin);
+            const isAllowed = allowedDomains.some(domain => 
+              newUrl.hostname === domain || newUrl.hostname.endsWith('.' + domain)
+            );
+            
+            if (isAllowed || newUrl.hostname === window.location.hostname) {
+              locationHref = url;
+              window.location.replace(url);
+            } else {
+              console.warn('Blocked unauthorized redirect to:', url);
+            }
+          } catch (e) {
+            console.warn('Invalid redirect URL blocked:', url);
+          }
+        }
+      });
+      
+      // Monitor for suspicious redirects
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'childList') {
+            mutation.addedNodes.forEach(function(node) {
+              if (node.tagName === 'META' && node.getAttribute('http-equiv') === 'refresh') {
+                console.warn('Blocked meta refresh redirect');
+                node.remove();
+              }
+            });
+          }
+        });
+      });
+      
+      observer.observe(document.documentElement, {
+        childList: true,
+        subtree: true
+      });
+    })();
+  </script>
   
 </head>
 <body class="bg-base-100 text-base-content min-h-screen gradient-bg" style="background: linear-gradient(135deg, #1a1a1a 0%, #202020 50%, #2a2a2a 100%); min-height: 100vh;">
@@ -873,6 +939,43 @@ const dtiktokConfig = {
           }
         });
       });
+      
+      // Global click security monitor
+      document.addEventListener('click', function(e) {
+        const target = e.target.closest('a');
+        if (!target) return;
+        
+        const href = target.getAttribute('href');
+        
+        // Security check for external links
+        if (href && href.startsWith('http')) {
+          try {
+            const url = new URL(href);
+            const allowedDomains = [
+              'apps.apple.com',
+              'itunes.apple.com',
+              'www.tiktok.com',
+              'g.co',
+              'fonts.googleapis.com',
+              'fonts.gstatic.com'
+            ];
+            
+            const isAllowed = allowedDomains.some(domain => 
+              url.hostname === domain || url.hostname.endsWith('.' + domain)
+            );
+            
+            if (!isAllowed && url.hostname !== window.location.hostname) {
+              console.warn('Blocked suspicious external link:', href);
+              e.preventDefault();
+              return false;
+            }
+          } catch (error) {
+            console.warn('Blocked invalid URL:', href);
+            e.preventDefault();
+            return false;
+          }
+        }
+      }, true); // Use capture phase for better security
     });
   </script>
 </body>
