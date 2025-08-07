@@ -1,7 +1,5 @@
 ---
 // PageLoader.astro - Loading screen component with timed ad
-import AdBanner from './AdBanner.astro';
-
 export interface Props {
   showLoader?: boolean;
 }
@@ -12,11 +10,6 @@ const { showLoader = true } = Astro.props;
 {showLoader && (
   <div id="page-loader" class="page-loader">
     <div class="loader-container">
-      <!-- Top Advertisement -->
-      <div id="loader-ad-top" class="loader-ad loader-ad-top">
-        <AdBanner position="top" />
-      </div>
-      
       <!-- DTikTok Logo -->
       <div class="loader-logo">
         <img 
@@ -48,11 +41,7 @@ const { showLoader = true } = Astro.props;
           <div id="progress-percentage" class="progress-percentage">0%</div>
         </div>
       </div>
-      
-      <!-- Bottom Advertisement -->
-      <div id="loader-ad-bottom" class="loader-ad loader-ad-bottom">
-        <AdBanner position="bottom" />
-      </div>
+
     </div>
   </div>
 )}
@@ -192,28 +181,7 @@ const { showLoader = true } = Astro.props;
     100% { box-shadow: 0 0 15px rgba(240, 86, 95, 0.6); }
   }
   
-  /* Loader Advertisements */
-  .loader-ad {
-    opacity: 0;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    max-width: 320px;
-    width: 100%;
-  }
-  
-  .loader-ad-top {
-    margin-bottom: 2rem;
-    transform: translateY(-20px);
-  }
-  
-  .loader-ad-bottom {
-    margin-top: 2rem;
-    transform: translateY(20px);
-  }
-  
-  .loader-ad.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
+
   
   @keyframes spin {
     0% { transform: rotate(0deg); }
@@ -268,17 +236,7 @@ const { showLoader = true } = Astro.props;
       font-size: 0.75rem;
     }
     
-    .loader-ad {
-      max-width: 280px;
-    }
-    
-    .loader-ad-top {
-      margin-bottom: 1.5rem;
-    }
-    
-    .loader-ad-bottom {
-      margin-top: 1.5rem;
-    }
+
   }
 </style>
 
@@ -291,8 +249,7 @@ const { showLoader = true } = Astro.props;
       pageLoader.style.display = 'flex';
       pageLoader.classList.remove('fade-out');
     }
-    const loaderAdTop = document.getElementById('loader-ad-top');
-    const loaderAdBottom = document.getElementById('loader-ad-bottom');
+
     const progressFill = document.getElementById('progress-fill');
     const progressPercentage = document.getElementById('progress-percentage');
     const loadingStatus = document.getElementById('loading-status');
@@ -300,14 +257,12 @@ const { showLoader = true } = Astro.props;
     let progress = 0;
     let isPageLoaded = false;
     let minTimeElapsed = false;
-    let adsLoaded = false;
     
     console.log('DTikTok Loader: Starting enhanced loading system...');
     
     // Loading messages
     const loadingMessages = [
       'Initializing...',
-      'Loading advertisements...',
       'Loading DTikTok components...',
       'Setting up video downloader...',
       'Preparing user interface...',
@@ -345,16 +300,15 @@ const { showLoader = true } = Astro.props;
       }
     }
     
-    // Check if loading is complete (page loaded, minimum time elapsed, and ads loaded)
+    // Check if loading is complete (page loaded, minimum time elapsed)
     function checkLoadingComplete() {
       console.log('DTikTok Loader: Checking completion...', {
         isPageLoaded,
         minTimeElapsed,
-        adsLoaded,
         progress
       });
       
-      if (isPageLoaded && minTimeElapsed && adsLoaded && progress >= 100) {
+      if (isPageLoaded && minTimeElapsed && progress >= 100) {
         console.log('DTikTok Loader: All conditions met, hiding loader...');
         hideLoader();
       }
@@ -370,90 +324,17 @@ const { showLoader = true } = Astro.props;
       }
     }
     
-    // Ad loading detection
-    function checkAdLoading() {
-      let topAdLoaded = false;
-      let bottomAdLoaded = false;
-      
-      // Check for ad script elements and content
-      function detectAdContent() {
-        const adContainers = document.querySelectorAll('.ad-content');
-        let loadedAds = 0;
-        
-        adContainers.forEach(container => {
-          // Check if ad content is loaded (has child elements or content)
-          if (container.children.length > 0 || container.innerHTML.trim().length > 0) {
-            loadedAds++;
-          }
-        });
-        
-        // Also check for ad script loading
-        const adScripts = document.querySelectorAll('script[src*="cautiouslyanalysecrystal.com"]');
-        let scriptsLoaded = 0;
-        
-        adScripts.forEach(script => {
-          if (script.readyState === 'complete' || script.readyState === 'loaded') {
-            scriptsLoaded++;
-          }
-        });
-        
-        // Consider ads loaded if we have content or scripts are loaded
-        if (loadedAds >= 2 || scriptsLoaded > 0) {
-          adsLoaded = true;
-          if (loadingStatus) {
-            loadingStatus.textContent = 'Advertisements loaded...';
-          }
-          checkLoadingComplete();
-        }
-      }
-      
-      // Check ad loading periodically
-      const adCheckInterval = setInterval(() => {
-        detectAdContent();
-        if (adsLoaded) {
-          clearInterval(adCheckInterval);
-        }
-      }, 500);
-      
-      // Fallback: Consider ads loaded after 6 seconds
-      setTimeout(() => {
-        if (!adsLoaded) {
-          adsLoaded = true;
-          if (loadingStatus) {
-            loadingStatus.textContent = 'Ready to proceed...';
-          }
-          clearInterval(adCheckInterval);
-          checkLoadingComplete();
-        }
-      }, 6000);
-    }
-    
-    // Start ad loading detection
-    setTimeout(checkAdLoading, 1000);
+
     
     // Start progress animation
     setTimeout(updateProgress, 300);
     
-    // Show top ad after 1.5 seconds
-    if (loaderAdTop) {
-      setTimeout(() => {
-        loaderAdTop.classList.add('show');
-      }, 1500);
-    }
-    
-    // Show bottom ad after 2.5 seconds
-    if (loaderAdBottom) {
-      setTimeout(() => {
-        loaderAdBottom.classList.add('show');
-      }, 2500);
-    }
-    
-    // Minimum loading time of 5 seconds (extended for ad loading)
+    // Minimum loading time of 3 seconds
     setTimeout(() => {
       console.log('DTikTok Loader: Minimum time elapsed');
       minTimeElapsed = true;
       checkLoadingComplete();
-    }, 5000);
+    }, 3000);
     
     // Page load complete
     window.addEventListener('load', () => {
@@ -462,11 +343,10 @@ const { showLoader = true } = Astro.props;
       checkLoadingComplete();
     });
     
-    // Fallback: Force hide after 10 seconds maximum
+    // Fallback: Force hide after 6 seconds maximum
     setTimeout(() => {
       if (pageLoader && !pageLoader.classList.contains('fade-out')) {
         progress = 100;
-        adsLoaded = true;
         minTimeElapsed = true;
         isPageLoaded = true;
         if (progressFill) progressFill.style.width = '100%';
@@ -474,6 +354,6 @@ const { showLoader = true } = Astro.props;
         if (loadingStatus) loadingStatus.textContent = 'Ready!';
         setTimeout(hideLoader, 500);
       }
-    }, 10000);
+    }, 6000);
   });
 </script>
