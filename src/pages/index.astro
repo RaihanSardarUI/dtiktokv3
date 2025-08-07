@@ -150,12 +150,11 @@ const faqData = [
           </div>
         </div>
 
-        <!-- Advertisement after version badge -->
-        <AdBanner position="middle" />
+
         
         <!-- Enhanced CTA Button -->
         <div class="flex justify-center">
-          <a href="#download" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white hero-button rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 border-2 border-primary/30 hover:border-primary/50 overflow-hidden scroll-to-download" aria-label="Get Shortcut">
+          <a href="#download-button" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white hero-button rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 border-2 border-primary/30 hover:border-primary/50 overflow-hidden scroll-to-download" aria-label="Get Shortcut">
             
             <!-- Animated Background -->
             <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -186,15 +185,21 @@ const faqData = [
           </a>
         </div>
 
-        <!-- Advertisement after CTA button -->
-        <AdBanner position="middle" />
+        <!-- Advertisement below hero download button -->
+        <div class="mt-8">
+          <AdBanner position="middle" />
+        </div>
+        
+        <!-- Second advertisement below hero download button -->
+        <div class="mt-6">
+          <AdBanner position="middle" />
+        </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Advertisement after hero section -->
-  <AdBanner position="middle" />
+
 
   <!-- Table of Contents -->
   <section class="py-12 sm:py-16 px-4 sm:px-6">
@@ -475,9 +480,6 @@ const faqData = [
     </div>
   </section>
 
-  <!-- First Advertisement -->
-  <AdBanner position="middle" />
-
   <!-- DTikTok Features -->
   <section id="features" class="py-20 px-6">
     <div class="max-w-6xl mx-auto">
@@ -536,8 +538,7 @@ const faqData = [
     </div>
   </section>
 
-  <!-- Advertisement after "Why DTikTok is the Best" -->
-  <AdBanner position="middle" />
+
 
   <!-- Installation Guide -->
   <section id="installation" class="py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
@@ -838,7 +839,7 @@ const faqData = [
           </div>
 
           <div id="get" class="w-full max-w-md mx-auto">
-            <a href="/add-dtiktok/" class="group relative inline-flex items-center justify-center w-full px-8 py-4 sm:px-10 sm:py-5 text-lg sm:text-xl font-bold text-white download-button rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border-2 border-primary/30 hover:border-primary/50 overflow-hidden" aria-label="Add Shortcut to your device">
+            <a id="download-button" href="/add-dtiktok/" class="group relative inline-flex items-center justify-center w-full px-8 py-4 sm:px-10 sm:py-5 text-lg sm:text-xl font-bold text-white download-button rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border-2 border-primary/30 hover:border-primary/50 overflow-hidden" aria-label="Add Shortcut to your device">
               
               <!-- Simple Background Glow -->
               <div class="absolute inset-0 z-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -859,8 +860,15 @@ const faqData = [
             </a>
           </div>
 
-           <!-- First Advertisement -->
-  <AdBanner position="middle" />
+          <!-- Advertisement below download section button -->
+          <div class="mt-6">
+            <AdBanner position="middle" />
+          </div>
+          
+          <!-- Second advertisement below download section button -->
+          <div class="mt-6">
+            <AdBanner position="middle" />
+          </div>
           
           <!-- Clean Trust Indicators - Mobile Responsive -->
           <div class="mt-6 sm:mt-8 px-4">
@@ -987,8 +995,7 @@ const faqData = [
     </div>
   </section>
 
-  <!-- Second Advertisement -->
-  <AdBanner position="middle" />
+
 
   <!-- FAQ Section -->
   <section id="faq" class="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 relative overflow-hidden">
@@ -1154,8 +1161,7 @@ const faqData = [
     </div>
   </section>
 
-  <!-- Third Advertisement -->
-  <AdBanner position="bottom" />
+
 
   <!-- Conclusion -->
   <section id="conclusion" class="py-20 px-6 relative overflow-hidden">
