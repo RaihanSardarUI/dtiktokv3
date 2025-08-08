@@ -28,9 +28,11 @@ export function initializeLoader() {
     // Show loader immediately
     showLoader();
 
-    // Note: The PageLoader component now handles its own hiding logic
-    // with ad loading detection, minimum time, and progress tracking
+    // Enhanced: The PageLoader component now handles its own hiding logic
+    // with complete page loading, ad loading detection, minimum time, and progress tracking
     // This function only ensures the loader is visible initially
+    
+    console.log('DTikTok LoadingUtils: Enhanced loader initialized');
 }
 
 // Handle navigation loading
