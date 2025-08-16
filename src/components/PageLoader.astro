@@ -353,7 +353,7 @@ const { showLoader = true } = Astro.props;
         });
         
         // Check for ad scripts
-        const adScripts = document.querySelectorAll('script[src*="chillimagepublisher.com"], script[src*="googlesyndication.com"]');
+        const adScripts = document.querySelectorAll('script[src*="awaitingcoordinatelassitude.com"], script[src*="googlesyndication.com"]');
         let scriptsLoaded = 0;
         
         adScripts.forEach(script => {
@@ -363,7 +363,7 @@ const { showLoader = true } = Astro.props;
         });
         
         // Check for iframes (common in ads)
-        const adIframes = document.querySelectorAll('iframe[src*="chillimagepublisher"], iframe[src*="googlesyndication"]');
+        const adIframes = document.querySelectorAll('iframe[src*="awaitingcoordinatelassitude"], iframe[src*="googlesyndication"]');
         
         console.log(`DTikTok Loader: Found ${totalAds} ad containers, ${loadedAds} loaded, ${scriptsLoaded} scripts, ${adIframes.length} iframes`);
         
