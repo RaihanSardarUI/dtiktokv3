@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { getCurrentDomain, getCanonicalUrl } from '../utils/domainUtils.js';
-import PageLoader from '../components/PageLoader.astro';
+
 
 export interface Props {
   title: string;
@@ -286,8 +286,7 @@ const dtiktokConfig = {
   
 </head>
 <body class="bg-base-100 text-base-content min-h-screen gradient-bg" style="background: linear-gradient(135deg, #1a1a1a 0%, #202020 50%, #2a2a2a 100%); min-height: 100vh;">
-  <!-- Page Loader -->
-  <PageLoader />
+
   
   <!-- Main Container with max-width and borders -->
   <div class="main-container ios-optimized">
@@ -715,44 +714,7 @@ const dtiktokConfig = {
   </footer>
   </div>
 
-  <!-- Loading System JavaScript -->
-  <script>
-    // Initialize loading system
-    function initializeLoadingSystem() {
-      const loader = document.getElementById('page-loader');
-      
-      // Show loader immediately
-      if (loader) {
-        loader.style.display = 'flex';
-        document.body.classList.add('loading');
-      }
-      
-      // Hide loader when page is fully loaded
-      function hideLoader() {
-        if (loader) {
-          loader.classList.add('fade-out');
-          document.body.classList.remove('loading');
-          setTimeout(() => {
-            loader.style.display = 'none';
-          }, 500);
-        }
-      }
-      
-      // Wait for all content to load
-      if (document.readyState === 'loading') {
-        window.addEventListener('load', () => {
-          setTimeout(hideLoader, 800);
-        });
-      } else {
-        setTimeout(hideLoader, 300);
-      }
-      
-      // Fallback: hide loader after maximum time
-      setTimeout(hideLoader, 5000);
-    }
-    
-    // Initialize immediately
-    initializeLoadingSystem();
+
     
     // Prevent horizontal scroll
     function preventHorizontalScroll() {
