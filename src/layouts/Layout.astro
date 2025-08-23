@@ -165,7 +165,7 @@ const dtiktokConfig = {
 
   <!-- Google Analytics -->
   {dtiktokConfig.seo?.analyticsId && (
-    <>
+    <Fragment>
       <script async src={`https://www.googletagmanager.com/gtag/js?id=${dtiktokConfig.seo.analyticsId}`}></script>
       <script is:inline define:vars={{ analyticsId: dtiktokConfig.seo.analyticsId }}>
         window.dataLayer = window.dataLayer || [];
@@ -173,7 +173,7 @@ const dtiktokConfig = {
         gtag('js', new Date());
         gtag('config', analyticsId);
       </script>
-    </>
+    </Fragment>
   )}
 
   <!-- Head Ads Code -->
@@ -714,8 +714,7 @@ const dtiktokConfig = {
   </footer>
   </div>
 
-
-    
+  <script>
     // Prevent horizontal scroll
     function preventHorizontalScroll() {
       document.documentElement.style.overflowX = 'hidden';
